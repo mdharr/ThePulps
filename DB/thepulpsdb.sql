@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `story` (
   `story_url` VARCHAR(255) NULL,
   `created_at` TIMESTAMP NULL,
   `released_at` DATETIME NULL,
-  `page_length` INT NULL,
+  `page_count` INT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -484,7 +484,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `story` (`id`, `title`, `story_url`, `created_at`, `released_at`, `page_length`) VALUES (1, 'The Ape Man', 'https://nyc3.digitaloceanspaces.com/sffaudio-usa/mp3s/TheApeManByJ.B.M.ClarkeJr.pdf', '2023-07-05T00:00:00', '1923-03-01T00:00:00', 14);
+INSERT INTO `story` (`id`, `title`, `story_url`, `created_at`, `released_at`, `page_count`) VALUES (1, 'The Ape Man', 'https://nyc3.digitaloceanspaces.com/sffaudio-usa/mp3s/TheApeManByJ.B.M.ClarkeJr.pdf', '2023-07-05T00:00:00', '1923-03-01T00:00:00', 14);
 
 COMMIT;
 

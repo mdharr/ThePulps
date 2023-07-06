@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -18,11 +19,11 @@ public class Magazine {
 	private int id;
 	
 	@OneToOne
-	@Column(name = "cover_artwork_id") // REPLACE AFTER CREATING COVER_ARTWORK ENTITY!!!
+	@JoinColumn(name = "cover_artwork_id")
 	private CoverArtwork coverArtwork;
 	
 	@ManyToOne
-	@Column(name = "publication_id")
+	@JoinColumn(name = "publication_id")
 	private Publication publication;
 	
 	private String name;
