@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,16 +20,20 @@ public class CoverArtwork {
 	
 	@Column(name = "image_url")
 	private String imageUrl;
+	
+    @OneToOne(mappedBy = "coverArtwork")
+    private Magazine magazine;
 
 	public CoverArtwork() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public CoverArtwork(int id, String imageUrl) {
+	public CoverArtwork(int id, String imageUrl, Magazine magazine) {
 		super();
 		this.id = id;
 		this.imageUrl = imageUrl;
+		this.magazine = magazine;
 	}
 
 	public int getId() {
@@ -45,6 +50,14 @@ public class CoverArtwork {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public Magazine getMagazine() {
+		return magazine;
+	}
+
+	public void setMagazine(Magazine magazine) {
+		this.magazine = magazine;
 	}
 
 	@Override
@@ -67,7 +80,8 @@ public class CoverArtwork {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("CoverArtwork [id=").append(id).append(", imageUrl=").append(imageUrl).append("]");
+		builder.append("CoverArtwork [id=").append(id).append(", imageUrl=").append(imageUrl).append(", magazine=")
+				.append(magazine).append("]");
 		return builder.toString();
 	}
 	
