@@ -95,6 +95,7 @@ DROP TABLE IF EXISTS `publication` ;
 
 CREATE TABLE IF NOT EXISTS `publication` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -118,11 +119,19 @@ DROP TABLE IF EXISTS `magazine` ;
 CREATE TABLE IF NOT EXISTS `magazine` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `cover_artwork_id` INT NOT NULL,
+  `publication_id` INT NOT NULL,
+  `name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_magazine_cover_artwork1_idx` (`cover_artwork_id` ASC),
+  INDEX `fk_magazine_publication1_idx` (`publication_id` ASC),
   CONSTRAINT `fk_magazine_cover_artwork1`
     FOREIGN KEY (`cover_artwork_id`)
     REFERENCES `cover_artwork` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_magazine_publication1`
+    FOREIGN KEY (`publication_id`)
+    REFERENCES `publication` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
