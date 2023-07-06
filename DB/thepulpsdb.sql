@@ -61,6 +61,7 @@ CREATE TABLE IF NOT EXISTS `story` (
   `story_url` VARCHAR(255) NULL,
   `created_at` TIMESTAMP NULL,
   `released_at` DATETIME NULL,
+  `page_length` INT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -107,6 +108,7 @@ DROP TABLE IF EXISTS `cover_artwork` ;
 
 CREATE TABLE IF NOT EXISTS `cover_artwork` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `image_url` VARCHAR(100) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -121,6 +123,7 @@ CREATE TABLE IF NOT EXISTS `magazine` (
   `cover_artwork_id` INT NOT NULL,
   `publication_id` INT NOT NULL,
   `name` VARCHAR(45) NULL,
+  `released_at` DATETIME NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_magazine_cover_artwork1_idx` (`cover_artwork_id` ASC),
   INDEX `fk_magazine_publication1_idx` (`publication_id` ASC),
@@ -462,6 +465,96 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 USE `thepulpsdb`;
 INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`) VALUES (1, 'admin', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'ADMIN');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `collection`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `collection` (`id`, `user_id`, `name`) VALUES (1, 1, 'Favorites');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `story`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `story` (`id`, `title`, `story_url`, `created_at`, `released_at`, `page_length`) VALUES (1, 'The Ape Man', 'https://nyc3.digitaloceanspaces.com/sffaudio-usa/mp3s/TheApeManByJ.B.M.ClarkeJr.pdf', '2023-07-05T00:00:00', '1923-03-01T00:00:00', 14);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `collection_story`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `collection_story` (`collection_id`, `story_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `publication`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `publication` (`id`, `name`) VALUES (1, 'Weird Tales');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `cover_artwork`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `cover_artwork` (`id`, `image_url`) VALUES (1, 'https://upload.wikimedia.org/wikipedia/commons/f/ff/Weird_Tales_March_1923.jpg');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `magazine`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `magazine` (`id`, `cover_artwork_id`, `publication_id`, `name`, `released_at`) VALUES (1, 1, 1, 'Weird Tales, March 1923', '1923-03-01T00:00:00');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `author`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `author` (`id`, `first_name`, `middle_name`, `last_name`, `full_name`, `birth_date`, `description`) VALUES (1, 'James', 'B. M.', 'Clarke', 'James B.M. Clarke, Jr.', NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `magazine_story`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `magazine_story` (`story_id`, `magazine_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `story_author`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (1, 1);
 
 COMMIT;
 
