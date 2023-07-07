@@ -120,10 +120,11 @@ DROP TABLE IF EXISTS `magazine` ;
 
 CREATE TABLE IF NOT EXISTS `magazine` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `cover_artwork_id` INT NOT NULL,
-  `publication_id` INT NOT NULL,
-  `name` VARCHAR(45) NULL,
+  `cover_artwork_id` INT NULL,
+  `publication_id` INT NULL,
+  `name` VARCHAR(255) NULL,
   `released_at` DATETIME NULL,
+  `image_url` VARCHAR(255) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_magazine_cover_artwork1_idx` (`cover_artwork_id` ASC),
   INDEX `fk_magazine_publication1_idx` (`publication_id` ASC),
@@ -524,7 +525,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `magazine` (`id`, `cover_artwork_id`, `publication_id`, `name`, `released_at`) VALUES (1, 1, 1, 'Weird Tales, March 1923', '1923-03-01T00:00:00');
+INSERT INTO `magazine` (`id`, `cover_artwork_id`, `publication_id`, `name`, `released_at`, `image_url`) VALUES (1, 1, 1, 'Weird Tales, March 1923', '1923-03-01T00:00:00', NULL);
 
 COMMIT;
 
