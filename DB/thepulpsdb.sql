@@ -57,8 +57,8 @@ DROP TABLE IF EXISTS `story` ;
 
 CREATE TABLE IF NOT EXISTS `story` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(100) NULL,
-  `story_url` VARCHAR(255) NULL,
+  `title` VARCHAR(255) NULL,
+  `story_url` VARCHAR(1000) NULL,
   `created_at` TIMESTAMP NULL,
   `released_at` DATETIME NULL,
   `page_count` INT NULL,
@@ -151,7 +151,7 @@ CREATE TABLE IF NOT EXISTS `author` (
   `first_name` VARCHAR(45) NULL,
   `middle_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
-  `full_name` VARCHAR(45) NULL,
+  `full_name` VARCHAR(100) NULL,
   `birth_date` DATETIME NULL,
   `description` TEXT NULL,
   PRIMARY KEY (`id`))
