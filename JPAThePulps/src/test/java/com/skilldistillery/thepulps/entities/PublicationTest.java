@@ -53,5 +53,11 @@ class PublicationTest {
 		assertNotNull(publication);
 		assertEquals("Weird Tales, August 1928", publication.getMagazines().get(0).getName());
 	}
+	
+	@Test
+	void test_Publication_Tag_many_to_many_mapping() {
+		assertNotNull(publication);
+		assertEquals("HORROR", publication.getTags().get(0).getGenre().toString());
+	}
 
 }

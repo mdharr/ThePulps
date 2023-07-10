@@ -36,17 +36,31 @@ public class Tag {
 		joinColumns = @JoinColumn(name = "tag_id"),
 		inverseJoinColumns = @JoinColumn(name = "story_id"))
 	private List<Story> stories;
+	
+	@ManyToMany
+	@JoinTable(name = "magazine_tag",
+	joinColumns = @JoinColumn(name = "tag_id"),
+	inverseJoinColumns = @JoinColumn(name = "magazine_id"))
+	private List<Magazine> magazines;
+	
+	@ManyToMany
+	@JoinTable(name = "publication_tag",
+	joinColumns = @JoinColumn(name = "tag_id"),
+	inverseJoinColumns = @JoinColumn(name = "publication_id"))
+	private List<Publication> publications;
 
 	public Tag() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Tag(int id, Genre genre, List<Author> authors, List<Story> stories) {
+	public Tag(int id, Genre genre, List<Author> authors, List<Story> stories, List<Magazine> magazines, List<Publication> publications) {
 		super();
 		this.id = id;
 		this.genre = genre;
 		this.stories = stories;
+		this.magazines = magazines;
+		this.publications = publications;
 	}
 
 	public int getId() {
@@ -79,6 +93,22 @@ public class Tag {
 
 	public void setStories(List<Story> stories) {
 		this.stories = stories;
+	}
+
+	public List<Magazine> getMagazines() {
+		return magazines;
+	}
+
+	public void setMagazines(List<Magazine> magazines) {
+		this.magazines = magazines;
+	}
+
+	public List<Publication> getPublications() {
+		return publications;
+	}
+
+	public void setPublications(List<Publication> publications) {
+		this.publications = publications;
 	}
 
 	@Override

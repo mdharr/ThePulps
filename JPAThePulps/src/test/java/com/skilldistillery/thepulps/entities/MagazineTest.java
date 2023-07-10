@@ -53,5 +53,11 @@ class MagazineTest {
 		assertNotNull(magazine);
 		assertEquals("Weird Tales", magazine.getPublication().getName());
 	}
+	
+	@Test
+	void test_Magazine_Tag_many_to_many_mapping() {
+		assertNotNull(magazine);
+		assertEquals("HORROR", magazine.getTags().get(0).getGenre().toString());
+	}
 
 }

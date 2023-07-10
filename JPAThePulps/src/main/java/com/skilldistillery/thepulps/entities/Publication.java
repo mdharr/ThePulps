@@ -9,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -29,18 +32,24 @@ public class Publication {
 	@OneToMany(mappedBy = "publication")
 	private List<Magazine> magazines;
 	
+    @ManyToMany
+    @JoinTable(name = "publication_tag",
+            joinColumns = @JoinColumn(name = "publication_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private List<Tag> tags;
 
 	public Publication() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Publication(int id, String name, LocalDateTime createdAt, List<Magazine> magazines) {
+	public Publication(int id, String name, LocalDateTime createdAt, List<Magazine> magazines, List<Tag> tags) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.createdAt = createdAt;
 		this.magazines = magazines;
+		this.tags = tags;
 	}
 
 	public int getId() {
@@ -73,6 +82,14 @@ public class Publication {
 
 	public void setMagazines(List<Magazine> magazines) {
 		this.magazines = magazines;
+	}
+
+	public List<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
 	}
 
 	@Override

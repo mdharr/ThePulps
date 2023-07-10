@@ -71,5 +71,29 @@ class TagTest {
 		assertNotNull(tag);
 		assertEquals("HORROR", tag.getStories().get(0).getTags().get(0).getGenre().toString());
 	}
+	
+	@Test
+	void test_Tag_Magazine_many_to_many_mapping() {
+		assertNotNull(tag);
+		assertTrue(tag.getMagazines().size() > 0);
+	}
+	
+	@Test
+	void test_Tag_Magazine_many_to_many_mapping_v2() {
+		assertNotNull(tag);
+		assertEquals("HORROR", tag.getMagazines().get(0).getTags().get(0).getGenre().toString());
+	}
+	
+	@Test
+	void test_Tag_Publication_many_to_many_mapping() {
+		assertNotNull(tag);
+		assertTrue(tag.getPublications().size() > 0);
+	}
+	
+	@Test
+	void test_Tag_Publication_many_to_many_mapping_v2() {
+		assertNotNull(tag);
+		assertEquals("HORROR", tag.getPublications().get(0).getTags().get(0).getGenre().toString());
+	}
 
 }

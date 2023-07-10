@@ -1,6 +1,7 @@
 package com.skilldistillery.thepulps.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -34,19 +37,26 @@ public class Magazine {
 	@CreationTimestamp
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
+	
+    @ManyToMany
+    @JoinTable(name = "magazine_tag",
+            joinColumns = @JoinColumn(name = "magazine_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private List<Tag> tags;
 
 	public Magazine() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Magazine(int id, CoverArtwork coverArtwork, Publication publication, String name, LocalDateTime createdAt) {
+	public Magazine(int id, CoverArtwork coverArtwork, Publication publication, String name, LocalDateTime createdAt, List<Tag> tags) {
 		super();
 		this.id = id;
 		this.coverArtwork = coverArtwork;
 		this.publication = publication;
 		this.name = name;
 		this.createdAt = createdAt;
+		this.tags = tags;
 	}
 
 	public int getId() {
@@ -87,6 +97,14 @@ public class Magazine {
 
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
+	}
+
+	public List<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
 	}
 
 	@Override
