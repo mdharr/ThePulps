@@ -9,6 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -28,18 +31,26 @@ public class Story {
 	
 	@OneToMany(mappedBy = "story")
 	private List<StoryPdf> storyPdfs;
+	
+//	@JsonIgnore
+    @ManyToMany
+    @JoinTable(name = "story_author",
+            joinColumns = @JoinColumn(name = "author_id"),
+            inverseJoinColumns = @JoinColumn(name = "story_id"))
+    private List<Author> authors;
 
 	public Story() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Story(int id, String title, LocalDateTime createdAt, List<StoryPdf> storyPdfs) {
+	public Story(int id, String title, LocalDateTime createdAt, List<StoryPdf> storyPdfs, List<Author> authors) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.createdAt = createdAt;
 		this.storyPdfs = storyPdfs;
+		this.authors = authors;
 	}
 
 	public int getId() {
@@ -72,6 +83,14 @@ public class Story {
 
 	public void setStoryPdfs(List<StoryPdf> storyPdfs) {
 		this.storyPdfs = storyPdfs;
+	}
+
+	public List<Author> getAuthors() {
+		return authors;
+	}
+
+	public void setAuthors(List<Author> authors) {
+		this.authors = authors;
 	}
 
 	@Override

@@ -12,13 +12,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class StoryTest {
+class AuthorTest {
 
 	private static EntityManagerFactory emf;
 	
 	private EntityManager em;
 	
-	private Story story;
+	private Author author;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,31 +33,25 @@ class StoryTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		story = em.find(Story.class, 1);
+		author = em.find(Author.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		story = null;
+		author = null;
 	}
 
 	@Test
-	void test_CoverArtwork_entity_mapping() {
-		assertNotNull(story);
-		assertEquals("Red Shadows", story.getTitle());
+	void test_Author_entity_mapping() {
+		assertNotNull(author);
+		assertEquals("Robert E. Howard", author.getFullName());
 	}
 	
 	@Test
-	void test_Story_StoryPdf_one_to_many_mapping() {
-		assertNotNull(story);
-		assertEquals("https://nyc3.digitaloceanspaces.com/sffaudio-usa/mp3s/RedShadowsByRobertE.HowardWT.pdf", story.getStoryPdfs().get(0).getStoryUrl());
-	}
-	
-	@Test
-	void test_Story_Author_many_to_many_mapping() {
-		assertNotNull(story);
-		assertEquals("Robert E. Howard", story.getAuthors().get(0).getFullName());
+	void test_Author_Story_many_to_many_mapping() {
+		assertNotNull(author);
+		assertEquals("Red Shadows", author.getStories().get(0).getTitle());
 	}
 
 }
