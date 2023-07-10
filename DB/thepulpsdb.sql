@@ -239,7 +239,7 @@ DROP TABLE IF EXISTS `tag` ;
 
 CREATE TABLE IF NOT EXISTS `tag` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `genre` ENUM('DETECTIVE_CRIME', 'HORROR', 'WESTERN', 'ADVENTURE', 'ROMANCE', 'SCIENCE_FICTION', 'FANTASY', 'WAR_AND_AIR_COMBAT', 'SPORTS') NULL,
+  `genre` ENUM('DETECTIVE_CRIME', 'HORROR', 'WESTERN', 'ADVENTURE', 'ROMANCE', 'SCIENCE_FICTION', 'FANTASY', 'WAR_AND_AIR_COMBAT', 'SPORTS', 'NOT_SPECIFIED') NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -649,6 +649,72 @@ START TRANSACTION;
 USE `thepulpsdb`;
 INSERT INTO `story_comment` (`id`, `user_id`, `story_id`, `content`, `created_at`, `updated_at`, `parent_comment_id`) VALUES (1, 1, 1, 'Slowly he rose, mechanically wiping his hands upon his cloak. A dark scowl had settled on his somber brow. Yet he made no wild, reckless vow, swore no oath by saints or devils.', '2023-03-03T12:35:22', NULL, NULL);
 INSERT INTO `story_comment` (`id`, `user_id`, `story_id`, `content`, `created_at`, `updated_at`, `parent_comment_id`) VALUES (2, 2, 1, '\"Men shall die for this,\" he said coldly.', '2023-03-03T12:35:22', NULL, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `tag`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `tag` (`id`, `genre`) VALUES (1, 'DETECTIVE_CRIME');
+INSERT INTO `tag` (`id`, `genre`) VALUES (2, 'HORROR');
+INSERT INTO `tag` (`id`, `genre`) VALUES (3, 'WESTERN');
+INSERT INTO `tag` (`id`, `genre`) VALUES (4, 'ADVENTURE');
+INSERT INTO `tag` (`id`, `genre`) VALUES (5, 'ROMANCE');
+INSERT INTO `tag` (`id`, `genre`) VALUES (6, 'SCIENCE_FICTION');
+INSERT INTO `tag` (`id`, `genre`) VALUES (7, 'FANTASY');
+INSERT INTO `tag` (`id`, `genre`) VALUES (8, 'WAR_AND_AIR_COMBAT');
+INSERT INTO `tag` (`id`, `genre`) VALUES (9, 'SPORTS');
+INSERT INTO `tag` (`id`, `genre`) VALUES (10, 'NOT_SPECIFIED');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `publication_tag`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `publication_tag` (`publication_id`, `tag_id`) VALUES (1, 2);
+INSERT INTO `publication_tag` (`publication_id`, `tag_id`) VALUES (1, 7);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `magazine_tag`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `magazine_tag` (`magazine_id`, `tag_id`) VALUES (1, 2);
+INSERT INTO `magazine_tag` (`magazine_id`, `tag_id`) VALUES (1, 7);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `story_tag`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `story_tag` (`story_id`, `tag_id`) VALUES (1, 2);
+INSERT INTO `story_tag` (`story_id`, `tag_id`) VALUES (1, 7);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `author_tag`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `author_tag` (`author_id`, `tag_id`) VALUES (1, 2);
+INSERT INTO `author_tag` (`author_id`, `tag_id`) VALUES (1, 3);
+INSERT INTO `author_tag` (`author_id`, `tag_id`) VALUES (1, 4);
+INSERT INTO `author_tag` (`author_id`, `tag_id`) VALUES (1, 6);
+INSERT INTO `author_tag` (`author_id`, `tag_id`) VALUES (1, 7);
 
 COMMIT;
 
