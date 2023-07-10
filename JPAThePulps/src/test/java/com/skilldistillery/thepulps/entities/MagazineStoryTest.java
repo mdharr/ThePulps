@@ -43,13 +43,13 @@ class MagazineStoryTest {
 	}
 
 	@Test
-	void test_CoverArtwork_entity_mapping() {
+	void test_MagazineStory_Magazine_many_to_many_mapping() {
 		assertNotNull(magazineStory);
 		assertEquals("Weird Tales, August 1928", magazineStory.getMagazine().getName());
 	}
 	
 	@Test
-	void test_Story_StoryPdf_one_to_many_mapping() {
+	void test_MagazineStory_Story_many_to_many_mapping() {
 		assertNotNull(magazineStory);
 		assertEquals("Red Shadows", magazineStory.getStory().getTitle());
 	}
