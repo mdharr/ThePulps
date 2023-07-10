@@ -17,6 +17,15 @@
 		<class>com.skilldistillery.thepulps.entities.StoryAuthor</class>
 		<class>com.skilldistillery.thepulps.entities.StoryAuthorId</class>
 		<class>com.skilldistillery.thepulps.entities.StoryPdf</class>
+		<class>com.skilldistillery.thepulps.entities.Tag</class>
+		<class>com.skilldistillery.thepulps.entities.PublicationTag</class>
+		<class>com.skilldistillery.thepulps.entities.PublicationTagId</class>
+		<class>com.skilldistillery.thepulps.entities.MagazineTag</class>
+		<class>com.skilldistillery.thepulps.entities.MagazineTagId</class>
+		<class>com.skilldistillery.thepulps.entities.StoryTag</class>
+		<class>com.skilldistillery.thepulps.entities.StoryTagId</class>
+		<class>com.skilldistillery.thepulps.entities.AuthorTag</class>
+		<class>com.skilldistillery.thepulps.entities.AuthorTagId</class>
 
 		<!-- end entities -->
 
