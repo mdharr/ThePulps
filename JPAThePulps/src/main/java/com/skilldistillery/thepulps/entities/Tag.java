@@ -33,8 +33,8 @@ public class Tag {
 	
 	@ManyToMany
 	@JoinTable(name = "story_tag",
-	joinColumns = @JoinColumn(name = "tag_id"),
-	inverseJoinColumns = @JoinColumn(name = "story_id"))
+		joinColumns = @JoinColumn(name = "tag_id"),
+		inverseJoinColumns = @JoinColumn(name = "story_id"))
 	private List<Story> stories;
 
 	public Tag() {

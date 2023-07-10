@@ -33,7 +33,7 @@ class TagTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		tag = em.find(Tag.class, 1);
+		tag = em.find(Tag.class, 2);
 	}
 
 	@AfterEach
@@ -45,7 +45,19 @@ class TagTest {
 	@Test
 	void test_Tag_entity_mapping() {
 		assertNotNull(tag);
-		assertEquals("DETECTIVE_CRIME", tag.getGenre().toString());
+		assertEquals("HORROR", tag.getGenre().toString());
+	}
+	
+	@Test
+	void test_Tag_Author_many_to_many_mapping() {
+		assertNotNull(tag);
+		assertTrue(tag.getAuthors().size() > 0);
+	}
+	
+	@Test
+	void test_Tag_Author_many_to_many_mapping_v2() {
+		assertNotNull(tag);
+		assertEquals("HORROR", tag.getAuthors().get(0).getTags().get(0).getGenre().toString());
 	}
 
 }
