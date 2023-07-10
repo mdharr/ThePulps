@@ -59,5 +59,17 @@ class TagTest {
 		assertNotNull(tag);
 		assertEquals("HORROR", tag.getAuthors().get(0).getTags().get(0).getGenre().toString());
 	}
+	
+	@Test
+	void test_Tag_Story_many_to_many_mapping() {
+		assertNotNull(tag);
+		assertTrue(tag.getStories().size() > 0);
+	}
+	
+	@Test
+	void test_Tag_Story_many_to_many_mapping_v2() {
+		assertNotNull(tag);
+		assertEquals("HORROR", tag.getStories().get(0).getTags().get(0).getGenre().toString());
+	}
 
 }
