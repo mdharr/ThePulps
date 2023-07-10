@@ -45,13 +45,13 @@ class CoverArtworkTest {
 	@Test
 	void test_CoverArtwork_entity_mapping() {
 		assertNotNull(coverArtwork);
-		assertEquals("https://upload.wikimedia.org/wikipedia/commons/f/ff/Weird_Tales_March_1923.jpg", coverArtwork.getImageUrl());
+		assertEquals("https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Weird_Tales_August_1928.jpg/800px-Weird_Tales_August_1928.jpg", coverArtwork.getImageUrl());
 	}
 	
 	@Test
 	void test_CoverArtwork_Magazine_one_to_one_mapping() {
 		assertNotNull(coverArtwork);
-		assertEquals("Weird Tales, March 1923", coverArtwork.getMagazine().getName());
+		assertEquals("Weird Tales, August 1928", coverArtwork.getMagazine().getName());
 	}
 
 }

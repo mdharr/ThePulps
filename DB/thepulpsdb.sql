@@ -209,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `story_comment` (
   `content` TEXT NULL,
   `created_at` TIMESTAMP NULL,
   `updated_at` TIMESTAMP NULL,
-  `parent_comment_id` INT NOT NULL,
+  `parent_comment_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_story_comment_user1_idx` (`user_id` ASC),
   INDEX `fk_story_comment_story1_idx` (`story_id` ASC),
@@ -546,6 +546,8 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 USE `thepulpsdb`;
 INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`) VALUES (1, 'admin', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'ADMIN');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`) VALUES (2, 'Solomon', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'STANDARD');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`) VALUES (3, 'Conan', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'STANDARD');
 
 COMMIT;
 
@@ -605,7 +607,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `magazine` (`id`, `cover_artwork_id`, `publication_id`, `name`, `created_at`) VALUES (1, 1, 1, 'Weird Tales, March 1923', '2023-03-03T12:35:22');
+INSERT INTO `magazine` (`id`, `cover_artwork_id`, `publication_id`, `name`, `created_at`) VALUES (1, 1, 1, 'Weird Tales, August 1928', '2023-03-03T12:35:22');
 
 COMMIT;
 
@@ -636,6 +638,17 @@ COMMIT;
 START TRANSACTION;
 USE `thepulpsdb`;
 INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `story_comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `story_comment` (`id`, `user_id`, `story_id`, `content`, `created_at`, `updated_at`, `parent_comment_id`) VALUES (1, 1, 1, 'Slowly he rose, mechanically wiping his hands upon his cloak. A dark scowl had settled on his somber brow. Yet he made no wild, reckless vow, swore no oath by saints or devils.', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story_comment` (`id`, `user_id`, `story_id`, `content`, `created_at`, `updated_at`, `parent_comment_id`) VALUES (2, 2, 1, '\"Men shall die for this,\" he said coldly.', '2023-03-03T12:35:22', NULL, 1);
 
 COMMIT;
 
