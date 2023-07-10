@@ -30,16 +30,23 @@ public class Tag {
 	        joinColumns = @JoinColumn(name = "tag_id"),
 	        inverseJoinColumns = @JoinColumn(name = "author_id"))
 	private List<Author> authors;
+	
+	@ManyToMany
+	@JoinTable(name = "story_tag",
+	joinColumns = @JoinColumn(name = "tag_id"),
+	inverseJoinColumns = @JoinColumn(name = "story_id"))
+	private List<Story> stories;
 
 	public Tag() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Tag(int id, Genre genre, List<Author> authors) {
+	public Tag(int id, Genre genre, List<Author> authors, List<Story> stories) {
 		super();
 		this.id = id;
 		this.genre = genre;
+		this.stories = stories;
 	}
 
 	public int getId() {
@@ -64,6 +71,14 @@ public class Tag {
 
 	public void setAuthors(List<Author> authors) {
 		this.authors = authors;
+	}
+
+	public List<Story> getStories() {
+		return stories;
+	}
+
+	public void setStories(List<Story> stories) {
+		this.stories = stories;
 	}
 
 	@Override

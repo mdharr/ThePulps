@@ -59,5 +59,11 @@ class StoryTest {
 		assertNotNull(story);
 		assertEquals("Robert E. Howard", story.getAuthors().get(0).getFullName());
 	}
+	
+	@Test
+	void test_Story_Tag_many_to_many_mapping() {
+		assertNotNull(story);
+		assertEquals("HORROR", story.getTags().get(0).getGenre().toString());
+	}
 
 }
