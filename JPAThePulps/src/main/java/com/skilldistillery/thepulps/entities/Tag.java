@@ -19,7 +19,7 @@ public class Tag {
 	private int id;
 	
 	@Enumerated(EnumType.STRING)
-	private Genre genre;
+	private Genre genre = Genre.NOT_SPECIFIED;
 
 	public Tag() {
 		super();
