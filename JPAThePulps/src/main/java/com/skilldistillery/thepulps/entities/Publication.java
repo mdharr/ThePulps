@@ -1,13 +1,17 @@
 package com.skilldistillery.thepulps.entities;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class Publication {
@@ -18,18 +22,24 @@ public class Publication {
 	
 	private String name;
 	
+	@CreationTimestamp
+	@Column(name = "created_at")
+	private LocalDateTime createdAt;
+	
 	@OneToMany(mappedBy = "publication")
 	private List<Magazine> magazines;
+	
 
 	public Publication() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Publication(int id, String name, List<Magazine> magazines) {
+	public Publication(int id, String name, LocalDateTime createdAt, List<Magazine> magazines) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.createdAt = createdAt;
 		this.magazines = magazines;
 	}
 
@@ -47,6 +57,14 @@ public class Publication {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	public List<Magazine> getMagazines() {
@@ -77,8 +95,8 @@ public class Publication {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Publication [id=").append(id).append(", name=").append(name).append(", magazines=")
-				.append(magazines).append("]");
+		builder.append("Publication [id=").append(id).append(", name=").append(name).append(", createdAt=")
+				.append(createdAt).append(", magazines=").append(magazines).append("]");
 		return builder.toString();
 	}
 	

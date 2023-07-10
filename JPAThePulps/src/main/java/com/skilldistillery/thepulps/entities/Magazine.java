@@ -1,5 +1,6 @@
 package com.skilldistillery.thepulps.entities;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -10,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class Magazine {
@@ -28,21 +31,22 @@ public class Magazine {
 	
 	private String name;
 	
-	@Column(name = "released_at")
-	private String releasedAt;
+	@CreationTimestamp
+	@Column(name = "created_at")
+	private LocalDateTime createdAt;
 
 	public Magazine() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Magazine(int id, CoverArtwork coverArtwork, Publication publication, String name, String releasedAt) {
+	public Magazine(int id, CoverArtwork coverArtwork, Publication publication, String name, LocalDateTime createdAt) {
 		super();
 		this.id = id;
 		this.coverArtwork = coverArtwork;
 		this.publication = publication;
 		this.name = name;
-		this.releasedAt = releasedAt;
+		this.createdAt = createdAt;
 	}
 
 	public int getId() {
@@ -77,12 +81,12 @@ public class Magazine {
 		this.name = name;
 	}
 
-	public String getReleasedAt() {
-		return releasedAt;
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setReleasedAt(String releasedAt) {
-		this.releasedAt = releasedAt;
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
 	}
 
 	@Override
@@ -106,8 +110,8 @@ public class Magazine {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Magazine [id=").append(id).append(", coverArtwork=").append(coverArtwork)
-				.append(", publication=").append(publication).append(", name=").append(name).append(", releasedAt=")
-				.append(releasedAt).append("]");
+				.append(", publication=").append(publication).append(", name=").append(name).append(", createdAt=")
+				.append(createdAt).append("]");
 		return builder.toString();
 	}
 	

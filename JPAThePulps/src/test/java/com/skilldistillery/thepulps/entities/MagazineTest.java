@@ -45,7 +45,7 @@ class MagazineTest {
 	@Test
 	void test_Magazine_entity_mapping() {
 		assertNotNull(magazine);
-		assertEquals("Weird Tales, March 1923", magazine.getName());
+		assertEquals("Weird Tales, August 1928", magazine.getName());
 	}
 	
 	@Test

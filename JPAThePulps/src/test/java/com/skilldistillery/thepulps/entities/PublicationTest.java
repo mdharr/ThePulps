@@ -51,7 +51,7 @@ class PublicationTest {
 	@Test
 	void test_Publication_Magazine_one_to_many_mapping() {
 		assertNotNull(publication);
-		assertEquals("Weird Tales, March 1923", publication.getMagazines().get(0).getName());
+		assertEquals("Weird Tales, August 1928", publication.getMagazines().get(0).getName());
 	}
 
 }
