@@ -12,14 +12,14 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class TagTest {
+class PublicationTagTest {
 
 	private static EntityManagerFactory emf;
 	
 	private EntityManager em;
 	
-	private Tag tag;
-
+	private PublicationTag publicationTag;
+	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPAThePulps");
@@ -33,19 +33,25 @@ class TagTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		tag = em.find(Tag.class, 1);
+		publicationTag = em.find(PublicationTag.class, new PublicationTagId(1, 2));
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		tag = null;
+		publicationTag = null;
 	}
 
 	@Test
-	void test_Tag_entity_mapping() {
-		assertNotNull(tag);
-		assertEquals("DETECTIVE_CRIME", tag.getGenre().toString());
+	void test_PublicationTag_Publication_many_to_many_mapping() {
+		assertNotNull(publicationTag);
+		assertEquals("Weird Tales", publicationTag.getPublication().getName());
+	}
+	
+	@Test
+	void test_PublicationTag_Tag_many_to_many_mapping() {
+		assertNotNull(publicationTag);
+		assertEquals("HORROR", publicationTag.getTag().getGenre().toString());
 	}
 
 }
