@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `collection` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `name` VARCHAR(45) NULL,
+  `created_at` TIMESTAMP NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_collection_user_idx` (`user_id` ASC),
   CONSTRAINT `fk_collection_user`
@@ -59,8 +60,6 @@ CREATE TABLE IF NOT EXISTS `story` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NULL,
   `created_at` TIMESTAMP NULL,
-  `released_at` DATETIME NULL,
-  `page_count` INT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -108,7 +107,7 @@ DROP TABLE IF EXISTS `cover_artwork` ;
 
 CREATE TABLE IF NOT EXISTS `cover_artwork` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `image_url` VARCHAR(100) NULL,
+  `image_url` VARCHAR(255) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -123,7 +122,6 @@ CREATE TABLE IF NOT EXISTS `magazine` (
   `cover_artwork_id` INT NULL,
   `publication_id` INT NULL,
   `name` VARCHAR(255) NULL,
-  `image_url` VARCHAR(255) NULL,
   `created_at` TIMESTAMP NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_magazine_cover_artwork1_idx` (`cover_artwork_id` ASC),
@@ -149,8 +147,6 @@ DROP TABLE IF EXISTS `author` ;
 CREATE TABLE IF NOT EXISTS `author` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `full_name` VARCHAR(100) NULL,
-  `birth_date` DATETIME NULL,
-  `description` TEXT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -202,24 +198,37 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `comment`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `comment` ;
-
-CREATE TABLE IF NOT EXISTS `comment` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
 -- Table `story_comment`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `story_comment` ;
 
 CREATE TABLE IF NOT EXISTS `story_comment` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`))
+  `user_id` INT NOT NULL,
+  `story_id` INT NOT NULL,
+  `content` TEXT NULL,
+  `created_at` TIMESTAMP NULL,
+  `updated_at` TIMESTAMP NULL,
+  `parent_comment_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_story_comment_user1_idx` (`user_id` ASC),
+  INDEX `fk_story_comment_story1_idx` (`story_id` ASC),
+  INDEX `fk_story_comment_story_comment1_idx` (`parent_comment_id` ASC),
+  CONSTRAINT `fk_story_comment_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_story_comment_story1`
+    FOREIGN KEY (`story_id`)
+    REFERENCES `story` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_story_comment_story_comment1`
+    FOREIGN KEY (`parent_comment_id`)
+    REFERENCES `story_comment` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -242,28 +251,41 @@ DROP TABLE IF EXISTS `ticket` ;
 
 CREATE TABLE IF NOT EXISTS `ticket` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id`))
+  `title` VARCHAR(255) NULL,
+  `description` TEXT NULL,
+  `created_at` TIMESTAMP NULL,
+  `updated_at` TIMESTAMP NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_ticket_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_ticket_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `user_ticket`
+-- Table `ticket_message`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `user_ticket` ;
+DROP TABLE IF EXISTS `ticket_message` ;
 
-CREATE TABLE IF NOT EXISTS `user_ticket` (
+CREATE TABLE IF NOT EXISTS `ticket_message` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `content` TEXT NULL,
+  `created_at` TIMESTAMP NULL,
   `user_id` INT NOT NULL,
   `ticket_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_user_ticket_user1_idx` (`user_id` ASC),
-  INDEX `fk_user_ticket_ticket1_idx` (`ticket_id` ASC),
-  CONSTRAINT `fk_user_ticket_user1`
+  INDEX `fk_ticket_message_user1_idx` (`user_id` ASC),
+  INDEX `fk_ticket_message_ticket1_idx` (`ticket_id` ASC),
+  CONSTRAINT `fk_ticket_message_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_user_ticket_ticket1`
+  CONSTRAINT `fk_ticket_message_ticket1`
     FOREIGN KEY (`ticket_id`)
     REFERENCES `ticket` (`id`)
     ON DELETE NO ACTION
@@ -278,6 +300,8 @@ DROP TABLE IF EXISTS `notification` ;
 
 CREATE TABLE IF NOT EXISTS `notification` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `content` TEXT NULL,
+  `created_at` TIMESTAMP NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -291,6 +315,10 @@ CREATE TABLE IF NOT EXISTS `user_notification` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `user_id` INT NOT NULL,
   `notification_id` INT NOT NULL,
+  `viewed` TINYINT NULL,
+  `viewed_at` TIMESTAMP NULL,
+  `dismissed` TINYINT NULL,
+  `dismissed_at` TIMESTAMP NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_user_notification_user1_idx` (`user_id` ASC),
   INDEX `fk_user_notification_notification1_idx` (`notification_id` ASC),
@@ -474,6 +502,7 @@ DROP TABLE IF EXISTS `character` ;
 CREATE TABLE IF NOT EXISTS `character` (
   `id` INT NOT NULL,
   `name` VARCHAR(100) NULL,
+  `description` TEXT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -522,11 +551,41 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `collection`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `collection` (`id`, `user_id`, `name`, `created_at`) VALUES (1, 1, 'Favorites', '2023-03-03T12:35:22');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `story`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `story` (`id`, `title`, `created_at`) VALUES (1, 'Red Shadows', '2023-03-03T12:35:22');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `collection_story`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `collection_story` (`collection_id`, `story_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `publication`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `publication` (`id`, `name`, `created_at`) VALUES (1, 'Weird Tales', NULL);
+INSERT INTO `publication` (`id`, `name`, `created_at`) VALUES (1, 'Weird Tales', '2023-03-03T12:35:22');
 
 COMMIT;
 
@@ -536,7 +595,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `cover_artwork` (`id`, `image_url`) VALUES (1, 'https://upload.wikimedia.org/wikipedia/commons/f/ff/Weird_Tales_March_1923.jpg');
+INSERT INTO `cover_artwork` (`id`, `image_url`) VALUES (1, 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Weird_Tales_August_1928.jpg/800px-Weird_Tales_August_1928.jpg');
 
 COMMIT;
 
@@ -546,7 +605,67 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `magazine` (`id`, `cover_artwork_id`, `publication_id`, `name`, `image_url`, `created_at`) VALUES (1, 1, 1, 'Weird Tales, March 1923', NULL, NULL);
+INSERT INTO `magazine` (`id`, `cover_artwork_id`, `publication_id`, `name`, `created_at`) VALUES (1, 1, 1, 'Weird Tales, March 1923', '2023-03-03T12:35:22');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `author`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `author` (`id`, `full_name`) VALUES (1, 'Robert E. Howard');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `magazine_story`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `magazine_story` (`story_id`, `magazine_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `story_author`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `story_pdf`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `story_pdf` (`id`, `story_id`, `story_url`) VALUES (1, 1, 'https://nyc3.digitaloceanspaces.com/sffaudio-usa/mp3s/RedShadowsByRobertE.HowardWT.pdf');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `character`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `character` (`id`, `name`, `description`) VALUES (1, 'Solomon Kane', 'A late-16th-to-early-17th century Puritan, Solomon Kane is a somber-looking man who wanders the world with no apparent goal other than to vanquish evil in all its forms.');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `story_character`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `story_character` (`story_id`, `character_id`) VALUES (1, 1);
 
 COMMIT;
 
