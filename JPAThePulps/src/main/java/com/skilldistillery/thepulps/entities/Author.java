@@ -25,20 +25,27 @@ public class Author {
 //	@JsonIgnore
     @ManyToMany
     @JoinTable(name = "story_author",
-            joinColumns = @JoinColumn(name = "story_id"),
-            inverseJoinColumns = @JoinColumn(name = "author_id"))
+            joinColumns = @JoinColumn(name = "author_id"),
+            inverseJoinColumns = @JoinColumn(name = "story_id"))
     private List<Story> stories;
+    
+    @ManyToMany
+    @JoinTable(name = "author_tag",
+            joinColumns = @JoinColumn(name = "author_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    private List<Tag> tags;
 
 	public Author() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Author(int id, String fullName, List<Story> stories) {
+	public Author(int id, String fullName, List<Story> stories, List<Tag> tags) {
 		super();
 		this.id = id;
 		this.fullName = fullName;
 		this.stories = stories;
+		this.tags = tags;
 	}
 
 	public int getId() {
@@ -63,6 +70,14 @@ public class Author {
 
 	public void setStories(List<Story> stories) {
 		this.stories = stories;
+	}
+	
+	public List<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
 	}
 
 	@Override

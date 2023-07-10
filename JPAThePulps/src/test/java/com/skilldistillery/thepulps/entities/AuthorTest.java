@@ -53,5 +53,11 @@ class AuthorTest {
 		assertNotNull(author);
 		assertEquals("Red Shadows", author.getStories().get(0).getTitle());
 	}
+	
+	@Test
+	void test_Author_Tag_many_to_many_mapping() {
+		assertNotNull(author);
+		assertEquals("HORROR", author.getTags().get(0).getGenre().toString());
+	}
 
 }

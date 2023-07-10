@@ -35,8 +35,8 @@ public class Story {
 //	@JsonIgnore
     @ManyToMany
     @JoinTable(name = "story_author",
-            joinColumns = @JoinColumn(name = "author_id"),
-            inverseJoinColumns = @JoinColumn(name = "story_id"))
+            joinColumns = @JoinColumn(name = "story_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id"))
     private List<Author> authors;
 
 	public Story() {
