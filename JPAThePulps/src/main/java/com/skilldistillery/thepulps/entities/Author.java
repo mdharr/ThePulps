@@ -7,35 +7,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "story_pdf")
-public class StoryPdf {
+public class Author {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@ManyToOne
-	@JoinColumn(name = "story_id")
-	private Story story;
-	
-	@Column(name = "story_url")
-	private String storyUrl;
+	@Column(name = "full_name")
+	private String fullName;
 
-	public StoryPdf() {
+	public Author() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public StoryPdf(int id, Story story, String storyUrl) {
+	public Author(int id, String fullName) {
 		super();
 		this.id = id;
-		this.story = story;
-		this.storyUrl = storyUrl;
+		this.fullName = fullName;
 	}
 
 	public int getId() {
@@ -46,20 +37,12 @@ public class StoryPdf {
 		this.id = id;
 	}
 
-	public Story getStory() {
-		return story;
+	public String getFullName() {
+		return fullName;
 	}
 
-	public void setStory(Story story) {
-		this.story = story;
-	}
-
-	public String getStoryUrl() {
-		return storyUrl;
-	}
-
-	public void setStoryUrl(String storyUrl) {
-		this.storyUrl = storyUrl;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
 	@Override
@@ -75,15 +58,14 @@ public class StoryPdf {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		StoryPdf other = (StoryPdf) obj;
+		Author other = (Author) obj;
 		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("StoryPdf [id=").append(id).append(", story=").append(story).append(", storyUrl=")
-				.append(storyUrl).append("]");
+		builder.append("Author [id=").append(id).append(", fullName=").append(fullName).append("]");
 		return builder.toString();
 	}
 	

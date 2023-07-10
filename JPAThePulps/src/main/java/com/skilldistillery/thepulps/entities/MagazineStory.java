@@ -1,5 +1,7 @@
 package com.skilldistillery.thepulps.entities;
 
+import java.util.Objects;
+
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -30,7 +32,7 @@ public class MagazineStory {
 		// TODO Auto-generated constructor stub
 	}
 
-	public MagazineStory(MagazineStoryId id, Story story, Magazine magazine) {
+	public MagazineStory(MagazineStoryId id, Magazine magazine, Story story) {
 		super();
 		this.id = new MagazineStoryId(magazine.getId(), story.getId());
 		this.magazine = magazine;
@@ -59,6 +61,31 @@ public class MagazineStory {
 
 	public void setStory(Story story) {
 		this.story = story;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		MagazineStory other = (MagazineStory) obj;
+		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("MagazineStory [id=").append(id).append(", magazine=").append(magazine).append(", story=")
+				.append(story).append("]");
+		return builder.toString();
 	}
 	
 }

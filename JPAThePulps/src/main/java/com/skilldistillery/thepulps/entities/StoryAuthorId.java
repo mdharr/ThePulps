@@ -9,35 +9,27 @@ import javax.persistence.Table;
 
 @Embeddable
 @Table(name = "magazine_story")
-public class MagazineStoryId implements Serializable {
+public class StoryAuthorId implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Column(name = "magazine_id")
-	private int magazineId;
-	
 	@Column(name = "story_id")
 	private int storyId;
+	
+	@Column(name = "author_id")
+	private int authorId;
 
-	public MagazineStoryId() {
+	public StoryAuthorId() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public MagazineStoryId(int magazineId, int storyId) {
+	public StoryAuthorId(int storyId, int authorId) {
 		super();
-		this.magazineId = magazineId;
 		this.storyId = storyId;
+		this.authorId = authorId;
 	}
 
-	public int getMagazineId() {
-		return magazineId;
-	}
-	
-	public void setMagazineId(int magazineId) {
-		this.magazineId = magazineId;
-	}
-	
 	public int getStoryId() {
 		return storyId;
 	}
@@ -46,13 +38,21 @@ public class MagazineStoryId implements Serializable {
 		this.storyId = storyId;
 	}
 
+	public int getAuthorId() {
+		return authorId;
+	}
+
+	public void setAuthorId(int authorId) {
+		this.authorId = authorId;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(magazineId, storyId);
+		return Objects.hash(authorId, storyId);
 	}
 
 	@Override
@@ -63,15 +63,14 @@ public class MagazineStoryId implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MagazineStoryId other = (MagazineStoryId) obj;
-		return magazineId == other.magazineId && storyId == other.storyId;
+		StoryAuthorId other = (StoryAuthorId) obj;
+		return authorId == other.authorId && storyId == other.storyId;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("MagazineStoryId [storyId=").append(storyId).append(", magazineId=").append(magazineId)
-				.append("]");
+		builder.append("StoryAuthorId [storyId=").append(storyId).append(", authorId=").append(authorId).append("]");
 		return builder.toString();
 	}
 	

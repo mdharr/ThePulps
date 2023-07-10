@@ -22,32 +22,24 @@ public class Story {
 	
 	private String title;
 	
-	@Column(name = "story_url")
-	private String storyUrl;
-	
 	@CreationTimestamp
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 	
 	@OneToMany(mappedBy = "story")
 	private List<StoryPdf> storyPdfs;
-	
-//	@Column(name = "released_at")
-//	private String releasedAt;
-//	
-//	@Column(name = "page_count")
-//	private int pageCount;
 
 	public Story() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Story(int id, String title, LocalDateTime createdAt) {
+	public Story(int id, String title, LocalDateTime createdAt, List<StoryPdf> storyPdfs) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.createdAt = createdAt;
+		this.storyPdfs = storyPdfs;
 	}
 
 	public int getId() {
@@ -66,14 +58,6 @@ public class Story {
 		this.title = title;
 	}
 
-	public String getStoryUrl() {
-		return storyUrl;
-	}
-
-	public void setStoryUrl(String storyUrl) {
-		this.storyUrl = storyUrl;
-	}
-
 	public LocalDateTime getCreatedAt() {
 		return createdAt;
 	}
@@ -82,21 +66,13 @@ public class Story {
 		this.createdAt = createdAt;
 	}
 
-//	public String getReleasedAt() {
-//		return releasedAt;
-//	}
-//
-//	public void setReleasedAt(String releasedAt) {
-//		this.releasedAt = releasedAt;
-//	}
-//
-//	public int getPageCount() {
-//		return pageCount;
-//	}
-//
-//	public void setPageCount(int pageCount) {
-//		this.pageCount = pageCount;
-//	}
+	public List<StoryPdf> getStoryPdfs() {
+		return storyPdfs;
+	}
+
+	public void setStoryPdfs(List<StoryPdf> storyPdfs) {
+		this.storyPdfs = storyPdfs;
+	}
 
 	@Override
 	public int hashCode() {
@@ -118,8 +94,8 @@ public class Story {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Story [id=").append(id).append(", title=").append(title).append(", storyUrl=").append(storyUrl)
-				.append(", createdAt=").append(createdAt).append("]");
+		builder.append("Story [id=").append(id).append(", title=").append(title).append(", createdAt=")
+				.append(createdAt).append(", storyPdfs=").append(storyPdfs).append("]");
 		return builder.toString();
 	}
 	

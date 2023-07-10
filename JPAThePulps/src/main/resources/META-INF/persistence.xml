@@ -13,6 +13,10 @@
 		<class>com.skilldistillery.thepulps.entities.MagazineStory</class>
 		<class>com.skilldistillery.thepulps.entities.MagazineStoryId</class>
 		<class>com.skilldistillery.thepulps.entities.CoverArtwork</class>
+		<class>com.skilldistillery.thepulps.entities.Author</class>
+		<class>com.skilldistillery.thepulps.entities.StoryAuthor</class>
+		<class>com.skilldistillery.thepulps.entities.StoryAuthorId</class>
+		<class>com.skilldistillery.thepulps.entities.StoryPdf</class>
 
 		<!-- end entities -->
 
