@@ -50,13 +50,19 @@ public class Story {
             joinColumns = @JoinColumn(name = "story_id"),
             inverseJoinColumns = @JoinColumn(name = "magazine_id"))
     private List<Magazine> magazines;
+    
+    @ManyToMany
+    @JoinTable(name = "collection_story",
+    joinColumns = @JoinColumn(name = "story_id"),
+    inverseJoinColumns = @JoinColumn(name = "collection_id"))
+    private List<Collection> collections;
 
 	public Story() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Story(int id, String title, LocalDateTime createdAt, List<StoryPdf> storyPdfs, List<Author> authors, List<Tag> tags, List<Magazine> magazines) {
+	public Story(int id, String title, LocalDateTime createdAt, List<StoryPdf> storyPdfs, List<Author> authors, List<Tag> tags, List<Magazine> magazines, List<Collection> collections) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -65,6 +71,7 @@ public class Story {
 		this.authors = authors;
 		this.tags = tags;
 		this.magazines = magazines;
+		this.collections = collections;
 	}
 
 	public int getId() {
@@ -121,6 +128,14 @@ public class Story {
 
 	public void setMagazines(List<Magazine> magazines) {
 		this.magazines = magazines;
+	}
+
+	public List<Collection> getCollections() {
+		return collections;
+	}
+
+	public void setCollections(List<Collection> collections) {
+		this.collections = collections;
 	}
 
 	@Override

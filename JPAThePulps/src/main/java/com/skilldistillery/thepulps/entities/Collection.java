@@ -1,6 +1,7 @@
 package com.skilldistillery.thepulps.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -29,18 +32,25 @@ public class Collection {
 	@CreationTimestamp
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
+	
+    @ManyToMany
+    @JoinTable(name = "collection_story",
+            joinColumns = @JoinColumn(name = "collection_id"),
+            inverseJoinColumns = @JoinColumn(name = "story_id"))
+    private List<Story> stories;
 
 	public Collection() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Collection(int id, User user, String name, LocalDateTime createdAt) {
+	public Collection(int id, User user, String name, LocalDateTime createdAt, List<Story> stories) {
 		super();
 		this.id = id;
 		this.user = user;
 		this.name = name;
 		this.createdAt = createdAt;
+		this.stories = stories;
 	}
 
 	public int getId() {
@@ -73,6 +83,14 @@ public class Collection {
 
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
+	}
+
+	public List<Story> getStories() {
+		return stories;
+	}
+
+	public void setStories(List<Story> stories) {
+		this.stories = stories;
 	}
 
 	@Override
