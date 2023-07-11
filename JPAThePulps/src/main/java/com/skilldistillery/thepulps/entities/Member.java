@@ -10,9 +10,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Entity
-public class Character {
+@Table(name = "member")
+public class Member {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,17 +25,17 @@ public class Character {
 	private String description;
 	
     @ManyToMany
-    @JoinTable(name = "story_character",
-            joinColumns = @JoinColumn(name = "character_id"),
+    @JoinTable(name = "story_member",
+            joinColumns = @JoinColumn(name = "member_id"),
             inverseJoinColumns = @JoinColumn(name = "story_id"))
     private List<Story> stories;
 
-	public Character() {
+	public Member() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Character(int id, String name, String description, List<Story> stories) {
+	public Member(int id, String name, String description, List<Story> stories) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -86,14 +88,14 @@ public class Character {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Character other = (Character) obj;
+		Member other = (Member) obj;
 		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Character [id=").append(id).append(", name=").append(name).append(", description=")
+		builder.append("Member [id=").append(id).append(", name=").append(name).append(", description=")
 				.append(description).append("]");
 		return builder.toString();
 	}

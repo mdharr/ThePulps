@@ -57,17 +57,17 @@ public class Story {
     private List<Collection> collections;
     
     @ManyToMany
-    @JoinTable(name = "story_character",
+    @JoinTable(name = "story_member",
             joinColumns = @JoinColumn(name = "story_id"),
-            inverseJoinColumns = @JoinColumn(name = "character_id"))
-    private List<Character> characters;
+            inverseJoinColumns = @JoinColumn(name = "member_id"))
+    private List<Member> members;
 
 	public Story() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Story(int id, String title, LocalDateTime createdAt, List<StoryPdf> storyPdfs, List<Author> authors, List<Tag> tags, List<Magazine> magazines, List<Collection> collections, List<Character> characters) {
+	public Story(int id, String title, LocalDateTime createdAt, List<StoryPdf> storyPdfs, List<Author> authors, List<Tag> tags, List<Magazine> magazines, List<Collection> collections, List<Member> members) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -77,15 +77,7 @@ public class Story {
 		this.tags = tags;
 		this.magazines = magazines;
 		this.collections = collections;
-		this.characters = characters;
-	}
-
-	public List<Character> getCharacters() {
-		return characters;
-	}
-
-	public void setCharacters(List<Character> characters) {
-		this.characters = characters;
+		this.members = members;
 	}
 
 	public int getId() {
@@ -150,6 +142,14 @@ public class Story {
 
 	public void setCollections(List<Collection> collections) {
 		this.collections = collections;
+	}
+
+	public List<Member> getMembers() {
+		return members;
+	}
+
+	public void setMembers(List<Member> members) {
+		this.members = members;
 	}
 
 	@Override

@@ -10,11 +10,11 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "story_character")
-public class StoryCharacter {
+@Table(name = "story_member")
+public class StoryMember {
 	
 	@EmbeddedId
-	private StoryCharacterId id;
+	private StoryMemberId id;
 
 	@ManyToOne
 	@JoinColumn(name = "story_id")
@@ -22,27 +22,27 @@ public class StoryCharacter {
 	private Story story;
 	
 	@ManyToOne
-	@JoinColumn(name = "character_id")
-	@MapsId(value = "characterId")
-	private Character character;
+	@JoinColumn(name = "member_id")
+	@MapsId(value = "memberId")
+	private Member member;
 
-	public StoryCharacter() {
+	public StoryMember() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public StoryCharacter(StoryCharacterId id, Story story, Character character) {
+	public StoryMember(StoryMemberId id, Story story, Member member) {
 		super();
-		this.id = new StoryCharacterId(story.getId(), character.getId());
+		this.id = new StoryMemberId(story.getId(), member.getId());
 		this.story = story;
-		this.character = character;
+		this.member = member;
 	}
 
-	public StoryCharacterId getId() {
+	public StoryMemberId getId() {
 		return id;
 	}
 
-	public void setId(StoryCharacterId id) {
+	public void setId(StoryMemberId id) {
 		this.id = id;
 	}
 
@@ -54,12 +54,12 @@ public class StoryCharacter {
 		this.story = story;
 	}
 
-	public Character getCharacter() {
-		return character;
+	public Member getMember() {
+		return member;
 	}
 
-	public void setCharacter(Character character) {
-		this.character = character;
+	public void setMember(Member member) {
+		this.member = member;
 	}
 
 	@Override
@@ -75,15 +75,15 @@ public class StoryCharacter {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		StoryCharacter other = (StoryCharacter) obj;
+		StoryMember other = (StoryMember) obj;
 		return Objects.equals(id, other.id);
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("StoryCharacter [id=").append(id).append(", story=").append(story).append(", character=")
-				.append(character).append("]");
+		builder.append("StoryMember [id=").append(id).append(", story=").append(story).append(", member=")
+				.append(member).append("]");
 		return builder.toString();
 	}
 

@@ -495,11 +495,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `character`
+-- Table `member`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `character` ;
+DROP TABLE IF EXISTS `member` ;
 
-CREATE TABLE IF NOT EXISTS `character` (
+CREATE TABLE IF NOT EXISTS `member` (
   `id` INT NOT NULL,
   `name` VARCHAR(100) NULL,
   `description` TEXT NULL,
@@ -508,23 +508,23 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `story_character`
+-- Table `story_member`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `story_character` ;
+DROP TABLE IF EXISTS `story_member` ;
 
-CREATE TABLE IF NOT EXISTS `story_character` (
+CREATE TABLE IF NOT EXISTS `story_member` (
   `story_id` INT NOT NULL,
-  `character_id` INT NOT NULL,
+  `member_id` INT NOT NULL,
   INDEX `fk_story_character_story1_idx` (`story_id` ASC),
-  INDEX `fk_story_character_character1_idx` (`character_id` ASC),
+  INDEX `fk_story_member_member1_idx` (`member_id` ASC),
   CONSTRAINT `fk_story_character_story1`
     FOREIGN KEY (`story_id`)
     REFERENCES `story` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_story_character_character1`
-    FOREIGN KEY (`character_id`)
-    REFERENCES `character` (`id`)
+  CONSTRAINT `fk_story_member_member1`
+    FOREIGN KEY (`member_id`)
+    REFERENCES `member` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -730,21 +730,21 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `character`
+-- Data for table `member`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `character` (`id`, `name`, `description`) VALUES (1, 'Solomon Kane', 'A late-16th-to-early-17th century Puritan, Solomon Kane is a somber-looking man who wanders the world with no apparent goal other than to vanquish evil in all its forms.');
+INSERT INTO `member` (`id`, `name`, `description`) VALUES (1, 'Solomon Kane', 'A late-16th-to-early-17th century Puritan, Solomon Kane is a somber-looking man who wanders the world with no apparent goal other than to vanquish evil in all its forms.');
 
 COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `story_character`
+-- Data for table `story_member`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `story_character` (`story_id`, `character_id`) VALUES (1, 1);
+INSERT INTO `story_member` (`story_id`, `member_id`) VALUES (1, 1);
 
 COMMIT;
 

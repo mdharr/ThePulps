@@ -29,9 +29,9 @@
 		<class>com.skilldistillery.thepulps.entities.AuthorTagId</class>
 		<class>com.skilldistillery.thepulps.entities.CollectionStory</class>
 		<class>com.skilldistillery.thepulps.entities.CollectionStoryId</class>
-		<class>com.skilldistillery.thepulps.entities.Character</class>
-		<class>com.skilldistillery.thepulps.entities.StoryCharacter</class>
-		<class>com.skilldistillery.thepulps.entities.StoryCharacterId</class>
+		<class>com.skilldistillery.thepulps.entities.Member</class>
+		<class>com.skilldistillery.thepulps.entities.StoryMember</class>
+		<class>com.skilldistillery.thepulps.entities.StoryMemberId</class>
 
 		<!-- end entities -->
 
