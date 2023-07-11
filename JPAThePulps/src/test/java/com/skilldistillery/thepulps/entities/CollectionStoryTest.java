@@ -12,14 +12,14 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class MagazineTest {
+class CollectionStoryTest {
 
 	private static EntityManagerFactory emf;
 	
 	private EntityManager em;
 	
-	private Magazine magazine;
-
+	private CollectionStory collectionStory;
+	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPAThePulps");
@@ -33,37 +33,25 @@ class MagazineTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		magazine = em.find(Magazine.class, 1);
+		collectionStory = em.find(CollectionStory.class, new CollectionStoryId(1, 1));
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		magazine = null;
+		collectionStory = null;
 	}
 
 	@Test
-	void test_Magazine_entity_mapping() {
-		assertNotNull(magazine);
-		assertEquals("Weird Tales, August 1928", magazine.getName());
+	void test_CollectionStory_Collection_many_to_many_mapping() {
+		assertNotNull(collectionStory);
+		assertEquals("Favorites", collectionStory.getCollection().getName());
 	}
 	
 	@Test
-	void test_Magazine_Publication_many_to_one_mapping() {
-		assertNotNull(magazine);
-		assertEquals("Weird Tales", magazine.getPublication().getName());
-	}
-	
-	@Test
-	void test_Magazine_Tag_many_to_many_mapping() {
-		assertNotNull(magazine);
-		assertEquals("HORROR", magazine.getTags().get(0).getGenre().toString());
-	}
-	
-	@Test
-	void test_Magazine_Story_many_to_many_mapping() {
-		assertNotNull(magazine);
-		assertEquals("Red Shadows", magazine.getStories().get(0).getTitle());
+	void test_CollectionStory_Story_many_to_many_mapping() {
+		assertNotNull(collectionStory);
+		assertEquals("Red Shadows", collectionStory.getStory().getTitle());
 	}
 
 }

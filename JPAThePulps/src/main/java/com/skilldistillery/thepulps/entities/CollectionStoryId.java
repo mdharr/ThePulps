@@ -1,5 +1,6 @@
 package com.skilldistillery.thepulps.entities;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -8,7 +9,7 @@ import javax.persistence.Table;
 
 @Embeddable
 @Table(name = "collection_story")
-public class CollectionStoryId {
+public class CollectionStoryId implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
