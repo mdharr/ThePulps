@@ -43,7 +43,7 @@ class StoryTest {
 	}
 
 	@Test
-	void test_CoverArtwork_entity_mapping() {
+	void test_Story_entity_mapping() {
 		assertNotNull(story);
 		assertEquals("Red Shadows", story.getTitle());
 	}
