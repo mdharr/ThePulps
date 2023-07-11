@@ -47,5 +47,11 @@ class UserTest {
 		assertNotNull(user);
 		assertEquals("admin", user.getUsername());
 	}
+	
+	@Test
+	void test_User_Collection_one_to_many_mapping() {
+		assertNotNull(user);
+		assertEquals("Favorites", user.getCollections().get(0).getName());
+	}
 
 }
