@@ -71,5 +71,11 @@ class StoryTest {
 		assertNotNull(story);
 		assertEquals("admin", story.getCollections().get(0).getUser().getUsername());
 	}
+	
+	@Test
+	void test_Story_Member_many_to_many_mapping() {
+		assertNotNull(story);
+		assertEquals("Solomon Kane", story.getMembers().get(0).getName());
+	}
 
 }
