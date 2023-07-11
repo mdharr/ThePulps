@@ -32,7 +32,6 @@ public class Story {
 	@OneToMany(mappedBy = "story")
 	private List<StoryPdf> storyPdfs;
 	
-//	@JsonIgnore
     @ManyToMany
     @JoinTable(name = "story_author",
             joinColumns = @JoinColumn(name = "story_id"),
@@ -56,13 +55,19 @@ public class Story {
     joinColumns = @JoinColumn(name = "story_id"),
     inverseJoinColumns = @JoinColumn(name = "collection_id"))
     private List<Collection> collections;
+    
+    @ManyToMany
+    @JoinTable(name = "story_character",
+            joinColumns = @JoinColumn(name = "story_id"),
+            inverseJoinColumns = @JoinColumn(name = "character_id"))
+    private List<Character> characters;
 
 	public Story() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Story(int id, String title, LocalDateTime createdAt, List<StoryPdf> storyPdfs, List<Author> authors, List<Tag> tags, List<Magazine> magazines, List<Collection> collections) {
+	public Story(int id, String title, LocalDateTime createdAt, List<StoryPdf> storyPdfs, List<Author> authors, List<Tag> tags, List<Magazine> magazines, List<Collection> collections, List<Character> characters) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -72,6 +77,15 @@ public class Story {
 		this.tags = tags;
 		this.magazines = magazines;
 		this.collections = collections;
+		this.characters = characters;
+	}
+
+	public List<Character> getCharacters() {
+		return characters;
+	}
+
+	public void setCharacters(List<Character> characters) {
+		this.characters = characters;
 	}
 
 	public int getId() {

@@ -65,5 +65,11 @@ class StoryTest {
 		assertNotNull(story);
 		assertEquals("HORROR", story.getTags().get(0).getGenre().toString());
 	}
+	
+	@Test
+	void test_Story_Collection_many_to_many_mapping_v2() {
+		assertNotNull(story);
+		assertEquals("admin", story.getCollections().get(0).getUser().getUsername());
+	}
 
 }

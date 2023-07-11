@@ -3,48 +3,42 @@ package com.skilldistillery.thepulps.entities;
 import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Author {
+public class Character {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(name = "full_name")
-	private String fullName;
+	private String name;
+	
+	private String description;
 	
     @ManyToMany
-    @JoinTable(name = "story_author",
-            joinColumns = @JoinColumn(name = "author_id"),
+    @JoinTable(name = "story_character",
+            joinColumns = @JoinColumn(name = "character_id"),
             inverseJoinColumns = @JoinColumn(name = "story_id"))
     private List<Story> stories;
-    
-    @ManyToMany
-    @JoinTable(name = "author_tag",
-            joinColumns = @JoinColumn(name = "author_id"),
-            inverseJoinColumns = @JoinColumn(name = "tag_id"))
-    private List<Tag> tags;
 
-	public Author() {
+	public Character() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Author(int id, String fullName, List<Story> stories, List<Tag> tags) {
+	public Character(int id, String name, String description, List<Story> stories) {
 		super();
 		this.id = id;
-		this.fullName = fullName;
+		this.name = name;
+		this.description = description;
 		this.stories = stories;
-		this.tags = tags;
 	}
 
 	public int getId() {
@@ -55,12 +49,20 @@ public class Author {
 		this.id = id;
 	}
 
-	public String getFullName() {
-		return fullName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFullName(String fullName) {
-		this.fullName = fullName;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public List<Story> getStories() {
@@ -69,14 +71,6 @@ public class Author {
 
 	public void setStories(List<Story> stories) {
 		this.stories = stories;
-	}
-	
-	public List<Tag> getTags() {
-		return tags;
-	}
-
-	public void setTags(List<Tag> tags) {
-		this.tags = tags;
 	}
 
 	@Override
@@ -92,15 +86,16 @@ public class Author {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Author other = (Author) obj;
+		Character other = (Character) obj;
 		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Author [id=").append(id).append(", fullName=").append(fullName).append("]");
+		builder.append("Character [id=").append(id).append(", name=").append(name).append(", description=")
+				.append(description).append("]");
 		return builder.toString();
 	}
-	
+
 }
