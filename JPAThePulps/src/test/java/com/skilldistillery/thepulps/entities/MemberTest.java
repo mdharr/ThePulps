@@ -53,5 +53,11 @@ class MemberTest {
 		assertNotNull(member);
 		assertEquals("Red Shadows", member.getStories().get(0).getTitle());
 	}
+	
+	@Test
+	void test_Member_Publication_Tag_mapping() {
+		assertNotNull(member);
+		assertEquals("HORROR", member.getStories().get(0).getMagazines().get(0).getPublication().getTags().get(0).getGenre().toString());
+	}
 
 }
