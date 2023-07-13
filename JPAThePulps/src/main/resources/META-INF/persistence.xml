@@ -32,6 +32,7 @@
 		<class>com.skilldistillery.thepulps.entities.Member</class>
 		<class>com.skilldistillery.thepulps.entities.StoryMember</class>
 		<class>com.skilldistillery.thepulps.entities.StoryMemberId</class>
+		<class>com.skilldistillery.thepulps.entities.StoryComment</class>
 
 		<!-- end entities -->
 
