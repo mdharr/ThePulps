@@ -41,7 +41,7 @@ public class User {
 		super();
 	}
 
-	public User(int id, String username, String password, Boolean enabled, String role, List<Collection> collections, List<StoryComment> storyComments) {
+	public User(int id, String username, String password, Boolean enabled, String role, List<Collection> collections, List<StoryComment> storyComments, UserProfile userProfile) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -50,6 +50,7 @@ public class User {
 		this.role = role;
 		this.collections = collections;
 		this.storyComments = storyComments;
+		this.userProfile = userProfile;
 	}
 
 	public int getId() {
@@ -106,6 +107,14 @@ public class User {
 
 	public void setStoryComments(List<StoryComment> storyComments) {
 		this.storyComments = storyComments;
+	}
+
+	public UserProfile getUserProfile() {
+		return userProfile;
+	}
+
+	public void setUserProfile(UserProfile userProfile) {
+		this.userProfile = userProfile;
 	}
 
 	@Override

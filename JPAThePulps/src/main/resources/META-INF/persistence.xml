@@ -8,6 +8,7 @@
 
 		<!-- begin entities -->
 		<class>com.skilldistillery.thepulps.entities.User</class>
+		<class>com.skilldistillery.thepulps.entities.UserProfile</class>
 		<class>com.skilldistillery.thepulps.entities.Publication</class>
 		<class>com.skilldistillery.thepulps.entities.Magazine</class>
 		<class>com.skilldistillery.thepulps.entities.MagazineStory</class>

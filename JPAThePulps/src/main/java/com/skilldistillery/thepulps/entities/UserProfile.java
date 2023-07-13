@@ -1,5 +1,7 @@
 package com.skilldistillery.thepulps.entities;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,5 +25,75 @@ public class UserProfile {
 	
 	@OneToOne(mappedBy = "userProfile")
 	private User user;
+
+	public UserProfile() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public UserProfile(int id, String imageUrl, String bio, User user) {
+		super();
+		this.id = id;
+		this.imageUrl = imageUrl;
+		this.bio = bio;
+		this.user = user;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserProfile other = (UserProfile) obj;
+		return id == other.id;
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("UserProfile [id=").append(id).append(", imageUrl=").append(imageUrl).append(", bio=")
+				.append(bio).append(", user=").append(user).append("]");
+		return builder.toString();
+	}
 
 }
