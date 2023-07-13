@@ -84,7 +84,7 @@ class StoryTest {
 	@Test
 	void test_Story_StoryComment_one_to_many_mapping() {
 	    assertNotNull(story);
-	    assertEquals("Slowly he rose, mechanically wiping his hands upon his cloak. A dark scowl had settled on his somber brow. Yet he made no wild, reckless vow, swore no oath by saints or devils.", story.getStoryComments().get(0).getParentComment().getContent());
+	    assertEquals("Slowly he rose, mechanically wiping his hands upon his cloak. A dark scowl had settled on his somber brow. Yet he made no wild, reckless vow, swore no oath by saints or devils.", story.getStoryComments().get(0).getContent());
 	}
 	
 	@Test
@@ -93,7 +93,7 @@ class StoryTest {
 
 	    List<StoryComment> storyComments = story.getStoryComments(); // initialize story comments
 	    assertTrue(storyComments.size() > 0); // null check story comments by verifying size greater than 0
-	    StoryComment parentComment = storyComments.get(0).getParentComment(); // initialize parent comment
+	    StoryComment parentComment = storyComments.get(0); // initialize parent comment
 	    List<StoryComment> replies = parentComment.getReplies(); // initialize replies
 	    assertNotNull(replies);
 	    assertTrue(replies.size() > 0);

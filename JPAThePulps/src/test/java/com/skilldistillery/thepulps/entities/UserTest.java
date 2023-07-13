@@ -65,5 +65,11 @@ class UserTest {
 		assertNotNull(user);
 		assertEquals("Slowly he rose, mechanically wiping his hands upon his cloak. A dark scowl had settled on his somber brow. Yet he made no wild, reckless vow, swore no oath by saints or devils.", user.getStoryComments().get(0).getContent());
 	}
+	
+	@Test
+	void test_User_UserProfile_one_to_one_mapping() {
+		assertNotNull(user);
+		assertEquals("I am the ruler of this domain", user.getUserProfile().getBio());
+	}
 
 }
