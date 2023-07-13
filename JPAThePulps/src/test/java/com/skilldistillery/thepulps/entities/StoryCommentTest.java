@@ -59,5 +59,11 @@ class StoryCommentTest {
 		assertNotNull(storyComment);
 		assertEquals("\"Men shall die for this,\" he said coldly.", storyComment.getReplies().get(0).getContent());
 	}
+	
+	@Test
+	void test_StoryComment_Story_many_to_one_mapping() {
+		assertNotNull(storyComment);
+		assertEquals("Red Shadows", storyComment.getStory().getTitle());
+	}
 
 }

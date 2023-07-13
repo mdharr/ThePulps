@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -56,6 +57,7 @@ public class StoryComment {
 	private StoryComment parentComment;
 
 	@OneToMany(mappedBy = "parentComment", cascade = CascadeType.ALL)
+	@OrderBy("createdAt ASC") // ordering replies by createdAt column
 	private List<StoryComment> replies = new ArrayList<>();
 
 	public StoryComment() {

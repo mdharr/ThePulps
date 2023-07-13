@@ -2,6 +2,8 @@ package com.skilldistillery.thepulps.entities;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -76,6 +78,12 @@ class StoryTest {
 	void test_Story_Member_many_to_many_mapping() {
 		assertNotNull(story);
 		assertEquals("Solomon Kane", story.getMembers().get(0).getName());
+	}
+	
+	@Test
+	void test_Story_StoryComment_one_to_many_mapping_v2() {
+	    assertNotNull(story);
+	    assertEquals("Slowly he rose, mechanically wiping his hands upon his cloak. A dark scowl had settled on his somber brow. Yet he made no wild, reckless vow, swore no oath by saints or devils.", story.getStoryComments().get(0).getParentComment().getContent());
 	}
 
 }

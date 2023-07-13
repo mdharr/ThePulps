@@ -26,12 +26,15 @@ public class User {
 	
 	@OneToMany(mappedBy = "user")
 	private List<Collection> collections;
+	
+	@OneToMany(mappedBy = "user")
+	private List<StoryComment> storyComments;
 
 	public User() {
 		super();
 	}
 
-	public User(int id, String username, String password, Boolean enabled, String role, List<Collection> collections) {
+	public User(int id, String username, String password, Boolean enabled, String role, List<Collection> collections, List<StoryComment> storyComments) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -39,6 +42,7 @@ public class User {
 		this.enabled = enabled;
 		this.role = role;
 		this.collections = collections;
+		this.storyComments = storyComments;
 	}
 
 	public int getId() {
@@ -87,6 +91,14 @@ public class User {
 
 	public void setCollections(List<Collection> collections) {
 		this.collections = collections;
+	}
+
+	public List<StoryComment> getStoryComments() {
+		return storyComments;
+	}
+
+	public void setStoryComments(List<StoryComment> storyComments) {
+		this.storyComments = storyComments;
 	}
 
 	@Override

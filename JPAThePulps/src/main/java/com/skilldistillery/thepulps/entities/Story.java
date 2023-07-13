@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -61,13 +62,17 @@ public class Story {
             joinColumns = @JoinColumn(name = "story_id"),
             inverseJoinColumns = @JoinColumn(name = "member_id"))
     private List<Member> members;
+    
+	@OneToMany(mappedBy = "story")
+	@OrderBy("createdAt ASC") // ordering storyComments by their createdAt column
+	private List<StoryComment> storyComments;
 
 	public Story() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Story(int id, String title, LocalDateTime createdAt, List<StoryPdf> storyPdfs, List<Author> authors, List<Tag> tags, List<Magazine> magazines, List<Collection> collections, List<Member> members) {
+	public Story(int id, String title, LocalDateTime createdAt, List<StoryPdf> storyPdfs, List<Author> authors, List<Tag> tags, List<Magazine> magazines, List<Collection> collections, List<Member> members, List<StoryComment> storyComments) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -78,6 +83,7 @@ public class Story {
 		this.magazines = magazines;
 		this.collections = collections;
 		this.members = members;
+		this.storyComments = storyComments;
 	}
 
 	public int getId() {
@@ -150,6 +156,14 @@ public class Story {
 
 	public void setMembers(List<Member> members) {
 		this.members = members;
+	}
+
+	public List<StoryComment> getStoryComments() {
+		return storyComments;
+	}
+
+	public void setStoryComments(List<StoryComment> storyComments) {
+		this.storyComments = storyComments;
 	}
 
 	@Override

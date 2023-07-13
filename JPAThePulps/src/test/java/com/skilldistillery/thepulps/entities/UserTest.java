@@ -59,5 +59,11 @@ class UserTest {
 		assertNotNull(user);
 		assertEquals("Red Shadows", user.getCollections().get(0).getStories().get(0).getTitle());
 	}
+	
+	@Test
+	void test_User_StoryComment_one_to_many_mapping_v2() {
+		assertNotNull(user);
+		assertEquals("Slowly he rose, mechanically wiping his hands upon his cloak. A dark scowl had settled on his somber brow. Yet he made no wild, reckless vow, swore no oath by saints or devils.", user.getStoryComments().get(0).getContent());
+	}
 
 }
