@@ -3,6 +3,7 @@ package com.skilldistillery.thepulps.entities;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -81,9 +82,28 @@ class StoryTest {
 	}
 	
 	@Test
-	void test_Story_StoryComment_one_to_many_mapping_v2() {
+	void test_Story_StoryComment_one_to_many_mapping() {
 	    assertNotNull(story);
 	    assertEquals("Slowly he rose, mechanically wiping his hands upon his cloak. A dark scowl had settled on his somber brow. Yet he made no wild, reckless vow, swore no oath by saints or devils.", story.getStoryComments().get(0).getParentComment().getContent());
 	}
+	
+	@Test
+	void test_Story_StoryComment_Reply_one_to_many_mapping() {
+	    assertNotNull(story);
+
+	    List<StoryComment> storyComments = story.getStoryComments(); // initialize story comments
+	    assertTrue(storyComments.size() > 0); // null check story comments by verifying size greater than 0
+	    StoryComment parentComment = storyComments.get(0).getParentComment(); // initialize parent comment
+	    List<StoryComment> replies = parentComment.getReplies(); // initialize replies
+	    assertNotNull(replies);
+	    assertTrue(replies.size() > 0);
+
+	    User user = replies.get(0).getUser();
+	    assertNotNull(user);
+
+	    assertEquals(2, user.getId());
+	}
+
+
 
 }
