@@ -61,6 +61,12 @@ class StoryCommentTest {
 	}
 	
 	@Test
+	void test_Reply_ParentComment_many_to_one_mapping() {
+		assertNotNull(storyComment);
+		assertEquals("Slowly he rose, mechanically wiping his hands upon his cloak. A dark scowl had settled on his somber brow. Yet he made no wild, reckless vow, swore no oath by saints or devils.", storyComment.getReplies().get(0).getParentComment().getContent());
+	}
+	
+	@Test
 	void test_StoryComment_Story_many_to_one_mapping() {
 		assertNotNull(storyComment);
 		assertEquals("Red Shadows", storyComment.getStory().getTitle());
