@@ -16,6 +16,19 @@ CREATE SCHEMA IF NOT EXISTS `thepulpsdb` DEFAULT CHARACTER SET utf8 ;
 USE `thepulpsdb` ;
 
 -- -----------------------------------------------------
+-- Table `user_profile`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `user_profile` ;
+
+CREATE TABLE IF NOT EXISTS `user_profile` (
+  `id` INT NOT NULL,
+  `image_url` VARCHAR(255) NULL,
+  `bio` TEXT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `user`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `user` ;
@@ -26,8 +39,15 @@ CREATE TABLE IF NOT EXISTS `user` (
   `password` VARCHAR(100) NOT NULL,
   `enabled` TINYINT NULL,
   `role` VARCHAR(45) NULL,
+  `user_profile_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `username_UNIQUE` (`username` ASC))
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC),
+  INDEX `fk_user_user_profile1_idx` (`user_profile_id` ASC),
+  CONSTRAINT `fk_user_user_profile1`
+    FOREIGN KEY (`user_profile_id`)
+    REFERENCES `user_profile` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -529,26 +549,6 @@ CREATE TABLE IF NOT EXISTS `story_member` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `user_profile`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `user_profile` ;
-
-CREATE TABLE IF NOT EXISTS `user_profile` (
-  `id` INT NOT NULL,
-  `image_url` VARCHAR(255) NULL,
-  `bio` TEXT NULL,
-  `user_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_user_profile_user1_idx` (`user_id` ASC),
-  CONSTRAINT `fk_user_profile_user1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
 SET SQL_MODE = '';
 DROP USER IF EXISTS thepulps@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -561,13 +561,25 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
+-- Data for table `user_profile`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `user_profile` (`id`, `image_url`, `bio`) VALUES (1, 'https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png', 'I am the ruler of this domain');
+INSERT INTO `user_profile` (`id`, `image_url`, `bio`) VALUES (2, 'https://www.comicbookreligion.com/img/s/o/Solomon_Kane_2.jpg', 'A somber-looking man who wanders the world with no apparent goal other than to vanquish evil in all its forms.');
+INSERT INTO `user_profile` (`id`, `image_url`, `bio`) VALUES (3, 'https://i0.wp.com/www.tor.com/wp-content/uploads/2014/12/GaryGianniConan.jpg', 'Hither came Conan, the Cimmerian, black-haired, sullen-eyed, sword in hand, a thief, a reaver, a slayer, with gigantic melancholies and gigantic mirth, to tread the jeweled thrones of the Earth under his sandalled feet.');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `user`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`) VALUES (1, 'admin', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'ADMIN');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`) VALUES (2, 'Solomon', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'STANDARD');
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`) VALUES (3, 'Conan', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'STANDARD');
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `user_profile_id`) VALUES (1, 'admin', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'ADMIN', 1);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `user_profile_id`) VALUES (2, 'Solomon', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'STANDARD', 2);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `user_profile_id`) VALUES (3, 'Conan', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'STANDARD', 3);
 
 COMMIT;
 
@@ -765,18 +777,6 @@ COMMIT;
 START TRANSACTION;
 USE `thepulpsdb`;
 INSERT INTO `story_member` (`story_id`, `member_id`) VALUES (1, 1);
-
-COMMIT;
-
-
--- -----------------------------------------------------
--- Data for table `user_profile`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `thepulpsdb`;
-INSERT INTO `user_profile` (`id`, `image_url`, `bio`, `user_id`) VALUES (1, 'https://w7.pngwing.com/pngs/831/88/png-transparent-user-profile-computer-icons-user-interface-mystique-miscellaneous-user-interface-design-smile-thumbnail.png', 'I am the ruler of this domain', 1);
-INSERT INTO `user_profile` (`id`, `image_url`, `bio`, `user_id`) VALUES (2, 'https://www.comicbookreligion.com/img/s/o/Solomon_Kane_2.jpg', 'A somber-looking man who wanders the world with no apparent goal other than to vanquish evil in all its forms.', 2);
-INSERT INTO `user_profile` (`id`, `image_url`, `bio`, `user_id`) VALUES (3, 'https://i0.wp.com/www.tor.com/wp-content/uploads/2014/12/GaryGianniConan.jpg', 'Hither came Conan, the Cimmerian, black-haired, sullen-eyed, sword in hand, a thief, a reaver, a slayer, with gigantic melancholies and gigantic mirth, to tread the jeweled thrones of the Earth under his sandalled feet.', 3);
 
 COMMIT;
 

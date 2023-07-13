@@ -3,11 +3,14 @@ package com.skilldistillery.thepulps.entities;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class User {
@@ -29,6 +32,10 @@ public class User {
 	
 	@OneToMany(mappedBy = "user")
 	private List<StoryComment> storyComments;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_profile_id")
+	private UserProfile userProfile;
 
 	public User() {
 		super();
