@@ -569,6 +569,197 @@ CREATE TABLE IF NOT EXISTS `story_member` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `user_has_follower`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `user_has_follower` ;
+
+CREATE TABLE IF NOT EXISTS `user_has_follower` (
+  `follower_id` INT NOT NULL,
+  `followed_id` INT NOT NULL,
+  `created_at` TIMESTAMP NULL,
+  INDEX `fk_user_has_follower_user1_idx` (`follower_id` ASC),
+  INDEX `fk_user_has_follower_user2_idx` (`followed_id` ASC),
+  CONSTRAINT `fk_user_has_follower_user1`
+    FOREIGN KEY (`follower_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_user_has_follower_user2`
+    FOREIGN KEY (`followed_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `group_conversation`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `group_conversation` ;
+
+CREATE TABLE IF NOT EXISTS `group_conversation` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `created_at` TIMESTAMP NULL,
+  `updated_at` TIMESTAMP NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `group`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `group` ;
+
+CREATE TABLE IF NOT EXISTS `group` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NULL,
+  `description` TEXT NULL,
+  `user_id` INT NOT NULL,
+  `created_at` TIMESTAMP NULL,
+  `group_conversation_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_group_user1_idx` (`user_id` ASC),
+  INDEX `fk_group_group_conversation1_idx` (`group_conversation_id` ASC),
+  CONSTRAINT `fk_group_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_group_group_conversation1`
+    FOREIGN KEY (`group_conversation_id`)
+    REFERENCES `group_conversation` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `group_member`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `group_member` ;
+
+CREATE TABLE IF NOT EXISTS `group_member` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `group_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  `created_at` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_group_member_group1_idx` (`group_id` ASC),
+  INDEX `fk_group_member_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_group_member_group1`
+    FOREIGN KEY (`group_id`)
+    REFERENCES `group` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_group_member_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `user_conversation`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `user_conversation` ;
+
+CREATE TABLE IF NOT EXISTS `user_conversation` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  `created_at` TIMESTAMP NULL,
+  `updated_at` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_user_conversation_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_user_conversation_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `private_message`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `private_message` ;
+
+CREATE TABLE IF NOT EXISTS `private_message` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `user_conversation_id` INT NOT NULL,
+  `content` TEXT NULL,
+  `created_at` TIMESTAMP NULL,
+  `sender_id` INT NOT NULL,
+  `recipient_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_private_message_user_conversation1_idx` (`user_conversation_id` ASC),
+  INDEX `fk_private_message_user1_idx` (`sender_id` ASC),
+  INDEX `fk_private_message_user2_idx` (`recipient_id` ASC),
+  CONSTRAINT `fk_private_message_user_conversation1`
+    FOREIGN KEY (`user_conversation_id`)
+    REFERENCES `user_conversation` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_private_message_user1`
+    FOREIGN KEY (`sender_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_private_message_user2`
+    FOREIGN KEY (`recipient_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `group_message`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `group_message` ;
+
+CREATE TABLE IF NOT EXISTS `group_message` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `group_conversation_id` INT NOT NULL,
+  `group_member_id` INT NOT NULL,
+  `message` TEXT NULL,
+  `created_at` TIMESTAMP NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_group_message_group_conversation1_idx` (`group_conversation_id` ASC),
+  INDEX `fk_group_message_group_member1_idx` (`group_member_id` ASC),
+  CONSTRAINT `fk_group_message_group_conversation1`
+    FOREIGN KEY (`group_conversation_id`)
+    REFERENCES `group_conversation` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_group_message_group_member1`
+    FOREIGN KEY (`group_member_id`)
+    REFERENCES `group_member` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `magazine_pdf`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `magazine_pdf` ;
+
+CREATE TABLE IF NOT EXISTS `magazine_pdf` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `magazine_id` INT NOT NULL,
+  `magazine_url` VARCHAR(255) NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_magazine_pdf_magazine1_idx` (`magazine_id` ASC),
+  CONSTRAINT `fk_magazine_pdf_magazine1`
+    FOREIGN KEY (`magazine_id`)
+    REFERENCES `magazine` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS thepulps@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -807,6 +998,86 @@ COMMIT;
 START TRANSACTION;
 USE `thepulpsdb`;
 INSERT INTO `story_member` (`story_id`, `member_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user_has_follower`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `user_has_follower` (`follower_id`, `followed_id`, `created_at`) VALUES (1, 2, '2023-05-19T11:35:22');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `group_conversation`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `group_conversation` (`id`, `created_at`, `updated_at`) VALUES (1, '2023-06-19T11:35:22', '2023-06-19T11:35:22');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `group`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `group` (`id`, `name`, `description`, `user_id`, `created_at`, `group_conversation_id`) VALUES (1, 'Robert E. Howard Club', 'We are a passionate group of people who enjoy discussing everything Robert E. Howard', 2, '2023-06-19T11:35:22', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `group_member`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `group_member` (`id`, `group_id`, `user_id`, `created_at`) VALUES (1, 1, 2, '2023-06-19T11:35:22');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `user_conversation`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `user_conversation` (`id`, `user_id`, `created_at`, `updated_at`) VALUES (1, 2, '2023-06-19T11:35:22', '2023-05-19T11:35:22');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `private_message`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `private_message` (`id`, `user_conversation_id`, `content`, `created_at`, `sender_id`, `recipient_id`) VALUES (1, 1, 'We were both written by the same author.', '2023-06-19T11:35:22', 2, 3);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `group_message`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `group_message` (`id`, `group_conversation_id`, `group_member_id`, `message`, `created_at`) VALUES (1, 1, 1, 'Hello REH enthusiasts!', '2023-06-19T11:35:22');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `magazine_pdf`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `magazine_pdf` (`id`, `magazine_id`, `magazine_url`) VALUES (1, 1, 'https://ia803002.us.archive.org/22/items/WeirdTalesV12N02192808sasIfcIbc/Weird%20Tales%20v12%20n02%20%5B1928-08%5D%20%28sas%29%20%7B-ifc%2C%20ibc%7D.pdf');
 
 COMMIT;
 
