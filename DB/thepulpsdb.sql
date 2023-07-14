@@ -21,7 +21,7 @@ USE `thepulpsdb` ;
 DROP TABLE IF EXISTS `user_profile` ;
 
 CREATE TABLE IF NOT EXISTS `user_profile` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `image_url` VARCHAR(255) NULL,
   `bio` TEXT NULL,
   PRIMARY KEY (`id`))
@@ -160,6 +160,19 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `author_profile`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `author_profile` ;
+
+CREATE TABLE IF NOT EXISTS `author_profile` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `image_url` VARCHAR(255) NULL,
+  `bio` TEXT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `author`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `author` ;
@@ -167,7 +180,14 @@ DROP TABLE IF EXISTS `author` ;
 CREATE TABLE IF NOT EXISTS `author` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `full_name` VARCHAR(100) NULL,
-  PRIMARY KEY (`id`))
+  `author_profile_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_author_author_profile1_idx` (`author_profile_id` ASC),
+  CONSTRAINT `fk_author_author_profile1`
+    FOREIGN KEY (`author_profile_id`)
+    REFERENCES `author_profile` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -645,11 +665,21 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `author_profile`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (1, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `author`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `author` (`id`, `full_name`) VALUES (1, 'Robert E. Howard');
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`) VALUES (1, 'Robert E. Howard', 1);
 
 COMMIT;
 
