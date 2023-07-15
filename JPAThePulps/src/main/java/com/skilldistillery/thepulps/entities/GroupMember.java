@@ -36,7 +36,7 @@ public class GroupMember {
     @JoinColumn(name = "user_id")
     private User user;
     
-    @OneToMany(mappedBy = "group_member_id")
+    @OneToMany(mappedBy = "groupMember")
     private List<GroupMessage> groupMessages;
 
 	public GroupMember() {
