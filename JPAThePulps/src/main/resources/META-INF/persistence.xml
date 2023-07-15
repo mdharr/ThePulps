@@ -13,9 +13,11 @@
 		<class>com.skilldistillery.thepulps.entities.Magazine</class>
 		<class>com.skilldistillery.thepulps.entities.MagazineStory</class>
 		<class>com.skilldistillery.thepulps.entities.MagazineStoryId</class>
+		<class>com.skilldistillery.thepulps.entities.MagazinePdf</class>
 		<class>com.skilldistillery.thepulps.entities.CoverArtwork</class>
 		<class>com.skilldistillery.thepulps.entities.Collection</class>
 		<class>com.skilldistillery.thepulps.entities.Author</class>
+		<class>com.skilldistillery.thepulps.entities.AuthorProfile</class>
 		<class>com.skilldistillery.thepulps.entities.StoryAuthor</class>
 		<class>com.skilldistillery.thepulps.entities.StoryAuthorId</class>
 		<class>com.skilldistillery.thepulps.entities.StoryPdf</class>
