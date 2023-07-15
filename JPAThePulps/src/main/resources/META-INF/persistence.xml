@@ -41,6 +41,7 @@
 		<class>com.skilldistillery.thepulps.entities.GroupMember</class>
 		<class>com.skilldistillery.thepulps.entities.GroupConversation</class>
 		<class>com.skilldistillery.thepulps.entities.GroupMessage</class>
+		<class>com.skilldistillery.thepulps.entities.UserConversation</class>
 		<class>com.skilldistillery.thepulps.entities.PrivateMessage</class>
 
 		<!-- end entities -->
