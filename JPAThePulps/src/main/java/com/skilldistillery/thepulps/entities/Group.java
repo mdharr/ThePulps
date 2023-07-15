@@ -1,6 +1,7 @@
 package com.skilldistillery.thepulps.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -39,6 +41,9 @@ public class Group {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "group_conversation_id")
 	private GroupConversation groupConversation;
+	
+    @OneToMany(mappedBy = "group")
+    private List<GroupMember> groupMembers;
 
 	public Group() {
 		super();
@@ -46,7 +51,7 @@ public class Group {
 	}
 
 	public Group(int id, String name, String description, LocalDateTime createdAt, User user,
-			GroupConversation groupConversation) {
+			GroupConversation groupConversation, List<GroupMember> groupMembers) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -54,6 +59,7 @@ public class Group {
 		this.createdAt = createdAt;
 		this.user = user;
 		this.groupConversation = groupConversation;
+		this.groupMembers = groupMembers;
 	}
 
 	public int getId() {
@@ -102,6 +108,14 @@ public class Group {
 
 	public void setGroupConversation(GroupConversation groupConversation) {
 		this.groupConversation = groupConversation;
+	}
+
+	public List<GroupMember> getGroupMembers() {
+		return groupMembers;
+	}
+
+	public void setGroupMembers(List<GroupMember> groupMembers) {
+		this.groupMembers = groupMembers;
 	}
 
 	@Override
