@@ -988,7 +988,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `user_has_follower` (`follower_id`, `followed_id`, `created_at`) VALUES (1, 2, '2023-05-19T11:35:22');
+INSERT INTO `user_has_follower` (`follower_id`, `followed_id`, `created_at`) VALUES (2, 3, '2023-05-19T11:35:22');
 
 COMMIT;
 
