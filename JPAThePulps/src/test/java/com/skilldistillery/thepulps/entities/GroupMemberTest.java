@@ -2,6 +2,8 @@ package com.skilldistillery.thepulps.entities;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.Month;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -12,13 +14,13 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class GroupTest {
+class GroupMemberTest {
 
 	private static EntityManagerFactory emf;
 	
 	private EntityManager em;
 	
-	private MemberGroup memberGroup;
+	private GroupMember groupMember;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -33,25 +35,32 @@ class GroupTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		memberGroup = em.find(MemberGroup.class, 1);
+		groupMember = em.find(GroupMember.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		memberGroup = null;
+		groupMember = null;
 	}
 
 	@Test
-	void test_MemberGroup_entity_mapping() {
-		assertNotNull(memberGroup);
-		assertEquals("Robert E. Howard Club", memberGroup.getName());
+	void test_GroupMember_entity_mapping() {
+		assertNotNull(groupMember);
+		assertEquals(2023, groupMember.getCreatedAt().getYear());
+		assertEquals(Month.JUNE, groupMember.getCreatedAt().getMonth());
 	}
 	
 	@Test
-	void test_MemberGroup_User_many_to_one_mapping() {
-		assertNotNull(memberGroup);
-		assertEquals("Solomon", memberGroup.getUser().getUsername());
+	void test_GroupMember_User_many_to_one_mapping() {
+		assertNotNull(groupMember);
+		assertEquals("Solomon", groupMember.getUser().getUsername());
+	}
+	
+	@Test
+	void test_GroupMember_Group_many_to_one_mapping() {
+		assertNotNull(groupMember);
+		assertEquals("Solomon", groupMember.getMemberGroup().getUser().getUsername());
 	}
 
 }
