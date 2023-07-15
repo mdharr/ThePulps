@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -55,6 +56,9 @@ public class Magazine {
     
     @Column(name = "image_url")
     private String imageUrl;
+    
+	@OneToMany(mappedBy = "magazine")
+	private List<MagazinePdf> magazinePdfs;
 
 	public Magazine() {
 		super();
@@ -62,7 +66,7 @@ public class Magazine {
 	}
 
 	public Magazine(int id, CoverArtwork coverArtwork, Publication publication, String name, LocalDateTime createdAt,
-			List<Tag> tags, List<Story> stories, String thumbnailUrl, String imageUrl) {
+			List<Tag> tags, List<Story> stories, String thumbnailUrl, String imageUrl, List<MagazinePdf> magazinePdfs) {
 		super();
 		this.id = id;
 		this.coverArtwork = coverArtwork;
@@ -73,6 +77,7 @@ public class Magazine {
 		this.stories = stories;
 		this.thumbnailUrl = thumbnailUrl;
 		this.imageUrl = imageUrl;
+		this.magazinePdfs = magazinePdfs;
 	}
 
 	public int getId() {
@@ -145,6 +150,14 @@ public class Magazine {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public List<MagazinePdf> getMagazinePdfs() {
+		return magazinePdfs;
+	}
+
+	public void setMagazinePdfs(List<MagazinePdf> magazinePdfs) {
+		this.magazinePdfs = magazinePdfs;
 	}
 
 	@Override
