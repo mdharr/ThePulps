@@ -2,6 +2,8 @@ package com.skilldistillery.thepulps.entities;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.Month;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -53,6 +55,8 @@ class UserFollowerTest {
         assertNotNull(userFollower.getFollowed());
         assertEquals("Solomon", userFollower.getFollower().getUsername());
         assertEquals("Conan", userFollower.getFollowed().getUsername());
+        assertEquals(2023, userFollower.getCreatedAt().getYear());
+        assertEquals(Month.MAY, userFollower.getCreatedAt().getMonth());
     }
 
 }
