@@ -38,19 +38,28 @@ public class Collection {
             joinColumns = @JoinColumn(name = "collection_id"),
             inverseJoinColumns = @JoinColumn(name = "story_id"))
     private List<Story> stories;
+    
+    @Column(name = "thumbnail_url")
+    private String thumbnailUrl;
+    
+    @Column(name = "background_url")
+    private String backgroundUrl;
 
 	public Collection() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Collection(int id, User user, String name, LocalDateTime createdAt, List<Story> stories) {
+	public Collection(int id, User user, String name, LocalDateTime createdAt, List<Story> stories, String thumbnailUrl,
+			String backgroundUrl) {
 		super();
 		this.id = id;
 		this.user = user;
 		this.name = name;
 		this.createdAt = createdAt;
 		this.stories = stories;
+		this.thumbnailUrl = thumbnailUrl;
+		this.backgroundUrl = backgroundUrl;
 	}
 
 	public int getId() {
@@ -91,6 +100,22 @@ public class Collection {
 
 	public void setStories(List<Story> stories) {
 		this.stories = stories;
+	}
+
+	public String getThumbnailUrl() {
+		return thumbnailUrl;
+	}
+
+	public void setThumbnailUrl(String thumbnailUrl) {
+		this.thumbnailUrl = thumbnailUrl;
+	}
+
+	public String getBackgroundUrl() {
+		return backgroundUrl;
+	}
+
+	public void setBackgroundUrl(String backgroundUrl) {
+		this.backgroundUrl = backgroundUrl;
 	}
 
 	@Override

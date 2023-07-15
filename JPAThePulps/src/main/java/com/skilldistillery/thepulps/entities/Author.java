@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Entity
 public class Author {
@@ -33,18 +34,26 @@ public class Author {
             joinColumns = @JoinColumn(name = "author_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private List<Tag> tags;
+    
+    @Column(name = "thumbnail_url")
+    private String thumbnailUrl;
+    
+    @Column(name = "image_url")
+    private String imageUrl;
 
 	public Author() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Author(int id, String fullName, List<Story> stories, List<Tag> tags) {
+	public Author(int id, String fullName, List<Story> stories, List<Tag> tags, String thumbnailUrl, String imageUrl) {
 		super();
 		this.id = id;
 		this.fullName = fullName;
 		this.stories = stories;
 		this.tags = tags;
+		this.thumbnailUrl = thumbnailUrl;
+		this.imageUrl = imageUrl;
 	}
 
 	public int getId() {
@@ -77,6 +86,22 @@ public class Author {
 
 	public void setTags(List<Tag> tags) {
 		this.tags = tags;
+	}
+
+	public String getThumbnailUrl() {
+		return thumbnailUrl;
+	}
+
+	public void setThumbnailUrl(String thumbnailUrl) {
+		this.thumbnailUrl = thumbnailUrl;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	@Override

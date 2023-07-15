@@ -66,13 +66,21 @@ public class Story {
 	@OneToMany(mappedBy = "story")
 	@OrderBy("createdAt ASC") // ordering storyComments by their createdAt column
 	private List<StoryComment> storyComments;
+	
+	@Column(name = "thumbnail_url")
+	private String thumbnailUrl;
+	
+	@Column(name = "background_url")
+	private String backgroundUrl;
 
 	public Story() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Story(int id, String title, LocalDateTime createdAt, List<StoryPdf> storyPdfs, List<Author> authors, List<Tag> tags, List<Magazine> magazines, List<Collection> collections, List<Member> members, List<StoryComment> storyComments) {
+	public Story(int id, String title, LocalDateTime createdAt, List<StoryPdf> storyPdfs, List<Author> authors,
+			List<Tag> tags, List<Magazine> magazines, List<Collection> collections, List<Member> members,
+			List<StoryComment> storyComments, String thumbnailUrl, String backgroundUrl) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -84,6 +92,8 @@ public class Story {
 		this.collections = collections;
 		this.members = members;
 		this.storyComments = storyComments;
+		this.thumbnailUrl = thumbnailUrl;
+		this.backgroundUrl = backgroundUrl;
 	}
 
 	public int getId() {
@@ -164,6 +174,22 @@ public class Story {
 
 	public void setStoryComments(List<StoryComment> storyComments) {
 		this.storyComments = storyComments;
+	}
+
+	public String getThumbnailUrl() {
+		return thumbnailUrl;
+	}
+
+	public void setThumbnailUrl(String thumbnailUrl) {
+		this.thumbnailUrl = thumbnailUrl;
+	}
+
+	public String getBackgroundUrl() {
+		return backgroundUrl;
+	}
+
+	public void setBackgroundUrl(String backgroundUrl) {
+		this.backgroundUrl = backgroundUrl;
 	}
 
 	@Override

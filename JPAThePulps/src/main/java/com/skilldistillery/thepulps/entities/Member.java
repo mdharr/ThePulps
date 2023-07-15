@@ -3,6 +3,7 @@ package com.skilldistillery.thepulps.entities;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,18 +30,26 @@ public class Member {
             joinColumns = @JoinColumn(name = "member_id"),
             inverseJoinColumns = @JoinColumn(name = "story_id"))
     private List<Story> stories;
+    
+    @Column(name = "image_url")
+    private String imageUrl;
+    
+    @Column(name = "thumbnail_url")
+    private String thumbnailUrl;
 
 	public Member() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Member(int id, String name, String description, List<Story> stories) {
+	public Member(int id, String name, String description, List<Story> stories, String imageUrl, String thumbnailUrl) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.stories = stories;
+		this.imageUrl = imageUrl;
+		this.thumbnailUrl = thumbnailUrl;
 	}
 
 	public int getId() {
@@ -73,6 +82,22 @@ public class Member {
 
 	public void setStories(List<Story> stories) {
 		this.stories = stories;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+	public String getThumbnailUrl() {
+		return thumbnailUrl;
+	}
+
+	public void setThumbnailUrl(String thumbnailUrl) {
+		this.thumbnailUrl = thumbnailUrl;
 	}
 
 	@Override

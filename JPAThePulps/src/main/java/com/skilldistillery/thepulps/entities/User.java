@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -36,12 +37,22 @@ public class User {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_profile_id")
 	private UserProfile userProfile;
+	
+	private String email;
+	
+	@Column(name = "first_name")
+	private String firstName;
+	
+	@Column(name = "last_name")
+	private String lastName;
 
 	public User() {
 		super();
 	}
 
-	public User(int id, String username, String password, Boolean enabled, String role, List<Collection> collections, List<StoryComment> storyComments, UserProfile userProfile) {
+	public User(int id, String username, String password, Boolean enabled, String role, List<Collection> collections,
+			List<StoryComment> storyComments, UserProfile userProfile, String email, String firstName,
+			String lastName) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -51,6 +62,9 @@ public class User {
 		this.collections = collections;
 		this.storyComments = storyComments;
 		this.userProfile = userProfile;
+		this.email = email;
+		this.firstName = firstName;
+		this.lastName = lastName;
 	}
 
 	public int getId() {
@@ -115,6 +129,30 @@ public class User {
 
 	public void setUserProfile(UserProfile userProfile) {
 		this.userProfile = userProfile;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	@Override

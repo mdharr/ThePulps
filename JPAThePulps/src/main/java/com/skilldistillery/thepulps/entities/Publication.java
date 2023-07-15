@@ -37,19 +37,28 @@ public class Publication {
             joinColumns = @JoinColumn(name = "publication_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private List<Tag> tags;
+    
+    @Column(name = "thumbnail_url")
+    private String thumbnailUrl;
+    
+    @Column(name = "image_url")
+    private String imageUrl;
 
 	public Publication() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Publication(int id, String name, LocalDateTime createdAt, List<Magazine> magazines, List<Tag> tags) {
+	public Publication(int id, String name, LocalDateTime createdAt, List<Magazine> magazines, List<Tag> tags,
+			String thumbnailUrl, String imageUrl) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.createdAt = createdAt;
 		this.magazines = magazines;
 		this.tags = tags;
+		this.thumbnailUrl = thumbnailUrl;
+		this.imageUrl = imageUrl;
 	}
 
 	public int getId() {
@@ -90,6 +99,22 @@ public class Publication {
 
 	public void setTags(List<Tag> tags) {
 		this.tags = tags;
+	}
+
+	public String getThumbnailUrl() {
+		return thumbnailUrl;
+	}
+
+	public void setThumbnailUrl(String thumbnailUrl) {
+		this.thumbnailUrl = thumbnailUrl;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	@Override

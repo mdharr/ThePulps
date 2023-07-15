@@ -180,7 +180,6 @@ CREATE TABLE IF NOT EXISTS `author_profile` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `image_url` VARCHAR(255) NULL,
   `bio` TEXT NULL,
-  `thumbnail_url` VARCHAR(255) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -523,6 +522,8 @@ CREATE TABLE IF NOT EXISTS `member` (
   `id` INT NOT NULL,
   `name` VARCHAR(100) NULL,
   `description` TEXT NULL,
+  `image_url` VARCHAR(255) NULL,
+  `thumbnail_url` VARCHAR(255) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -729,8 +730,8 @@ DROP TABLE IF EXISTS `magazine_pdf` ;
 
 CREATE TABLE IF NOT EXISTS `magazine_pdf` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `magazine_id` INT NOT NULL,
   `magazine_url` VARCHAR(255) NULL,
+  `magazine_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_magazine_pdf_magazine1_idx` (`magazine_id` ASC),
   CONSTRAINT `fk_magazine_pdf_magazine1`
@@ -840,7 +841,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `author_profile` (`id`, `image_url`, `bio`, `thumbnail_url`) VALUES (1, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.', NULL);
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (1, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
 
 COMMIT;
 
@@ -967,7 +968,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `member` (`id`, `name`, `description`) VALUES (1, 'Solomon Kane', 'A late-16th-to-early-17th century Puritan, Solomon Kane is a somber-looking man who wanders the world with no apparent goal other than to vanquish evil in all its forms.');
+INSERT INTO `member` (`id`, `name`, `description`, `image_url`, `thumbnail_url`) VALUES (1, 'Solomon Kane', 'A late-16th-to-early-17th century Puritan, Solomon Kane is a somber-looking man who wanders the world with no apparent goal other than to vanquish evil in all its forms.', NULL, NULL);
 
 COMMIT;
 
@@ -1057,7 +1058,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `magazine_pdf` (`id`, `magazine_id`, `magazine_url`) VALUES (1, 1, 'https://ia803002.us.archive.org/22/items/WeirdTalesV12N02192808sasIfcIbc/Weird%20Tales%20v12%20n02%20%5B1928-08%5D%20%28sas%29%20%7B-ifc%2C%20ibc%7D.pdf');
+INSERT INTO `magazine_pdf` (`id`, `magazine_url`, `magazine_id`) VALUES (1, 'https://ia803002.us.archive.org/22/items/WeirdTalesV12N02192808sasIfcIbc/Weird%20Tales%20v12%20n02%20%5B1928-08%5D%20%28sas%29%20%7B-ifc%2C%20ibc%7D.pdf', 1);
 
 COMMIT;
 
