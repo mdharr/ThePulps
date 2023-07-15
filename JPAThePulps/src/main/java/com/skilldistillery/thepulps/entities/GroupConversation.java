@@ -36,7 +36,7 @@ public class GroupConversation {
     private MemberGroup memberGroup;
     
     @OneToMany(mappedBy = "groupConversation")
-    private List<GroupMessage> messages;
+    private List<GroupMessage> groupMessages;
 
 	public GroupConversation() {
 		super();
@@ -44,13 +44,13 @@ public class GroupConversation {
 	}
 
 	public GroupConversation(int id, LocalDateTime createdAt, LocalDateTime updatedAt, MemberGroup memberGroup,
-			List<GroupMessage> messages) {
+			List<GroupMessage> groupMessages) {
 		super();
 		this.id = id;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
 		this.memberGroup = memberGroup;
-		this.messages = messages;
+		this.groupMessages = groupMessages;
 	}
 
 	public int getId() {
@@ -85,12 +85,12 @@ public class GroupConversation {
 		this.memberGroup = memberGroup;
 	}
 
-	public List<GroupMessage> getMessages() {
-		return messages;
+	public List<GroupMessage> getGroupMessages() {
+		return groupMessages;
 	}
 
-	public void setMessages(List<GroupMessage> messages) {
-		this.messages = messages;
+	public void setGroupMessages(List<GroupMessage> groupMessages) {
+		this.groupMessages = groupMessages;
 	}
 
 	@Override
