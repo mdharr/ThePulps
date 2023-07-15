@@ -3,6 +3,7 @@ package com.skilldistillery.thepulps.entities;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -35,6 +37,10 @@ public class Author {
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private List<Tag> tags;
     
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "author_profile_id")
+	private AuthorProfile authorProfile;
+    
     @Column(name = "thumbnail_url")
     private String thumbnailUrl;
     
@@ -46,12 +52,14 @@ public class Author {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Author(int id, String fullName, List<Story> stories, List<Tag> tags, String thumbnailUrl, String imageUrl) {
+	public Author(int id, String fullName, List<Story> stories, List<Tag> tags, AuthorProfile authorProfile,
+			String thumbnailUrl, String imageUrl) {
 		super();
 		this.id = id;
 		this.fullName = fullName;
 		this.stories = stories;
 		this.tags = tags;
+		this.authorProfile = authorProfile;
 		this.thumbnailUrl = thumbnailUrl;
 		this.imageUrl = imageUrl;
 	}
@@ -86,6 +94,14 @@ public class Author {
 
 	public void setTags(List<Tag> tags) {
 		this.tags = tags;
+	}
+
+	public AuthorProfile getAuthorProfile() {
+		return authorProfile;
+	}
+
+	public void setAuthorProfile(AuthorProfile authorProfile) {
+		this.authorProfile = authorProfile;
 	}
 
 	public String getThumbnailUrl() {
