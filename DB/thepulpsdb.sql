@@ -589,11 +589,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `group`
+-- Table `member_group`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `group` ;
+DROP TABLE IF EXISTS `member_group` ;
 
-CREATE TABLE IF NOT EXISTS `group` (
+CREATE TABLE IF NOT EXISTS `member_group` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NULL,
   `description` TEXT NULL,
@@ -623,20 +623,20 @@ DROP TABLE IF EXISTS `group_member` ;
 
 CREATE TABLE IF NOT EXISTS `group_member` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `group_id` INT NOT NULL,
   `user_id` INT NOT NULL,
   `created_at` TIMESTAMP NULL,
+  `member_group_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_group_member_group1_idx` (`group_id` ASC),
   INDEX `fk_group_member_user1_idx` (`user_id` ASC),
-  CONSTRAINT `fk_group_member_group1`
-    FOREIGN KEY (`group_id`)
-    REFERENCES `group` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `fk_group_member_member_group1_idx` (`member_group_id` ASC),
   CONSTRAINT `fk_group_member_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_group_member_member_group1`
+    FOREIGN KEY (`member_group_id`)
+    REFERENCES `member_group` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -1004,11 +1004,11 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `group`
+-- Data for table `member_group`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `group` (`id`, `name`, `description`, `user_id`, `created_at`, `group_conversation_id`) VALUES (1, 'Robert E. Howard Club', 'We are a passionate group of people who enjoy discussing everything Robert E. Howard', 2, '2023-06-19T11:35:22', 1);
+INSERT INTO `member_group` (`id`, `name`, `description`, `user_id`, `created_at`, `group_conversation_id`) VALUES (1, 'Robert E. Howard Club', 'We are a passionate group of people who enjoy discussing everything Robert E. Howard', 2, '2023-06-19T11:35:22', 1);
 
 COMMIT;
 
@@ -1018,7 +1018,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `group_member` (`id`, `group_id`, `user_id`, `created_at`) VALUES (1, 1, 2, '2023-06-19T11:35:22');
+INSERT INTO `group_member` (`id`, `user_id`, `created_at`, `member_group_id`) VALUES (1, 2, '2023-06-19T11:35:22', 1);
 
 COMMIT;
 

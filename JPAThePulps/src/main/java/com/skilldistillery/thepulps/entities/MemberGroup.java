@@ -15,11 +15,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-public class Group {
+@Table(name = "member_group")
+public class MemberGroup {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,15 +44,15 @@ public class Group {
 	@JoinColumn(name = "group_conversation_id")
 	private GroupConversation groupConversation;
 	
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "memberGroup")
     private List<GroupMember> groupMembers;
 
-	public Group() {
+	public MemberGroup() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Group(int id, String name, String description, LocalDateTime createdAt, User user,
+	public MemberGroup(int id, String name, String description, LocalDateTime createdAt, User user,
 			GroupConversation groupConversation, List<GroupMember> groupMembers) {
 		super();
 		this.id = id;
@@ -131,7 +133,7 @@ public class Group {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Group other = (Group) obj;
+		MemberGroup other = (MemberGroup) obj;
 		return id == other.id;
 	}
 

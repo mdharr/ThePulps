@@ -29,8 +29,8 @@ public class GroupMember {
 	private LocalDateTime createdAt;
 	
     @ManyToOne
-    @JoinColumn(name = "group_id")
-    private Group group;
+    @JoinColumn(name = "member_group_id")
+    private MemberGroup memberGroup;
     
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -44,12 +44,52 @@ public class GroupMember {
 		// TODO Auto-generated constructor stub
 	}
 
-	public GroupMember(int id, LocalDateTime createdAt, Group group, User user, List<GroupMessage> groupMessages) {
+	public GroupMember(int id, LocalDateTime createdAt, MemberGroup memberGroup, User user, List<GroupMessage> groupMessages) {
 		super();
 		this.id = id;
 		this.createdAt = createdAt;
-		this.group = group;
+		this.memberGroup = memberGroup;
 		this.user = user;
+		this.groupMessages = groupMessages;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+
+	public MemberGroup getMemberGroup() {
+		return memberGroup;
+	}
+
+	public void setMemberGroup(MemberGroup memberGroup) {
+		this.memberGroup = memberGroup;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public List<GroupMessage> getGroupMessages() {
+		return groupMessages;
+	}
+
+	public void setGroupMessages(List<GroupMessage> groupMessages) {
 		this.groupMessages = groupMessages;
 	}
 
@@ -73,8 +113,8 @@ public class GroupMember {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("GroupMember [id=").append(id).append(", createdAt=").append(createdAt).append(", group=")
-				.append(group).append(", user=").append(user).append("]");
+		builder.append("GroupMember [id=").append(id).append(", createdAt=").append(createdAt).append(", memberGroup=")
+				.append(memberGroup).append(", user=").append(user).append("]");
 		return builder.toString();
 	}
 	

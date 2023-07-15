@@ -33,7 +33,7 @@ public class GroupConversation {
 	private LocalDateTime updatedAt;
 	
     @OneToOne(mappedBy = "groupConversation")
-    private Group group;
+    private MemberGroup memberGroup;
     
     @OneToMany(mappedBy = "groupConversation")
     private List<GroupMessage> messages;
@@ -43,13 +43,13 @@ public class GroupConversation {
 		// TODO Auto-generated constructor stub
 	}
 
-	public GroupConversation(int id, LocalDateTime createdAt, LocalDateTime updatedAt, Group group,
+	public GroupConversation(int id, LocalDateTime createdAt, LocalDateTime updatedAt, MemberGroup memberGroup,
 			List<GroupMessage> messages) {
 		super();
 		this.id = id;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
-		this.group = group;
+		this.memberGroup = memberGroup;
 		this.messages = messages;
 	}
 
@@ -77,12 +77,12 @@ public class GroupConversation {
 		this.updatedAt = updatedAt;
 	}
 
-	public Group getGroup() {
-		return group;
+	public MemberGroup getMemberGroup() {
+		return memberGroup;
 	}
 
-	public void setGroup(Group group) {
-		this.group = group;
+	public void setMemberGroup(MemberGroup memberGroup) {
+		this.memberGroup = memberGroup;
 	}
 
 	public List<GroupMessage> getMessages() {
@@ -114,7 +114,7 @@ public class GroupConversation {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("GroupConversation [id=").append(id).append(", createdAt=").append(createdAt)
-				.append(", updatedAt=").append(updatedAt).append(", group=").append(group).append("]");
+				.append(", updatedAt=").append(updatedAt).append(", memberGroup=").append(memberGroup).append("]");
 		return builder.toString();
 	}
 
