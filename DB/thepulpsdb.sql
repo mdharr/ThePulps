@@ -40,9 +40,13 @@ CREATE TABLE IF NOT EXISTS `user` (
   `enabled` TINYINT NULL,
   `role` VARCHAR(45) NULL,
   `user_profile_id` INT NOT NULL,
+  `email` VARCHAR(100) NULL,
+  `first_name` VARCHAR(45) NULL,
+  `last_name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC),
   INDEX `fk_user_user_profile1_idx` (`user_profile_id` ASC),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   CONSTRAINT `fk_user_user_profile1`
     FOREIGN KEY (`user_profile_id`)
     REFERENCES `user_profile` (`id`)
@@ -61,6 +65,8 @@ CREATE TABLE IF NOT EXISTS `collection` (
   `user_id` INT NOT NULL,
   `name` VARCHAR(45) NULL,
   `created_at` TIMESTAMP NULL,
+  `thumbnail_url` VARCHAR(255) NULL,
+  `background_url` VARCHAR(255) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_collection_user_idx` (`user_id` ASC),
   CONSTRAINT `fk_collection_user`
@@ -80,6 +86,8 @@ CREATE TABLE IF NOT EXISTS `story` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(255) NULL,
   `created_at` TIMESTAMP NULL,
+  `thumbnail_url` VARCHAR(255) NULL,
+  `background_url` VARCHAR(255) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -116,6 +124,8 @@ CREATE TABLE IF NOT EXISTS `publication` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(255) NULL,
   `created_at` TIMESTAMP NULL,
+  `thumbnail_url` VARCHAR(255) NULL,
+  `image_url` VARCHAR(255) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -143,6 +153,8 @@ CREATE TABLE IF NOT EXISTS `magazine` (
   `publication_id` INT NULL,
   `name` VARCHAR(255) NULL,
   `created_at` TIMESTAMP NULL,
+  `thumbnail_url` VARCHAR(255) NULL,
+  `image_url` VARCHAR(255) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_magazine_cover_artwork1_idx` (`cover_artwork_id` ASC),
   INDEX `fk_magazine_publication1_idx` (`publication_id` ASC),
@@ -168,6 +180,7 @@ CREATE TABLE IF NOT EXISTS `author_profile` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `image_url` VARCHAR(255) NULL,
   `bio` TEXT NULL,
+  `thumbnail_url` VARCHAR(255) NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -181,6 +194,8 @@ CREATE TABLE IF NOT EXISTS `author` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `full_name` VARCHAR(100) NULL,
   `author_profile_id` INT NOT NULL,
+  `thumbnail_url` VARCHAR(255) NULL,
+  `image_url` VARCHAR(255) NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_author_author_profile1_idx` (`author_profile_id` ASC),
   CONSTRAINT `fk_author_author_profile1`
@@ -382,44 +397,9 @@ DROP TABLE IF EXISTS `rating` ;
 
 CREATE TABLE IF NOT EXISTS `rating` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `user_id` INT NOT NULL,
-  `publication_id` INT NOT NULL,
-  `magazine_id` INT NOT NULL,
-  `story_id` INT NOT NULL,
-  `author_id` INT NOT NULL,
   `rating_value` VARCHAR(45) NULL,
   `created_at` TIMESTAMP NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_rating_user1_idx` (`user_id` ASC),
-  INDEX `fk_rating_publication1_idx` (`publication_id` ASC),
-  INDEX `fk_rating_magazine1_idx` (`magazine_id` ASC),
-  INDEX `fk_rating_story1_idx` (`story_id` ASC),
-  INDEX `fk_rating_author1_idx` (`author_id` ASC),
-  CONSTRAINT `fk_rating_user1`
-    FOREIGN KEY (`user_id`)
-    REFERENCES `user` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_rating_publication1`
-    FOREIGN KEY (`publication_id`)
-    REFERENCES `publication` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_rating_magazine1`
-    FOREIGN KEY (`magazine_id`)
-    REFERENCES `magazine` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_rating_story1`
-    FOREIGN KEY (`story_id`)
-    REFERENCES `story` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_rating_author1`
-    FOREIGN KEY (`author_id`)
-    REFERENCES `author` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 
@@ -788,9 +768,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `user_profile_id`) VALUES (1, 'admin', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'ADMIN', 1);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `user_profile_id`) VALUES (2, 'Solomon', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'STANDARD', 2);
-INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `user_profile_id`) VALUES (3, 'Conan', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'STANDARD', 3);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `user_profile_id`, `email`, `first_name`, `last_name`) VALUES (1, 'admin', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'ADMIN', 1, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `user_profile_id`, `email`, `first_name`, `last_name`) VALUES (2, 'Solomon', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'STANDARD', 2, NULL, NULL, NULL);
+INSERT INTO `user` (`id`, `username`, `password`, `enabled`, `role`, `user_profile_id`, `email`, `first_name`, `last_name`) VALUES (3, 'Conan', '$2a$10$4SMKDcs9jT18dbFxqtIqDeLEynC7MUrCEUbv1a/bhO.x9an9WGPvm', 1, 'STANDARD', 3, NULL, NULL, NULL);
 
 COMMIT;
 
@@ -800,7 +780,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `collection` (`id`, `user_id`, `name`, `created_at`) VALUES (1, 1, 'Favorites', '2023-03-03T12:35:22');
+INSERT INTO `collection` (`id`, `user_id`, `name`, `created_at`, `thumbnail_url`, `background_url`) VALUES (1, 1, 'Favorites', '2023-03-03T12:35:22', NULL, NULL);
 
 COMMIT;
 
@@ -810,7 +790,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `story` (`id`, `title`, `created_at`) VALUES (1, 'Red Shadows', '2023-03-03T12:35:22');
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (1, 'Red Shadows', '2023-03-03T12:35:22', NULL, NULL);
 
 COMMIT;
 
@@ -830,7 +810,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `publication` (`id`, `name`, `created_at`) VALUES (1, 'Weird Tales', '2023-03-03T12:35:22');
+INSERT INTO `publication` (`id`, `name`, `created_at`, `thumbnail_url`, `image_url`) VALUES (1, 'Weird Tales', '2023-03-03T12:35:22', NULL, NULL);
 
 COMMIT;
 
@@ -850,7 +830,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `magazine` (`id`, `cover_artwork_id`, `publication_id`, `name`, `created_at`) VALUES (1, 1, 1, 'Weird Tales, August 1928', '2023-03-03T12:35:22');
+INSERT INTO `magazine` (`id`, `cover_artwork_id`, `publication_id`, `name`, `created_at`, `thumbnail_url`, `image_url`) VALUES (1, 1, 1, 'Weird Tales, August 1928', '2023-03-03T12:35:22', NULL, NULL);
 
 COMMIT;
 
@@ -860,7 +840,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (1, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`, `thumbnail_url`) VALUES (1, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.', NULL);
 
 COMMIT;
 
@@ -870,7 +850,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `author` (`id`, `full_name`, `author_profile_id`) VALUES (1, 'Robert E. Howard', 1);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (1, 'Robert E. Howard', 1, NULL, NULL);
 
 COMMIT;
 
