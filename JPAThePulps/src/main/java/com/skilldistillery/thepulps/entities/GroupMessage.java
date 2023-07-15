@@ -1,8 +1,11 @@
 package com.skilldistillery.thepulps.entities;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +13,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "group_message")
@@ -35,6 +42,15 @@ public class GroupMessage {
 	@CreationTimestamp
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
+	
+	@ManyToOne
+	@JoinColumn(name = "parent_message_id")
+	@JsonIgnoreProperties("replies")
+	private GroupMessage parentMessage;
+
+	@OneToMany(mappedBy = "parentMessage", cascade = CascadeType.ALL)
+	@OrderBy("createdAt ASC")
+	private List<GroupMessage> replies = new ArrayList<>();
 
 	public GroupMessage() {
 		super();
@@ -42,13 +58,15 @@ public class GroupMessage {
 	}
 
 	public GroupMessage(int id, GroupConversation groupConversation, GroupMember groupMember, String message,
-			LocalDateTime createdAt) {
+			LocalDateTime createdAt, GroupMessage parentMessage, List<GroupMessage> replies) {
 		super();
 		this.id = id;
 		this.groupConversation = groupConversation;
 		this.groupMember = groupMember;
 		this.message = message;
 		this.createdAt = createdAt;
+		this.parentMessage = parentMessage;
+		this.replies = replies;
 	}
 
 	public int getId() {
@@ -89,6 +107,22 @@ public class GroupMessage {
 
 	public void setCreatedAt(LocalDateTime createdAt) {
 		this.createdAt = createdAt;
+	}
+
+	public GroupMessage getParentMessage() {
+		return parentMessage;
+	}
+
+	public void setParentMessage(GroupMessage parentMessage) {
+		this.parentMessage = parentMessage;
+	}
+
+	public List<GroupMessage> getReplies() {
+		return replies;
+	}
+
+	public void setReplies(List<GroupMessage> replies) {
+		this.replies = replies;
 	}
 
 	@Override

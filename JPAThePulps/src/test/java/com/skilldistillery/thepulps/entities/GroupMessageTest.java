@@ -63,5 +63,23 @@ class GroupMessageTest {
 		assertEquals(2023, groupMessage.getGroupConversation().getCreatedAt().getYear());
 		assertEquals(Month.JUNE, groupMessage.getGroupConversation().getCreatedAt().getMonth());
 	}
+	
+	@Test
+	void test_GroupMessage_entity_mapping_v2() {
+		assertNotNull(groupMessage);
+		assertEquals("Hello REH enthusiasts!", groupMessage.getMessage());
+	}
+	
+	@Test
+	void test_GroupMessage_Reply_one_to_many_mapping() {
+		assertNotNull(groupMessage);
+		assertEquals("Thanks for the warm welcome!", groupMessage.getReplies().get(0).getMessage());
+	}
+	
+	@Test
+	void test_Reply_ParentComment_many_to_one_mapping() {
+		assertNotNull(groupMessage);
+		assertEquals("Hello REH enthusiasts!", groupMessage.getReplies().get(0).getParentMessage().getMessage());
+	}
 
 }

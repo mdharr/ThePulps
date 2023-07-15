@@ -707,9 +707,11 @@ CREATE TABLE IF NOT EXISTS `group_message` (
   `group_member_id` INT NOT NULL,
   `message` TEXT NULL,
   `created_at` TIMESTAMP NULL,
+  `parent_message_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_group_message_group_conversation1_idx` (`group_conversation_id` ASC),
   INDEX `fk_group_message_group_member1_idx` (`group_member_id` ASC),
+  INDEX `fk_group_message_group_message1_idx` (`parent_message_id` ASC),
   CONSTRAINT `fk_group_message_group_conversation1`
     FOREIGN KEY (`group_conversation_id`)
     REFERENCES `group_conversation` (`id`)
@@ -718,6 +720,11 @@ CREATE TABLE IF NOT EXISTS `group_message` (
   CONSTRAINT `fk_group_message_group_member1`
     FOREIGN KEY (`group_member_id`)
     REFERENCES `group_member` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_group_message_group_message1`
+    FOREIGN KEY (`parent_message_id`)
+    REFERENCES `group_message` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -1019,6 +1026,7 @@ COMMIT;
 START TRANSACTION;
 USE `thepulpsdb`;
 INSERT INTO `group_member` (`id`, `user_id`, `created_at`, `member_group_id`) VALUES (1, 2, '2023-06-19T11:35:22', 1);
+INSERT INTO `group_member` (`id`, `user_id`, `created_at`, `member_group_id`) VALUES (2, 3, '2023-06-20T11:35:22', 1);
 
 COMMIT;
 
@@ -1048,7 +1056,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `group_message` (`id`, `group_conversation_id`, `group_member_id`, `message`, `created_at`) VALUES (1, 1, 1, 'Hello REH enthusiasts!', '2023-06-19T11:35:22');
+INSERT INTO `group_message` (`id`, `group_conversation_id`, `group_member_id`, `message`, `created_at`, `parent_message_id`) VALUES (1, 1, 1, 'Hello REH enthusiasts!', '2023-06-19T11:35:22', NULL);
+INSERT INTO `group_message` (`id`, `group_conversation_id`, `group_member_id`, `message`, `created_at`, `parent_message_id`) VALUES (2, 1, 2, 'Thanks for the warm welcome!', NULL, 1);
 
 COMMIT;
 
