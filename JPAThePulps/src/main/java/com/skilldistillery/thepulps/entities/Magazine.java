@@ -18,6 +18,8 @@ import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Magazine {
 	
@@ -25,10 +27,12 @@ public class Magazine {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "cover_artwork_id")
 	private CoverArtwork coverArtwork;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "publication_id")
 	private Publication publication;
@@ -39,12 +43,14 @@ public class Magazine {
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 	
+	@JsonIgnore
     @ManyToMany
     @JoinTable(name = "magazine_tag",
             joinColumns = @JoinColumn(name = "magazine_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private List<Tag> tags;
     
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "magazine_story",
             joinColumns = @JoinColumn(name = "magazine_id"),
@@ -57,9 +63,11 @@ public class Magazine {
     @Column(name = "image_url")
     private String imageUrl;
     
+    @JsonIgnore
 	@OneToMany(mappedBy = "magazine")
 	private List<MagazinePdf> magazinePdfs;
 	
+    @JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "magazine_html_id")
 	private MagazineHtml magazineHtml;
