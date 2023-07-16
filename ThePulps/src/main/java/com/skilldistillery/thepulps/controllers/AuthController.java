@@ -18,6 +18,7 @@ import com.skilldistillery.thepulps.services.AuthService;
 @RestController
 @CrossOrigin({"*", "http://localhost"})
 public class AuthController {
+	
   @Autowired
   private AuthService authService;
   
