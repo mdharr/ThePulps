@@ -1,5 +1,7 @@
 package com.skilldistillery.thepulps.entities;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -35,9 +37,66 @@ public class StoryAnchor {
 	
 	public StoryAnchor(StoryAnchorId id, Story story, MagazineHtml magazineHtml) {
 		super();
-		this.id = new StoryAnchorId(story.getId(), magazineHtml.getId);
+		this.id = new StoryAnchorId(story.getId(), magazineHtml.getId());
 		this.story = story;
 		this.magazineHtml = magazineHtml;
+	}
+
+	public StoryAnchorId getId() {
+		return id;
+	}
+
+	public void setId(StoryAnchorId id) {
+		this.id = id;
+	}
+
+	public String getAnchorTag() {
+		return anchorTag;
+	}
+
+	public void setAnchorTag(String anchorTag) {
+		this.anchorTag = anchorTag;
+	}
+
+	public Story getStory() {
+		return story;
+	}
+
+	public void setStory(Story story) {
+		this.story = story;
+	}
+
+	public MagazineHtml getMagazineHtml() {
+		return magazineHtml;
+	}
+
+	public void setMagazineHtml(MagazineHtml magazineHtml) {
+		this.magazineHtml = magazineHtml;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		StoryAnchor other = (StoryAnchor) obj;
+		return Objects.equals(id, other.id);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("StoryAnchor [id=").append(id).append(", anchorTag=").append(anchorTag).append(", story=")
+				.append(story).append(", magazineHtml=").append(magazineHtml).append("]");
+		return builder.toString();
 	}
 
 }

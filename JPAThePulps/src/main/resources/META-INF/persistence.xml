@@ -43,6 +43,9 @@
 		<class>com.skilldistillery.thepulps.entities.GroupMessage</class>
 		<class>com.skilldistillery.thepulps.entities.UserConversation</class>
 		<class>com.skilldistillery.thepulps.entities.PrivateMessage</class>
+		<class>com.skilldistillery.thepulps.entities.MagazineHtml</class>
+		<class>com.skilldistillery.thepulps.entities.StoryAnchor</class>
+		<class>com.skilldistillery.thepulps.entities.StoryAnchorId</class>
 
 		<!-- end entities -->
 

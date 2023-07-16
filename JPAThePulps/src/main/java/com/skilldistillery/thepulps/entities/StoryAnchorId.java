@@ -8,7 +8,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.Table;
 
 @Embeddable
-@Table(name = "story_author")
+@Table(name = "story_anchor")
 public class StoryAnchorId implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

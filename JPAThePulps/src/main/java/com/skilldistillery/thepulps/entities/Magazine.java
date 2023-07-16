@@ -59,6 +59,10 @@ public class Magazine {
     
 	@OneToMany(mappedBy = "magazine")
 	private List<MagazinePdf> magazinePdfs;
+	
+	@OneToOne
+	@JoinColumn(name = "magazine_html_id")
+	private MagazineHtml magazineHtml;
 
 	public Magazine() {
 		super();
@@ -66,7 +70,7 @@ public class Magazine {
 	}
 
 	public Magazine(int id, CoverArtwork coverArtwork, Publication publication, String name, LocalDateTime createdAt,
-			List<Tag> tags, List<Story> stories, String thumbnailUrl, String imageUrl, List<MagazinePdf> magazinePdfs) {
+			List<Tag> tags, List<Story> stories, String thumbnailUrl, String imageUrl, List<MagazinePdf> magazinePdfs, MagazineHtml magazineHtml) {
 		super();
 		this.id = id;
 		this.coverArtwork = coverArtwork;
@@ -78,6 +82,7 @@ public class Magazine {
 		this.thumbnailUrl = thumbnailUrl;
 		this.imageUrl = imageUrl;
 		this.magazinePdfs = magazinePdfs;
+		this.magazineHtml = magazineHtml;
 	}
 
 	public int getId() {
@@ -158,6 +163,14 @@ public class Magazine {
 
 	public void setMagazinePdfs(List<MagazinePdf> magazinePdfs) {
 		this.magazinePdfs = magazinePdfs;
+	}
+
+	public MagazineHtml getMagazineHtml() {
+		return magazineHtml;
+	}
+
+	public void setMagazineHtml(MagazineHtml magazineHtml) {
+		this.magazineHtml = magazineHtml;
 	}
 
 	@Override

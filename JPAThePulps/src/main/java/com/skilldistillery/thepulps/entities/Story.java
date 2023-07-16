@@ -72,6 +72,12 @@ public class Story {
 	
 	@Column(name = "background_url")
 	private String backgroundUrl;
+	
+    @ManyToMany
+    @JoinTable(name = "story_anchor",
+            joinColumns = @JoinColumn(name = "story_id"),
+            inverseJoinColumns = @JoinColumn(name = "magazine_html_id"))
+    private List<MagazineHtml> htmlMagazines;
 
 	public Story() {
 		super();
@@ -80,7 +86,7 @@ public class Story {
 
 	public Story(int id, String title, LocalDateTime createdAt, List<StoryPdf> storyPdfs, List<Author> authors,
 			List<Tag> tags, List<Magazine> magazines, List<Collection> collections, List<Member> members,
-			List<StoryComment> storyComments, String thumbnailUrl, String backgroundUrl) {
+			List<StoryComment> storyComments, String thumbnailUrl, String backgroundUrl, List<MagazineHtml> htmlMagazines) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -94,6 +100,7 @@ public class Story {
 		this.storyComments = storyComments;
 		this.thumbnailUrl = thumbnailUrl;
 		this.backgroundUrl = backgroundUrl;
+		this.htmlMagazines = htmlMagazines;
 	}
 
 	public int getId() {
@@ -190,6 +197,14 @@ public class Story {
 
 	public void setBackgroundUrl(String backgroundUrl) {
 		this.backgroundUrl = backgroundUrl;
+	}
+
+	public List<MagazineHtml> getHtmlMagazines() {
+		return htmlMagazines;
+	}
+
+	public void setHtmlMagazines(List<MagazineHtml> htmlMagazines) {
+		this.htmlMagazines = htmlMagazines;
 	}
 
 	@Override
