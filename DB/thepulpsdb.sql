@@ -143,6 +143,18 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `magazine_html`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `magazine_html` ;
+
+CREATE TABLE IF NOT EXISTS `magazine_html` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `file_url` VARCHAR(255) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `magazine`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `magazine` ;
@@ -155,9 +167,11 @@ CREATE TABLE IF NOT EXISTS `magazine` (
   `created_at` TIMESTAMP NULL,
   `thumbnail_url` VARCHAR(255) NULL,
   `image_url` VARCHAR(255) NULL,
+  `magazine_html_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_magazine_cover_artwork1_idx` (`cover_artwork_id` ASC),
   INDEX `fk_magazine_publication1_idx` (`publication_id` ASC),
+  INDEX `fk_magazine_magazine_html1_idx` (`magazine_html_id` ASC),
   CONSTRAINT `fk_magazine_cover_artwork1`
     FOREIGN KEY (`cover_artwork_id`)
     REFERENCES `cover_artwork` (`id`)
@@ -166,6 +180,11 @@ CREATE TABLE IF NOT EXISTS `magazine` (
   CONSTRAINT `fk_magazine_publication1`
     FOREIGN KEY (`publication_id`)
     REFERENCES `publication` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_magazine_magazine_html1`
+    FOREIGN KEY (`magazine_html_id`)
+    REFERENCES `magazine_html` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -748,6 +767,32 @@ CREATE TABLE IF NOT EXISTS `magazine_pdf` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `story_anchor`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `story_anchor` ;
+
+CREATE TABLE IF NOT EXISTS `story_anchor` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `anchor_tag` VARCHAR(100) NULL,
+  `magazine_html_id` INT NOT NULL,
+  `story_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_story_anchor_magazine_html1_idx` (`magazine_html_id` ASC),
+  INDEX `fk_story_anchor_story1_idx` (`story_id` ASC),
+  CONSTRAINT `fk_story_anchor_magazine_html1`
+    FOREIGN KEY (`magazine_html_id`)
+    REFERENCES `magazine_html` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_story_anchor_story1`
+    FOREIGN KEY (`story_id`)
+    REFERENCES `story` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS thepulps@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -834,11 +879,21 @@ COMMIT;
 
 
 -- -----------------------------------------------------
+-- Data for table `magazine_html`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `magazine_html` (`id`, `file_url`) VALUES (1, 'https://www.gutenberg.org/files/68957/68957-h/68957-h.htm');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
 -- Data for table `magazine`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `magazine` (`id`, `cover_artwork_id`, `publication_id`, `name`, `created_at`, `thumbnail_url`, `image_url`) VALUES (1, 1, 1, 'Weird Tales, August 1928', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `magazine` (`id`, `cover_artwork_id`, `publication_id`, `name`, `created_at`, `thumbnail_url`, `image_url`, `magazine_html_id`) VALUES (1, 1, 1, 'Weird Tales, August 1928', '2023-03-03T12:35:22', NULL, NULL, 1);
 
 COMMIT;
 
@@ -1069,6 +1124,16 @@ COMMIT;
 START TRANSACTION;
 USE `thepulpsdb`;
 INSERT INTO `magazine_pdf` (`id`, `magazine_url`, `magazine_id`) VALUES (1, 'https://ia803002.us.archive.org/22/items/WeirdTalesV12N02192808sasIfcIbc/Weird%20Tales%20v12%20n02%20%5B1928-08%5D%20%28sas%29%20%7B-ifc%2C%20ibc%7D.pdf', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `story_anchor`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (1, 'RED_NAILS', 1, 1);
 
 COMMIT;
 
