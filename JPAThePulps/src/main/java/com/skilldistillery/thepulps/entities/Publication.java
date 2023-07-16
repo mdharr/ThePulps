@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Publication {
 	
@@ -29,9 +31,11 @@ public class Publication {
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "publication")
 	private List<Magazine> magazines;
 	
+	@JsonIgnore
     @ManyToMany
     @JoinTable(name = "publication_tag",
             joinColumns = @JoinColumn(name = "publication_id"),
@@ -138,7 +142,7 @@ public class Publication {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Publication [id=").append(id).append(", name=").append(name).append(", createdAt=")
-				.append(createdAt).append(", magazines=").append(magazines).append("]");
+				.append(createdAt).append("]");
 		return builder.toString();
 	}
 	

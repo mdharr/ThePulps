@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class User {
 
@@ -28,12 +30,15 @@ public class User {
 
 	private String role;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Collection> collections;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<StoryComment> storyComments;
 	
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_profile_id")
 	private UserProfile userProfile;
