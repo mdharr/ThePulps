@@ -104,6 +104,10 @@ class StoryTest {
 	    assertEquals(2, user.getId());
 	}
 
-
+	@Test
+	void test_Story_MagazineHtml_many_to_many_mapping() {
+		assertNotNull(story);
+		assertEquals("https://www.gutenberg.org/files/68957/68957-h/68957-h.htm", story.getHtmlMagazines().get(0).getFileUrl());
+	}
 
 }
