@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Author {
 	
@@ -25,18 +27,21 @@ public class Author {
 	@Column(name = "full_name")
 	private String fullName;
 	
+	@JsonIgnore
     @ManyToMany
     @JoinTable(name = "story_author",
             joinColumns = @JoinColumn(name = "author_id"),
             inverseJoinColumns = @JoinColumn(name = "story_id"))
     private List<Story> stories;
     
+	@JsonIgnore
     @ManyToMany
     @JoinTable(name = "author_tag",
             joinColumns = @JoinColumn(name = "author_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private List<Tag> tags;
     
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "author_profile_id")
 	private AuthorProfile authorProfile;
