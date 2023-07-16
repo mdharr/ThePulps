@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -33,18 +34,22 @@ public class MagazineHtml {
             joinColumns = @JoinColumn(name = "magazine_html_id"),
             inverseJoinColumns = @JoinColumn(name = "story_id"))
     private List<Story> stories;
+    
+    @OneToMany(mappedBy = "magazineHtml")
+    private List<StoryAnchor> storyAnchors;
 
 	public MagazineHtml() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public MagazineHtml(int id, String fileUrl, Magazine magazine, List<Story> stories) {
+	public MagazineHtml(int id, String fileUrl, Magazine magazine, List<Story> stories, List<StoryAnchor> storyAnchors) {
 		super();
 		this.id = id;
 		this.fileUrl = fileUrl;
 		this.magazine = magazine;
 		this.stories = stories;
+		this.storyAnchors = storyAnchors;
 	}
 
 	public int getId() {
@@ -77,6 +82,14 @@ public class MagazineHtml {
 
 	public void setStories(List<Story> stories) {
 		this.stories = stories;
+	}
+
+	public List<StoryAnchor> getStoryAnchors() {
+		return storyAnchors;
+	}
+
+	public void setStoryAnchors(List<StoryAnchor> storyAnchors) {
+		this.storyAnchors = storyAnchors;
 	}
 
 	@Override

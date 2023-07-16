@@ -55,6 +55,12 @@ class MagazineHtmlTest {
 	}
 	
 	@Test
+	void test_MagazineHtml_StoryAnchor_one_to_many_mapping() {
+		assertNotNull(magazineHtml);
+		assertEquals("RED_SHADOWS", magazineHtml.getStoryAnchors().get(0).getAnchorTag());
+	}
+	
+	@Test
 	void test_MagazineHtml_Story_many_to_many_mapping() {
 		assertNotNull(magazineHtml);
 		assertEquals("Red Shadows", magazineHtml.getStories().get(0).getTitle());
