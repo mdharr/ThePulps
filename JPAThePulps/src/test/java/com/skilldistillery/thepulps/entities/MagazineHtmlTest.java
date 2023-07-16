@@ -53,5 +53,11 @@ class MagazineHtmlTest {
 		assertNotNull(magazineHtml);
 		assertEquals("Weird Tales, August 1928", magazineHtml.getMagazine().getName());
 	}
+	
+	@Test
+	void test_MagazineHtml_Story_many_to_many_mapping() {
+		assertNotNull(magazineHtml);
+		assertEquals("Red Shadows", magazineHtml.getStories().get(0).getTitle());
+	}
 
 }
