@@ -30,12 +30,12 @@ public class GroupMember {
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 	
-	@JsonIgnore
+//	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "member_group_id")
     private MemberGroup memberGroup;
     
-	@JsonIgnore
+//	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
