@@ -19,6 +19,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "member_group")
 public class MemberGroup {
@@ -35,15 +37,18 @@ public class MemberGroup {
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	@MapsId(value = "userId")
 	private User user;
 	
+	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "group_conversation_id")
 	private GroupConversation groupConversation;
 	
+	@JsonIgnore
     @OneToMany(mappedBy = "memberGroup")
     private List<GroupMember> groupMembers;
 
