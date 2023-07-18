@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "magazine_html")
 public class MagazineHtml {
@@ -26,15 +28,18 @@ public class MagazineHtml {
 	@Column(name = "file_url")
 	private String fileUrl;
 	
+	@JsonIgnore
     @OneToOne(mappedBy = "magazineHtml")
     private Magazine magazine;
     
+	@JsonIgnore
     @ManyToMany
     @JoinTable(name = "story_anchor",
             joinColumns = @JoinColumn(name = "magazine_html_id"),
             inverseJoinColumns = @JoinColumn(name = "story_id"))
     private List<Story> stories;
     
+	@JsonIgnore
     @OneToMany(mappedBy = "magazineHtml")
     private List<StoryAnchor> storyAnchors;
 

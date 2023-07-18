@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "user_profile")
 public class UserProfile {
@@ -23,6 +25,7 @@ public class UserProfile {
 	
 	private String bio;
 	
+	@JsonIgnore
 	@OneToOne(mappedBy = "userProfile")
 	private User user;
 

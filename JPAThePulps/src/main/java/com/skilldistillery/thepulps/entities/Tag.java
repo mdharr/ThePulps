@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.skilldistillery.thepulps.enums.Genre;
 
 @Entity
@@ -25,24 +26,28 @@ public class Tag {
 	@Enumerated(EnumType.STRING)
 	private Genre genre = Genre.NOT_SPECIFIED;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "author_tag",
 	        joinColumns = @JoinColumn(name = "tag_id"),
 	        inverseJoinColumns = @JoinColumn(name = "author_id"))
 	private List<Author> authors;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "story_tag",
 		joinColumns = @JoinColumn(name = "tag_id"),
 		inverseJoinColumns = @JoinColumn(name = "story_id"))
 	private List<Story> stories;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "magazine_tag",
 	joinColumns = @JoinColumn(name = "tag_id"),
 	inverseJoinColumns = @JoinColumn(name = "magazine_id"))
 	private List<Magazine> magazines;
 	
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "publication_tag",
 	joinColumns = @JoinColumn(name = "tag_id"),

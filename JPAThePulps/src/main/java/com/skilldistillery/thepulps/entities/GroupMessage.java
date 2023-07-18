@@ -19,6 +19,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -29,10 +30,12 @@ public class GroupMessage {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "group_conversation_id")
     private GroupConversation groupConversation;
     
+	@JsonIgnore
     @ManyToOne
     @JoinColumn(name = "group_member_id")
     private GroupMember groupMember;
@@ -43,11 +46,13 @@ public class GroupMessage {
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "parent_message_id")
 	@JsonIgnoreProperties("replies")
 	private GroupMessage parentMessage;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "parentMessage", cascade = CascadeType.ALL)
 	@OrderBy("createdAt ASC")
 	private List<GroupMessage> replies = new ArrayList<>();

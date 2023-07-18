@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "magazine_pdf")
 public class MagazinePdf {
@@ -22,6 +24,7 @@ public class MagazinePdf {
 	@Column(name = "magazine_url")
 	private String magazineUrl;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "magazine_id")
 	private Magazine magazine;

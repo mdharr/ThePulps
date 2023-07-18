@@ -14,6 +14,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "private_message")
 public class PrivateMessage {
@@ -28,15 +30,17 @@ public class PrivateMessage {
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 	
-//	@JsonBackReference
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_conversation_id")
 	private UserConversation userConversation;
 
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "sender_id")
 	private User sender;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "recipient_id")
 	private User recipient;

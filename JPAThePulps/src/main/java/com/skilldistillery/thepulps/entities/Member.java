@@ -13,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "member")
 public class Member {
@@ -25,6 +27,7 @@ public class Member {
 	
 	private String description;
 	
+	@JsonIgnore
     @ManyToMany
     @JoinTable(name = "story_member",
             joinColumns = @JoinColumn(name = "member_id"),
