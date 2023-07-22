@@ -13,12 +13,12 @@ public class PublicationServiceImpl implements PublicationService {
 	
 	@Autowired
 	private PublicationRepository publicationRepo;
-//
-//	@Override
-//	public Publication createPublication(Publication publication) {
-//        return publicationRepo.save(publication);
-//    }
-//
+
+	@Override
+	public Publication createPublication(Publication publication) {
+        return publicationRepo.save(publication);
+    }
+
 //	@Override
 //    public Publication getPublicationById(int publicationId) {
 //        return publicationRepo.findById(publicationId).orElse(null);

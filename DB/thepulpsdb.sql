@@ -122,7 +122,7 @@ DROP TABLE IF EXISTS `publication` ;
 
 CREATE TABLE IF NOT EXISTS `publication` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(255) NULL,
+  `name` VARCHAR(255) NOT NULL,
   `created_at` TIMESTAMP NULL,
   `thumbnail_url` VARCHAR(255) NULL,
   `image_url` VARCHAR(255) NULL,
