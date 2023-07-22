@@ -1,6 +1,10 @@
 package com.skilldistillery.thepulps.controllers;
 
+import java.security.Principal;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,22 +31,25 @@ public class PublicationController {
     private PublicationService publicationService;
 
 //    @PostMapping("publications")
-//    public ResponseEntity<Publication> createPublication(@RequestBody Publication publication) {
-//        Publication createdPublication = publicationService.createPublication(publication);
-//        if (createdPublication != null) {
-//            return ResponseEntity.status(HttpStatus.CREATED).body(createdPublication);
-//        }
-//        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//    public Publication createPublication(@RequestBody Publication publication, Principal principal, HttpServletResponse res, HttpServletRequest req) {
+//    	Publication newPublication = null;
+//    	try {
+//    		newPublication = publicationService.createPublication(principal.getName(), newPublication);
+//    		res.setStatus(201);
+//    	} catch (Exception e) {
+//    		e.printStackTrace();
+//    		res.setStatus(404);
+//    	}
+//    	return newPublication;
 //    }
-//
-//    @GetMapping("publications/{pid}")
-//    public ResponseEntity<Publication> getPublicationById(@PathVariable("pid") int publicationId) {
-//        Publication publication = publicationService.getPublicationById(publicationId);
-//        if (publication != null) {
-//            return ResponseEntity.ok(publication);
-//        }
-//        return ResponseEntity.notFound().build();
-//    }
+
+    @GetMapping("publications/{pid}")
+    public Publication getPublicationById(@PathVariable("pid") int publicationId, HttpServletResponse res) {
+    	if(publicationService.getPublicationById(publicationId) == null) {
+    		res.setStatus(404);
+    	}
+    	return publicationService.getPublicationById(publicationId);
+    }
 
     @GetMapping("publications")
     public List<Publication> getAllPublications() {

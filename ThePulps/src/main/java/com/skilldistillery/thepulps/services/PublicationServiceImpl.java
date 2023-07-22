@@ -6,23 +6,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.thepulps.entities.Publication;
+import com.skilldistillery.thepulps.entities.User;
 import com.skilldistillery.thepulps.repositories.PublicationRepository;
+import com.skilldistillery.thepulps.repositories.UserRepository;
 
 @Service
 public class PublicationServiceImpl implements PublicationService {
 	
 	@Autowired
 	private PublicationRepository publicationRepo;
-
-	@Override
-	public Publication createPublication(Publication publication) {
-        return publicationRepo.save(publication);
-    }
+	
+	@Autowired
+	private UserRepository userRepo;
 
 //	@Override
-//    public Publication getPublicationById(int publicationId) {
-//        return publicationRepo.findById(publicationId).orElse(null);
+//	public Publication createPublication(String username, Publication publication) {
+//		Publication newPublication = null;
+//		User user = null;
+//		User userOpt = userRepo.findByUsername(username);
+//		if(userOpt != null) {
+//			user = userOpt;
+//			publication.setUser(user);
+//			newPublication = publicationRepo.saveAndFlush(publication);
+//		}
+//        return newPublication;
 //    }
+
+	@Override
+    public Publication getPublicationById(int publicationId) {
+        return publicationRepo.findById(publicationId).orElse(null);
+    }
 
 	@Override
     public List<Publication> getAllPublications() {
