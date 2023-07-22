@@ -1,6 +1,7 @@
 package com.skilldistillery.thepulps.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,13 @@ public class PublicationServiceImpl implements PublicationService {
 
 	@Override
     public Publication getPublicationById(int publicationId) {
-        return publicationRepo.findById(publicationId).orElse(null);
+//        return publicationRepo.findById(publicationId).orElse(null);
+		Publication publication = null;
+		Optional<Publication> publicationOpt = publicationRepo.findById(publicationId);
+		if(publicationOpt.isPresent()) {
+			publication = publicationOpt.get();
+		}
+		return publication;
     }
 
 	@Override
