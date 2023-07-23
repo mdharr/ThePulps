@@ -126,6 +126,7 @@ CREATE TABLE IF NOT EXISTS `publication` (
   `created_at` TIMESTAMP NULL,
   `thumbnail_url` VARCHAR(255) NULL,
   `image_url` VARCHAR(255) NULL,
+  `description` TEXT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -793,6 +794,41 @@ CREATE TABLE IF NOT EXISTS `story_anchor` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+
+-- -----------------------------------------------------
+-- Table `artist`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `artist` ;
+
+CREATE TABLE IF NOT EXISTS `artist` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `cover_artist`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `cover_artist` ;
+
+CREATE TABLE IF NOT EXISTS `cover_artist` (
+  `cover_artwork_id` INT NOT NULL,
+  `artist_id` INT NOT NULL,
+  INDEX `fk_cover_artist_cover_artwork1_idx` (`cover_artwork_id` ASC),
+  INDEX `fk_cover_artist_artist1_idx` (`artist_id` ASC),
+  CONSTRAINT `fk_cover_artist_cover_artwork1`
+    FOREIGN KEY (`cover_artwork_id`)
+    REFERENCES `cover_artwork` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_cover_artist_artist1`
+    FOREIGN KEY (`artist_id`)
+    REFERENCES `artist` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 SET SQL_MODE = '';
 DROP USER IF EXISTS thepulps@localhost;
 SET SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -864,7 +900,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `publication` (`id`, `name`, `created_at`, `thumbnail_url`, `image_url`) VALUES (1, 'Weird Tales', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `publication` (`id`, `name`, `created_at`, `thumbnail_url`, `image_url`, `description`) VALUES (1, 'Weird Tales', '2023-03-03T12:35:22', NULL, NULL, 'Weird Tales is an American fantasy and horror fiction pulp magazine founded by J. C. Henneberger and J. M. Lansinger in late 1922. The first issue, dated March 1923, appeared on newsstands February 18.The first editor, Edwin Baird, printed early work by H. P. Lovecraft, Seabury Quinn, and Clark Ashton Smith, all of whom would go on to be popular writers, but within a year the magazine was in financial trouble. Henneberger sold his interest in the publisher, Rural Publishing Corporation, to Lansinger and refinanced Weird Tales, with Farnsworth Wright as the new editor. The first issue under Wright’s control was dated November 1924. The magazine was more successful under Wright, and despite occasional financial setbacks it prospered over the next fifteen years. Under Wright’s control the magazine lived up to its subtitle, “The Unique Magazine”, and published a wide range of unusual fiction.\n\nLovecraft’s Cthulhu mythos stories first appeared in Weird Tales, starting with “The Call of Cthulhu” in 1928. These were well-received, and a group of writers associated with Lovecraft wrote other stories set in the same milieu. Robert E. Howard was a regular contributor, and published several of his Conan the Barbarian stories in the magazine, and Seabury Quinn’s series of stories about Jules de Grandin, a detective who specialized in cases involving the supernatural, was very popular with the readers. Other well-liked authors included Nictzin Dyalhis, E. Hoffmann Price, Robert Bloch, and H. Warner Munn. Wright published some science fiction, along with the fantasy and horror, partly because when Weird Tales was launched there were no magazines specializing in science fiction, but he continued this policy even after the launch of magazines such as Amazing Stories in 1926. Edmond Hamilton wrote a good deal of science fiction for Weird Tales, though after a few years he used the magazine for his more fantastic stories, and submitted his space operas elsewhere.\n\nIn 1938 the magazine was sold to William Delaney, the publisher of Short Stories, and within two years Wright, who was ill, was replaced by Dorothy McIlwraith as editor. Although some successful new authors and artists, such as Ray Bradbury and Hannes Bok, continued to appear, the magazine is considered by critics to have declined under McIlwraith from its heyday in the 1930s. Weird Tales ceased publication in 1954, but since then numerous attempts have been made to relaunch the magazine, starting in 1973. The longest-lasting version began in 1988 and ran with an occasional hiatus for over 20 years under an assortment of publishers. In the mid-1990s the title was changed to Worlds of Fantasy & Horror because of licensing issues, with the original title returning in 1998.\n\nThe magazine is regarded by historians of fantasy and science fiction as a legend in the field, with Robert Weinberg, author of a history of the magazine, considering it “the most important and influential of all fantasy magazines”. Weinberg’s fellow historian, Mike Ashley, is more cautious, describing it as “second only to Unknown in significance and influence”, adding that “somewhere in the imagination reservoir of all U.S. (and many non-U.S.) genre-fantasy and horror writers is part of the spirit of Weird Tales”.');
 
 COMMIT;
 
