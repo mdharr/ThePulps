@@ -33,6 +33,8 @@ public class Post {
 	@MapsId(value = "userId")
 	private User user;
 	
+	private String title;
+	
 	private String content;
 	
 	@CreationTimestamp
@@ -53,11 +55,12 @@ public class Post {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Post(int id, User user, String content, LocalDateTime createdAt, LocalDateTime updatedAt,
+	public Post(int id, User user, String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt,
 			List<Comment> comments) {
 		super();
 		this.id = id;
 		this.user = user;
+		this.title = title;
 		this.content = content;
 		this.createdAt = createdAt;
 		this.updatedAt = updatedAt;
@@ -78,6 +81,14 @@ public class Post {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getContent() {
