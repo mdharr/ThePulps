@@ -45,7 +45,7 @@ class StoryAnchorTest {
 	@Test
 	void test_StoryAnchor_entity_mapping() {
 		assertNotNull(storyAnchor);
-		assertEquals("RED_SHADOWS", storyAnchor.getAnchorTag());
+		assertEquals("BLACK_JEAN", storyAnchor.getAnchorTag());
 	}
 	
 	@Test
@@ -57,13 +57,13 @@ class StoryAnchorTest {
 	@Test
 	void test_StoryAnchor_Story_many_to_one_mapping() {
 		assertNotNull(storyAnchor);
-		assertEquals("Red Shadows", storyAnchor.getStory().getTitle());
+		assertEquals("The Mystery of Black Jean", storyAnchor.getStory().getTitle());
 	}
 	
 	@Test
 	void test_StoryAnchor_Magazine_many_to_many_mapping() {
 		assertNotNull(storyAnchor);
-		assertEquals("Weird Tales, August 1928", storyAnchor.getMagazineHtml().getMagazine().getName());
+		assertEquals("Weird Tales, March 1923", storyAnchor.getMagazineHtml().getMagazine().getName());
 	}
 
 }

@@ -57,7 +57,7 @@ class UserTest {
 	@Test
 	void test_User_Collection_one_to_many_mapping_v2() {
 		assertNotNull(user);
-		assertEquals("Red Shadows", user.getCollections().get(0).getStories().get(0).getTitle());
+		assertEquals("The Mystery of Black Jean", user.getCollections().get(0).getStories().get(0).getTitle());
 	}
 	
 	@Test

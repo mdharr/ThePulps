@@ -45,7 +45,7 @@ class AuthorTagTest {
 	@Test
 	void test_AuthorTag_Author_many_to_many_mapping() {
 		assertNotNull(authorTag);
-		assertEquals("Robert E. Howard", authorTag.getAuthor().getFullName());
+		assertEquals("Julian Kilman", authorTag.getAuthor().getFullName());
 	}
 	
 	@Test

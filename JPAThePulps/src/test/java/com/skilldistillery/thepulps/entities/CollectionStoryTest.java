@@ -51,7 +51,7 @@ class CollectionStoryTest {
 	@Test
 	void test_CollectionStory_Story_many_to_many_mapping() {
 		assertNotNull(collectionStory);
-		assertEquals("Red Shadows", collectionStory.getStory().getTitle());
+		assertEquals("The Mystery of Black Jean", collectionStory.getStory().getTitle());
 	}
 
 }

@@ -51,7 +51,7 @@ class AuthorProfileTest {
 	@Test
 	void test_AuthorProfile_Author_one_to_one_mapping() {
 		assertNotNull(authorProfile);
-		assertEquals("Robert E. Howard", authorProfile.getAuthor().getFullName());
+		assertEquals("Julian Kilman", authorProfile.getAuthor().getFullName());
 	}
 
 }

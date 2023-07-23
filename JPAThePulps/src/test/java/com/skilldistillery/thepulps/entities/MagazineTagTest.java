@@ -45,7 +45,7 @@ class MagazineTagTest {
 	@Test
 	void test_MagazineTag_Magazine_many_to_many_mapping() {
 		assertNotNull(magazineTag);
-		assertEquals("Weird Tales, August 1928", magazineTag.getMagazine().getName());
+		assertEquals("Weird Tales, March 1923", magazineTag.getMagazine().getName());
 	}
 	
 	@Test

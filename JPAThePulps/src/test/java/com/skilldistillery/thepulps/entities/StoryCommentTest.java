@@ -69,7 +69,7 @@ class StoryCommentTest {
 	@Test
 	void test_StoryComment_Story_many_to_one_mapping() {
 		assertNotNull(storyComment);
-		assertEquals("Red Shadows", storyComment.getStory().getTitle());
+		assertEquals("The Mystery of Black Jean", storyComment.getStory().getTitle());
 	}
 
 }

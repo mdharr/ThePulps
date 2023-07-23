@@ -45,7 +45,7 @@ class StoryTagTest {
 	@Test
 	void test_StoryTag_Story_many_to_many_mapping() {
 		assertNotNull(storyTag);
-		assertEquals("Red Shadows", storyTag.getStory().getTitle());
+		assertEquals("The Mystery of Black Jean", storyTag.getStory().getTitle());
 	}
 	
 	@Test

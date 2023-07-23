@@ -45,13 +45,13 @@ class StoryAuthorTest {
 	@Test
 	void test_StoryAuthor_Author_many_to_many_mapping() {
 		assertNotNull(storyAuthor);
-		assertEquals("Robert E. Howard", storyAuthor.getAuthor().getFullName());
+		assertEquals("Julian Kilman", storyAuthor.getAuthor().getFullName());
 	}
 	
 	@Test
 	void test_StoryAuthor_Story_many_to_many_mapping() {
 		assertNotNull(storyAuthor);
-		assertEquals("Red Shadows", storyAuthor.getStory().getTitle());
+		assertEquals("The Mystery of Black Jean", storyAuthor.getStory().getTitle());
 	}
 	
 	@Test

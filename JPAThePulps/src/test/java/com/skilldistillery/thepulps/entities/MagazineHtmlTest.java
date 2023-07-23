@@ -51,19 +51,19 @@ class MagazineHtmlTest {
 	@Test
 	void test_MagazineHtml_Magazine_one_to_one_mapping() {
 		assertNotNull(magazineHtml);
-		assertEquals("Weird Tales, August 1928", magazineHtml.getMagazine().getName());
+		assertEquals("Weird Tales, March 1923", magazineHtml.getMagazine().getName());
 	}
 	
 	@Test
 	void test_MagazineHtml_StoryAnchor_one_to_many_mapping() {
 		assertNotNull(magazineHtml);
-		assertEquals("RED_SHADOWS", magazineHtml.getStoryAnchors().get(0).getAnchorTag());
+		assertEquals("BLACK_JEAN", magazineHtml.getStoryAnchors().get(0).getAnchorTag());
 	}
 	
 	@Test
 	void test_MagazineHtml_Story_many_to_many_mapping() {
 		assertNotNull(magazineHtml);
-		assertEquals("Red Shadows", magazineHtml.getStories().get(0).getTitle());
+		assertEquals("The Mystery of Black Jean", magazineHtml.getStories().get(0).getTitle());
 	}
 
 }

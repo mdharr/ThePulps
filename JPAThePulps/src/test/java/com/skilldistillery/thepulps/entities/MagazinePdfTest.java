@@ -51,7 +51,7 @@ class MagazinePdfTest {
 	@Test
 	void test_MagazinePdf_Magazine_many_to_one_mapping() {
 		assertNotNull(magazinePdf);
-		assertEquals("Weird Tales, August 1928", magazinePdf.getMagazine().getName());
+		assertEquals("Weird Tales, March 1923", magazinePdf.getMagazine().getName());
 	}
 
 }

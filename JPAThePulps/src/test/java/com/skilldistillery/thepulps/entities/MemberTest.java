@@ -51,7 +51,7 @@ class MemberTest {
 	@Test
 	void test_Member_Story_many_to_many_mapping() {
 		assertNotNull(member);
-		assertEquals("Red Shadows", member.getStories().get(0).getTitle());
+		assertEquals("The Mystery of Black Jean", member.getStories().get(0).getTitle());
 	}
 	
 	@Test

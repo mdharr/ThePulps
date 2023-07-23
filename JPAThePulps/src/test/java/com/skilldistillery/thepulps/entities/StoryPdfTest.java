@@ -51,7 +51,7 @@ class StoryPdfTest {
 	@Test
 	void test_StoryPdf_Story_many_to_one_mapping() {
 		assertNotNull(storyPdf);
-		assertEquals("Red Shadows", storyPdf.getStory().getTitle());
+		assertEquals("The Mystery of Black Jean", storyPdf.getStory().getTitle());
 	}
 
 }

@@ -45,13 +45,13 @@ class MagazineStoryTest {
 	@Test
 	void test_MagazineStory_Magazine_many_to_many_mapping() {
 		assertNotNull(magazineStory);
-		assertEquals("Weird Tales, August 1928", magazineStory.getMagazine().getName());
+		assertEquals("Weird Tales, March 1923", magazineStory.getMagazine().getName());
 	}
 	
 	@Test
 	void test_MagazineStory_Story_many_to_many_mapping() {
 		assertNotNull(magazineStory);
-		assertEquals("Red Shadows", magazineStory.getStory().getTitle());
+		assertEquals("The Mystery of Black Jean", magazineStory.getStory().getTitle());
 	}
 
 }

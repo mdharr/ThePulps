@@ -48,7 +48,7 @@ class StoryTest {
 	@Test
 	void test_Story_entity_mapping() {
 		assertNotNull(story);
-		assertEquals("Red Shadows", story.getTitle());
+		assertEquals("The Mystery of Black Jean", story.getTitle());
 	}
 	
 	@Test
@@ -60,7 +60,7 @@ class StoryTest {
 	@Test
 	void test_Story_Author_many_to_many_mapping() {
 		assertNotNull(story);
-		assertEquals("Robert E. Howard", story.getAuthors().get(0).getFullName());
+		assertEquals("Julian Kilman", story.getAuthors().get(0).getFullName());
 	}
 	
 	@Test
