@@ -57,7 +57,7 @@ private static EntityManagerFactory emf;
 	@Test
 	void test_Post_Comment_one_to_many_mapping() {
 		assertNotNull(post);
-		assertEquals("I had the same experience.", post.getComments().get(0).getContent());
+		assertEquals("I had the same experience.", post.getComments().get(0).getParentComment().getContent());
 	}
 
 }

@@ -1443,6 +1443,7 @@ COMMIT;
 START TRANSACTION;
 USE `thepulpsdb`;
 INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `post_id`, `user_id`, `parent_comment_id`) VALUES (1, 'I had the same experience.', '2023-03-03T12:35:23', '2023-03-03T12:35:23', 1, 2, NULL);
+INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `post_id`, `user_id`, `parent_comment_id`) VALUES (2, 'As did I.', '2023-03-03T12:40:23', '2023-03-03T12:40:23', 1, 3, 1);
 
 COMMIT;
 
