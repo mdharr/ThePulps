@@ -169,6 +169,8 @@ CREATE TABLE IF NOT EXISTS `magazine` (
   `thumbnail_url` VARCHAR(255) NULL,
   `image_url` VARCHAR(255) NULL,
   `magazine_html_id` INT NULL,
+  `volume` INT NULL,
+  `issue` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_magazine_cover_artwork1_idx` (`cover_artwork_id` ASC),
   INDEX `fk_magazine_publication1_idx` (`publication_id` ASC),
@@ -212,7 +214,7 @@ DROP TABLE IF EXISTS `author` ;
 CREATE TABLE IF NOT EXISTS `author` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `full_name` VARCHAR(100) NULL,
-  `author_profile_id` INT NOT NULL,
+  `author_profile_id` INT NULL,
   `thumbnail_url` VARCHAR(255) NULL,
   `image_url` VARCHAR(255) NULL,
   PRIMARY KEY (`id`),
@@ -803,6 +805,8 @@ DROP TABLE IF EXISTS `artist` ;
 CREATE TABLE IF NOT EXISTS `artist` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NULL,
+  `image_url` VARCHAR(255) NULL,
+  `description` TEXT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -825,6 +829,56 @@ CREATE TABLE IF NOT EXISTS `cover_artist` (
   CONSTRAINT `fk_cover_artist_artist1`
     FOREIGN KEY (`artist_id`)
     REFERENCES `artist` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `post`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `post` ;
+
+CREATE TABLE IF NOT EXISTS `post` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(255) NULL,
+  `content` TEXT NULL,
+  `created_at` TIMESTAMP NULL,
+  `updated_at` TIMESTAMP NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_post_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_post_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `comment`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `comment` ;
+
+CREATE TABLE IF NOT EXISTS `comment` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `content` TEXT NULL,
+  `created_at` TIMESTAMP NULL,
+  `updated_at` TIMESTAMP NULL,
+  `post_id` INT NOT NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_comment_post1_idx` (`post_id` ASC),
+  INDEX `fk_comment_user1_idx` (`user_id` ASC),
+  CONSTRAINT `fk_comment_post1`
+    FOREIGN KEY (`post_id`)
+    REFERENCES `post` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_comment_user1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `user` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -880,7 +934,33 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (1, 'Red Shadows', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (1, 'The Mystery of Black Jean', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (2, 'The Grave', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (3, 'Hark! The Rattle!', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (4, 'The Ghost Guard', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (5, 'The Ghoul and the Corpse', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (6, 'Fear', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (7, 'The Place of Madness', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (8, 'The Closing Hand', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (9, 'The Unknown Beast', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (10, 'The Basket', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (11, 'The Accusing Voice', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (12, 'The Sequel', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (13, 'The Weaving Shadows', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (14, 'Nimba, the Cave Girl', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (15, 'The Young Man Who Wanted to Die', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (16, 'The Scarlet Night', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (17, 'The Extraordinary Experiment of Dr. Calgroni', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (18, 'The Return of Paul Slavsky', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (19, 'The House of Death', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (20, 'The Gallows', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (21, 'The Skull', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (22, 'The Ape-Man', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (23, 'The Dead Man’s Tale', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (24, 'Ooze', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (25, 'The Chain', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (26, 'The Thing of a Thousand Shapes', '2023-03-03T12:35:22', NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `thumbnail_url`, `background_url`) VALUES (27, 'The Eyrie', '2023-03-03T12:35:22', NULL, NULL);
 
 COMMIT;
 
@@ -910,7 +990,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `cover_artwork` (`id`, `image_url`) VALUES (1, 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Weird_Tales_August_1928.jpg/800px-Weird_Tales_August_1928.jpg');
+INSERT INTO `cover_artwork` (`id`, `image_url`) VALUES (1, 'https://www.gutenberg.org/files/68957/68957-h/images/cover.jpg');
 
 COMMIT;
 
@@ -930,7 +1010,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `magazine` (`id`, `cover_artwork_id`, `publication_id`, `name`, `created_at`, `thumbnail_url`, `image_url`, `magazine_html_id`) VALUES (1, 1, 1, 'Weird Tales, August 1928', '2023-03-03T12:35:22', NULL, NULL, 1);
+INSERT INTO `magazine` (`id`, `cover_artwork_id`, `publication_id`, `name`, `created_at`, `thumbnail_url`, `image_url`, `magazine_html_id`, `volume`, `issue`) VALUES (1, 1, 1, 'Weird Tales, March 1923', '2023-03-03T12:35:22', NULL, NULL, 1, 1, 1);
 
 COMMIT;
 
@@ -941,6 +1021,33 @@ COMMIT;
 START TRANSACTION;
 USE `thepulpsdb`;
 INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (1, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (2, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (3, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (4, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (5, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (6, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (7, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (8, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (9, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (10, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (11, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (12, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (13, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (14, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (15, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (16, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (17, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (18, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (19, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (20, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (21, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (22, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (23, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (24, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (25, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (26, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (27, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
+INSERT INTO `author_profile` (`id`, `image_url`, `bio`) VALUES (28, 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/50/Robert_E_Howard_suit.jpg/440px-Robert_E_Howard_suit.jpg', 'Howard was one of the most prolific short story writers in American history, and has created such beloved characters as Conan the Barbarian, Kull of Atlantis, Soloman Kane, Bran Mak Morn, El Borak, and Dark Agnès de Chastillon. He tragically passed away in 1936.');
 
 COMMIT;
 
@@ -950,7 +1057,34 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (1, 'Robert E. Howard', 1, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (1, 'Julian Kilman', 1, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (2, 'Orville R. Emerson', 2, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (3, 'Joel Townsley Rogers', 3, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (4, 'Bryan Irvine', 4, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (5, 'G. A. Wells', 5, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (6, 'David R. Solomon', 6, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (7, 'Merlin Moore Taylor', 7, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (8, 'Farnsworth Wright', 8, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (9, 'Howard Ellis Davis', 9, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (10, 'Herbert J. Mangham', 10, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (11, 'Meredith Davis', 11, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (12, 'Walter Scott Story', 12, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (13, 'W. H. Holmes', 13, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (14, 'R. T. M. Scott', 14, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (15, '? ? ?', 15, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (16, 'William Sanford', 16, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (17, 'Joseph Faus', 17, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (18, 'James Bennett Wooding', 18, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (19, 'Capt. George Warburton Lewis', 19, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (20, 'F. Georgia Stroup', 20, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (21, 'I. W. D. Peters', 21, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (22, 'Harold Ward', 22, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (23, 'James B. M. Clark, Jr.', 23, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (24, 'Willard E. Hawkins', 24, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (25, 'Anthony M. Rud', 25, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (26, 'Hamilton Craigie', 26, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (27, 'Otis Adelbert Kline', 27, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (28, 'Edwin Baird', 28, NULL, NULL);
 
 COMMIT;
 
@@ -971,6 +1105,33 @@ COMMIT;
 START TRANSACTION;
 USE `thepulpsdb`;
 INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (1, 1);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (2, 2);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (3, 3);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (4, 4);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (5, 5);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (6, 6);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (7, 7);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (8, 8);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (9, 9);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (10, 10);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (11, 11);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (12, 12);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (13, 13);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (14, 14);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (15, 15);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (16, 16);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (17, 17);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (18, 19);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (19, 20);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (20, 21);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (21, 22);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (22, 23);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (23, 24);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (24, 25);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (25, 26);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (26, 27);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (27, 28);
+INSERT INTO `story_author` (`story_id`, `author_id`) VALUES (17, 18);
 
 COMMIT;
 
@@ -1170,7 +1331,111 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (1, 'RED_SHADOWS', 1, 1);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (1, 'BLACK_JEAN', 1, 1);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (2, 'THE_GRAVE', 1, 2);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (3, 'HARK_THE_RATTLE', 1, 3);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (4, 'THE_GHOST_GUARD', 1, 4);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (5, 'THE_GHOUL', 1, 5);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (6, 'FEAR', 1, 6);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (7, 'PLACE_OF_MADNESS', 1, 7);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (8, 'The_Closing_Hand', 1, 8);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (9, 'THE_UNKNOWN_BEAST', 1, 9);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (10, 'The_Basket', 1, 10);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (11, 'THE_ACCUSING_VOICE', 1, 11);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (12, 'The_Sequel', 1, 12);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (13, 'The_Weaving', 1, 13);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (14, 'Nimba_the', 1, 14);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (15, 'YOUNG_MAN_WHO_WANTED', 1, 15);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (16, 'THE_SCARLET_NIGHT', 1, 16);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (17, 'DR_CALGRONI', 1, 17);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (18, 'RETURN_PAUL_SLAVSKY', 1, 18);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (19, 'HOUSE_OF_DEATH', 1, 19);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (20, 'GALLOWS', 1, 20);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (21, 'SKULL', 1, 21);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (22, 'APE-MAN', 1, 22);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (23, 'DEAD_MANS_TALE', 1, 23);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (24, 'OOZE', 1, 24);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (25, 'THE_CHAIN', 1, 25);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (26, 'THING_OF_THOUSAND_SHAPES', 1, 26);
+INSERT INTO `story_anchor` (`id`, `anchor_tag`, `magazine_html_id`, `story_id`) VALUES (27, 'The_Eyrie', 1, 27);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `artist`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (1, 'Richard R. Epperly', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (2, 'William F. Heitman', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (3, 'R.M. Mally', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (4, 'Washburn', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (5, 'Andrew Benson', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (6, 'Andrew Brosnatch', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (7, 'Joseph Doolin', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (8, 'C. Barker Petrie, Jr.', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (9, 'E.M. Stevenson', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (10, 'T. Wyatt Nelson', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (11, 'Hugh Rankin', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (12, 'J. Allen St. John', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (13, 'Curtis C. Senf', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (14, 'Margaret Brundage', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (15, 'Virgil Finlay', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (16, 'Richard Bennett', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (17, 'Hannes Bok', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (18, 'Harold S. De Lay', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (19, 'Matt Fox', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (20, 'John Giunta', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (21, 'Gretta (Joseph C. Gretter)', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (22, 'Ray Quigley', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (23, 'A.R. Tilburne', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (24, 'Edgar Franklin Wittmack', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (25, 'Lee Brown Coye', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (26, 'Ronald Clyne', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (27, 'Boris Dolgov', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (28, 'Peter Kuhlhoff', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (29, 'Michael Labonski', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (30, 'A.R. Tilburne', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (31, 'Jon Arfstrom', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (32, 'Lee Brown Coye', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (33, 'Anthony Di Giannurio', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (34, 'Joseph R. Eberle', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (35, 'Frank Kelly Freas', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (36, 'Charles A. Kennedy', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (37, 'W.H. Silvey', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (38, 'Evan Singer', NULL, NULL);
+INSERT INTO `artist` (`id`, `name`, `image_url`, `description`) VALUES (39, 'Bill Wayne', NULL, NULL);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `cover_artist`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `cover_artist` (`cover_artwork_id`, `artist_id`) VALUES (1, 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `post`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `post` (`id`, `title`, `content`, `created_at`, `updated_at`, `user_id`) VALUES (1, 'Growing Up Reading Robert E. Howard', 'I fell in love with reading through Robert E. Howard\'s stories.', '2023-03-03T12:35:22', '2023-03-03T12:35:22', 1);
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `comment`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `thepulpsdb`;
+INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `post_id`, `user_id`) VALUES (1, 'I had the same experience.', '2023-03-03T12:35:23', '2023-03-03T12:35:23', 1, 2);
 
 COMMIT;
 
