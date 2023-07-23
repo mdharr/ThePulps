@@ -868,9 +868,11 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `updated_at` TIMESTAMP NULL,
   `post_id` INT NOT NULL,
   `user_id` INT NOT NULL,
+  `parent_comment_id` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_comment_post1_idx` (`post_id` ASC),
   INDEX `fk_comment_user1_idx` (`user_id` ASC),
+  INDEX `fk_comment_comment1_idx` (`parent_comment_id` ASC),
   CONSTRAINT `fk_comment_post1`
     FOREIGN KEY (`post_id`)
     REFERENCES `post` (`id`)
@@ -879,6 +881,11 @@ CREATE TABLE IF NOT EXISTS `comment` (
   CONSTRAINT `fk_comment_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_comment_comment1`
+    FOREIGN KEY (`parent_comment_id`)
+    REFERENCES `comment` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -1435,7 +1442,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `post_id`, `user_id`) VALUES (1, 'I had the same experience.', '2023-03-03T12:35:23', '2023-03-03T12:35:23', 1, 2);
+INSERT INTO `comment` (`id`, `content`, `created_at`, `updated_at`, `post_id`, `user_id`, `parent_comment_id`) VALUES (1, 'I had the same experience.', '2023-03-03T12:35:23', '2023-03-03T12:35:23', 1, 2, NULL);
 
 COMMIT;
 

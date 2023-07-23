@@ -50,14 +50,18 @@ public class User {
 	
 	@Column(name = "last_name")
 	private String lastName;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "user")
+	private List<Post> posts;
 
 	public User() {
 		super();
 	}
 
 	public User(int id, String username, String password, Boolean enabled, String role, List<Collection> collections,
-			List<StoryComment> storyComments, UserProfile userProfile, String email, String firstName,
-			String lastName) {
+			List<StoryComment> storyComments, UserProfile userProfile, String email, String firstName, String lastName,
+			List<Post> posts) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -70,6 +74,7 @@ public class User {
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.posts = posts;
 	}
 
 	public int getId() {
@@ -158,6 +163,14 @@ public class User {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public List<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts) {
+		this.posts = posts;
 	}
 
 	@Override
