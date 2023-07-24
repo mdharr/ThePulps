@@ -36,7 +36,7 @@ public class Story {
 	@OneToMany(mappedBy = "story")
 	private List<StoryPdf> storyPdfs;
 	
-	@JsonIgnore
+//	@JsonIgnore
     @ManyToMany
     @JoinTable(name = "story_author",
             joinColumns = @JoinColumn(name = "story_id"),
