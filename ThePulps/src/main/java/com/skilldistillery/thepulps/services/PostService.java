@@ -7,7 +7,7 @@ import com.skilldistillery.thepulps.entities.Post;
 
 public interface PostService {
 	
-	public List<Post> index(int categoryId);
+	public List<Post> getAllPosts();
 	
 	public Set<Post> indexByUsername(String username);
 	
