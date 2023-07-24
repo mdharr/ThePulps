@@ -40,7 +40,7 @@ public class AuthorController {
     
 	@GetMapping("authors/{aid}/stories")
 	public List<Story> getAllStoriesByAuthorId(@PathVariable("aid") int authorId, HttpServletRequest req, HttpServletResponse res) {
-		return authorService.getAllStoriesByArtistId(authorId);
+		return authorService.getAllStoriesByAuthorId(authorId);
 	}
 
 }
