@@ -1,5 +1,6 @@
 package com.skilldistillery.thepulps.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -7,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,17 +27,24 @@ public class CoverArtwork {
 	
     @OneToOne(mappedBy = "coverArtwork")
     private Magazine magazine;
+    
+    @ManyToMany
+    @JoinTable(name = "cover_artist",
+            joinColumns = @JoinColumn(name = "cover_artwork_id"),
+            inverseJoinColumns = @JoinColumn(name = "artist_id"))
+    private List<Artist> artists;
 
 	public CoverArtwork() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public CoverArtwork(int id, String imageUrl, Magazine magazine) {
+	public CoverArtwork(int id, String imageUrl, Magazine magazine, List<Artist> artists) {
 		super();
 		this.id = id;
 		this.imageUrl = imageUrl;
 		this.magazine = magazine;
+		this.artists = artists;
 	}
 
 	public int getId() {
@@ -58,6 +69,14 @@ public class CoverArtwork {
 
 	public void setMagazine(Magazine magazine) {
 		this.magazine = magazine;
+	}
+
+	public List<Artist> getArtists() {
+		return artists;
+	}
+
+	public void setArtists(List<Artist> artists) {
+		this.artists = artists;
 	}
 
 	@Override
