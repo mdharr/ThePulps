@@ -3,6 +3,7 @@ package com.skilldistillery.thepulps.services;
 import java.util.List;
 
 import com.skilldistillery.thepulps.entities.Author;
+import com.skilldistillery.thepulps.entities.Story;
 
 public interface AuthorService {
 
@@ -15,6 +16,8 @@ public interface AuthorService {
 //    public Publication updatePublication(int publicationId, Publication publication);
 
 //    public boolean deletePublication(int publicationId);
+    
+    public List<Story> getAllStoriesByAuthorId(int authorId);
 
 
 }
