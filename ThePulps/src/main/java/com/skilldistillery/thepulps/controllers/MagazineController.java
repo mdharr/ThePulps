@@ -2,6 +2,7 @@ package com.skilldistillery.thepulps.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.thepulps.entities.Magazine;
+import com.skilldistillery.thepulps.entities.Story;
 import com.skilldistillery.thepulps.services.MagazineService;
 
 @RestController
@@ -28,11 +30,16 @@ public class MagazineController {
     }
     
     @GetMapping("magazines/{mid}")
-    public Magazine getMagazineById(@PathVariable("mid") int magazineId, HttpServletResponse res) {
+    public Magazine getMagazineById(@PathVariable("mid") int magazineId, HttpServletRequest req, HttpServletResponse res) {
     	if(magazineService.getMagazineById(magazineId) == null) {
     		res.setStatus(404);
     	}
     	return magazineService.getMagazineById(magazineId);
+    }
+    
+    @GetMapping("magazines/{mid}/stories")
+    public List<Story> getAllStoriesByMagazineId(@PathVariable("mid") int magazineId, HttpServletRequest req, HttpServletResponse res) {
+    	return magazineService.getAllStoriesByMagazineId(magazineId);
     }
 
 }
