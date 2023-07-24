@@ -53,5 +53,11 @@ class CoverArtworkTest {
 		assertNotNull(coverArtwork);
 		assertEquals("Weird Tales, March 1923", coverArtwork.getMagazine().getName());
 	}
+	
+	@Test
+	void test_CoverArtwork_Artist_many_to_many_mapping() {
+		assertNotNull(coverArtwork);
+		assertEquals("Richard R. Epperly", coverArtwork.getArtists().get(0).getName());
+	}
 
 }
