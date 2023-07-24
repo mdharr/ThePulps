@@ -1,6 +1,7 @@
 package com.skilldistillery.thepulps.services;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -46,7 +47,7 @@ public class AuthorServiceImpl implements AuthorService {
 			}
 			return stories;
 		}
-		return null;
+		return Collections.emptyList();
 	}
 
 }
