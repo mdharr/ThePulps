@@ -16,6 +16,9 @@
 		<class>com.skilldistillery.thepulps.entities.MagazineStoryId</class>
 		<class>com.skilldistillery.thepulps.entities.MagazinePdf</class>
 		<class>com.skilldistillery.thepulps.entities.CoverArtwork</class>
+		<class>com.skilldistillery.thepulps.entities.CoverArtist</class>
+		<class>com.skilldistillery.thepulps.entities.CoverArtistId</class>
+		<class>com.skilldistillery.thepulps.entities.Artist</class>
 		<class>com.skilldistillery.thepulps.entities.Collection</class>
 		<class>com.skilldistillery.thepulps.entities.Author</class>
 		<class>com.skilldistillery.thepulps.entities.AuthorProfile</class>
