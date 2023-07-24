@@ -65,5 +65,11 @@ class MagazineTest {
 		assertNotNull(magazine);
 		assertEquals("The Mystery of Black Jean", magazine.getStories().get(0).getTitle());
 	}
+	
+	@Test
+	void test_Magazine_MagazinePdf_one_to_many_mapping() {
+		assertNotNull(magazine);
+		assertEquals("https://archive.org/details/WeirdTalesV01n01192303", magazine.getMagazinePdfs().get(0).getMagazineUrl());
+	}
 
 }
