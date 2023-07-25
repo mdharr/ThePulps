@@ -52,6 +52,19 @@ public class CollectionServiceImpl implements CollectionService {
 
         return null; // User does not have permission to create this collection
     }
+    
+    @Override
+    public boolean deleteCollection(String username, Integer collectionId) {
+        // First, check if the collection exists and belongs to the user.
+        Collection collection = collectionRepo.findByIdAndUser_Username(collectionId, username);
+
+        if (collection != null) {
+            collectionRepo.delete(collection);
+            return true; // Collection successfully deleted
+        }
+
+        return false; // Collection not found or doesn't belong to the user
+    }
 
     @Override
     public Collection addStoryToCollection(String username, Integer collectionId, Integer storyId) {

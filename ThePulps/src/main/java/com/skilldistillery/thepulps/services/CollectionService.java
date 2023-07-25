@@ -11,6 +11,8 @@ public interface CollectionService {
 	public List<Collection> getByUserId(int userId);
 	
     Collection createCollection(String username, Collection collection);
+    
+    boolean deleteCollection(String username, Integer collectionId);
 
     Collection addStoryToCollection(String username, Integer collectionId, Integer storyId);
 
