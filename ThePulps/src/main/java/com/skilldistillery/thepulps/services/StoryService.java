@@ -15,5 +15,7 @@ public interface StoryService {
 //    public Publication updatePublication(int publicationId, Publication publication);
 
 //    public boolean deletePublication(int publicationId);
+    
+    String getStoryAnchorURL(int magazineId, int storyId);
 
 }

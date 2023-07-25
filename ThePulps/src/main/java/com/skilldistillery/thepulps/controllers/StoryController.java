@@ -5,6 +5,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,6 +36,20 @@ public class StoryController {
     		res.setStatus(404);
     	}
     	return storyService.getStoryById(storyId);
+    }
+    
+    @GetMapping("stories/{sid}/navigate-to-magazine/{mid}")
+    public ResponseEntity<Object> navigateToMagazineAnchor(
+            @PathVariable("sid") int storyId,
+            @PathVariable("mid") int magazineId) {
+        String url = storyService.getStoryAnchorURL(magazineId, storyId);
+        if (url != null) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Location", url);
+            return new ResponseEntity<>(headers, HttpStatus.FOUND);
+        } else {
+            return new ResponseEntity<>("Story or magazine not found", HttpStatus.NOT_FOUND);
+        }
     }
 
 }
