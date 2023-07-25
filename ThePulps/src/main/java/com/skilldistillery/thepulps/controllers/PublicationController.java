@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.thepulps.entities.Magazine;
 import com.skilldistillery.thepulps.entities.Publication;
 import com.skilldistillery.thepulps.services.PublicationService;
 
@@ -73,5 +74,10 @@ public class PublicationController {
 //        }
 //        return ResponseEntity.notFound().build();
 //    }
+    
+    @GetMapping("publications/{pid}/magazines")
+    public List<Magazine> getAllMagazinesByPublicationId(@PathVariable("pid") int publicationId, HttpServletRequest req, HttpServletResponse res) {
+    	return publicationService.getAllMagazinesByPublicationId(publicationId);
+    }
 
 }
