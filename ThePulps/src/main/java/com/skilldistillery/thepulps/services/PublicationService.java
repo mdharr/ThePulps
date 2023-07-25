@@ -2,6 +2,7 @@ package com.skilldistillery.thepulps.services;
 
 import java.util.List;
 
+import com.skilldistillery.thepulps.entities.Magazine;
 import com.skilldistillery.thepulps.entities.Publication;
 
 public interface PublicationService {
@@ -15,5 +16,8 @@ public interface PublicationService {
 //    public Publication updatePublication(int publicationId, Publication publication);
 //
 //    public boolean deletePublication(int publicationId);
+    
+    public List<Magazine> getAllMagazinesByPublicationId(int publicationId);
+
 	
 }

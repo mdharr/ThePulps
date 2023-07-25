@@ -1,12 +1,16 @@
 package com.skilldistillery.thepulps.services;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.thepulps.entities.Magazine;
 import com.skilldistillery.thepulps.entities.Publication;
+import com.skilldistillery.thepulps.entities.Story;
 import com.skilldistillery.thepulps.entities.User;
 import com.skilldistillery.thepulps.repositories.PublicationRepository;
 import com.skilldistillery.thepulps.repositories.UserRepository;
@@ -71,5 +75,22 @@ public class PublicationServiceImpl implements PublicationService {
 //        }
 //        return false;
 //    }
+
+	@Override
+	public List<Magazine> getAllMagazinesByPublicationId(int publicationId) {
+		Optional<Publication> publicationOptional = publicationRepo.findById(publicationId);
+		if(publicationOptional.isPresent()) {
+			Publication publication = publicationOptional.get();
+			List<Magazine> magazines = new ArrayList<>();
+			List<Magazine> publicationMagazines = publication.getMagazines();
+			for(Magazine publicationMagazine : publicationMagazines) {
+				if(publicationMagazine != null) {
+					magazines.add(publicationMagazine);
+				}
+			}
+			return magazines;
+		}
+		return Collections.emptyList();
+	}
 
 }
