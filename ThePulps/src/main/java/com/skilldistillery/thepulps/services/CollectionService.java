@@ -16,6 +16,6 @@ public interface CollectionService {
 
     Collection addStoryToCollection(String username, Integer collectionId, Integer storyId);
 
-    Collection removeStoryFromCollection(String username, Integer collectionId, Integer storyId);
+    Collection removeStoryFromCollection(String username, Integer collectionId, int storyId);
 
 }

@@ -67,5 +67,23 @@ public class CollectionController {
 	        return ResponseEntity.notFound().build();
 	    }
 	}
+	
+    @PostMapping("users/{uid}/collections/{cid}/stories/{sid}")
+    public Collection addStoryToCollection(@PathVariable("uid") int userId,
+                                           @PathVariable("cid") Integer collectionId,
+                                           @PathVariable("sid") Integer storyId,
+                                           Principal principal) {
+        String username = principal.getName();
+        return collectionService.addStoryToCollection(username, collectionId, storyId);
+    }
+	
+    @DeleteMapping("users/{uid}/collections/{cid}/stories/{sid}")
+    public Collection removeStoryFromCollection(@PathVariable("uid") int userId,
+                                                @PathVariable("cid") Integer collectionId,
+                                                @PathVariable("sid") int storyId,
+                                                Principal principal) {
+        String username = principal.getName();
+        return collectionService.removeStoryFromCollection(username, collectionId, storyId);
+    }
 
 }

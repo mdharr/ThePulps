@@ -68,30 +68,29 @@ public class CollectionServiceImpl implements CollectionService {
 
     @Override
     public Collection addStoryToCollection(String username, Integer collectionId, Integer storyId) {
-//        Collection collection = collectionRepo.findById(collectionId).orElse(null);
-//        Story story = storyRepo.findById(storyId).orElse(null);
-//
-//        // Ensure that the user owns the collection they are modifying
-//        if (collection != null && story != null && collection.getUser().getUsername().equals(principal.getName())) {
-//            collection.getStories().add(story);
-//            return collectionRepo.save(collection);
-//        }
+        Collection collection = collectionRepo.findByIdAndUser_Username(collectionId, username);
+        Story story = storyRepo.findById(storyId).orElse(null);
 
-        return null; // Collection, Story not found, or user does not have permission
+        if (collection != null && story != null) {
+            collection.getStories().add(story);
+            return collectionRepo.save(collection);
+        }
+
+        return null; // Collection or Story not found
     }
 
     @Override
-    public Collection removeStoryFromCollection(String username, Integer collectionId, Integer storyId) {
-//        Collection collection = collectionRepo.findById(collectionId).orElse(null);
-//        Story story = storyRepo.findById(storyId).orElse(null);
-//
-//        // Ensure that the user owns the collection they are modifying
-//        if (collection != null && story != null && collection.getUser().getUsername().equals(principal.getName())) {
-//            collection.getStories().remove(story);
-//            return collectionRepo.save(collection);
-//        }
+    public Collection removeStoryFromCollection(String username, Integer collectionId, int storyId) {
+        Collection collection = collectionRepo.findByIdAndUser_Username(collectionId, username);
 
-        return null; // Collection, Story not found, or user does not have permission
+        if (collection != null) {
+            List<Story> stories = collection.getStories();
+            stories.removeIf(story -> Integer.valueOf(story.getId()).equals(storyId));
+            collection.setStories(stories); // Update the stories in the collection
+            return collectionRepo.save(collection);
+        }
+
+        return null; // Collection not found
     }
 
 }
