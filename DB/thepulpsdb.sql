@@ -287,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `story_comment` (
   `content` TEXT NULL,
   `created_at` TIMESTAMP NULL,
   `updated_at` TIMESTAMP NULL,
-  `parent_comment_id` INT NULL,
+  `parent_comment_id` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_story_comment_user1_idx` (`user_id` ASC),
   INDEX `fk_story_comment_story1_idx` (`story_id` ASC),

@@ -33,12 +33,10 @@ public class StoryComment {
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	@MapsId(value = "userId")
 	private User user;
 	
 	@ManyToOne
 	@JoinColumn(name = "story_id")
-	@MapsId(value = "storyId")
 	private Story story;
 	
 	private String content;
