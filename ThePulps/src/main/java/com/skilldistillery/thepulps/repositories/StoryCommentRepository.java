@@ -9,5 +9,7 @@ import com.skilldistillery.thepulps.entities.StoryComment;
 public interface StoryCommentRepository extends JpaRepository<StoryComment, Integer> {
 	
 	List<StoryComment> findByStory_Id(int storyId);
+	
+	StoryComment findByIdAndUser_Username(int storyCommentId, String username);
 
 }

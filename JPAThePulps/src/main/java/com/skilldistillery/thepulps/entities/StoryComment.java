@@ -57,6 +57,9 @@ public class StoryComment {
 	@OneToMany(mappedBy = "parentComment", cascade = CascadeType.ALL)
 	@OrderBy("createdAt ASC") // ordering replies by createdAt column
 	private List<StoryComment> replies = new ArrayList<>();
+	
+    @Column(name = "is_deleted")
+    private boolean deleted;
 
 	public StoryComment() {
 		super();
@@ -64,7 +67,7 @@ public class StoryComment {
 	}
 
 	public StoryComment(int id, User user, Story story, String content, LocalDateTime createdAt,
-			LocalDateTime updatedAt, StoryComment parentComment, List<StoryComment> replies) {
+			LocalDateTime updatedAt, StoryComment parentComment, List<StoryComment> replies, boolean deleted) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -74,6 +77,7 @@ public class StoryComment {
 		this.updatedAt = updatedAt;
 		this.parentComment = parentComment;
 		this.replies = replies;
+		this.deleted = deleted;
 	}
 
 	public int getId() {
@@ -138,6 +142,14 @@ public class StoryComment {
 
 	public void setReplies(List<StoryComment> replies) {
 		this.replies = replies;
+	}
+
+	public boolean isDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(boolean deleted) {
+		this.deleted = deleted;
 	}
 
 	@Override

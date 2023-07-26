@@ -13,5 +13,7 @@ public interface StoryCommentService {
     StoryComment createStoryComment(String username, int storyId, StoryComment storyComment);
     
     StoryComment createReply(String username, int parentCommentId, StoryComment reply);
+    
+    boolean deleteStoryComment(String username, Integer storyCommentId);
 
 }
