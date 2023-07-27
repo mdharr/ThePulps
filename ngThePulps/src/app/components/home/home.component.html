@@ -1,4 +1,4 @@
-<h1>The Pulps!</h1>
+<!-- <h1>The Pulps!</h1> -->
 <h2>Publications</h2>
 <div *ngFor="let publication of publications">
   <div>
@@ -7,12 +7,14 @@
 </div>
 
 <div class="main">
-  <ng-container *ngFor="let magazine of magazines" class="magazine-container">
+  <ng-container *ngFor="let magazine of magazines">
+    <div class="magazine-container">
       <div class="magazine-title">
-        <h4>{{ magazine.name }}</h4>
+        <h6>{{ magazine.name }}</h6>
       </div>
       <div class="magazine-thumbnail">
         <img src="{{ magazine.thumbnailUrl }}" alt="">
       </div>
+    </div>
   </ng-container>
 </div>
