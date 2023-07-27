@@ -71,5 +71,11 @@ class MagazineTest {
 		assertNotNull(magazine);
 		assertEquals("https://archive.org/details/WeirdTalesV01n01192303", magazine.getMagazinePdfs().get(0).getMagazineUrl());
 	}
+	
+	@Test
+	void test_Magazine_MagazineEditor_many_to_one_mapping() {
+		assertNotNull(magazine);
+		assertEquals("Edwin Baird", magazine.getMagazineEditor().getName());
+	}
 
 }
