@@ -47,6 +47,8 @@ public class Publication {
     
     @Column(name = "image_url")
     private String imageUrl;
+    
+    private String description;
 
 	public Publication() {
 		super();
@@ -54,7 +56,7 @@ public class Publication {
 	}
 
 	public Publication(int id, String name, LocalDateTime createdAt, List<Magazine> magazines, List<Tag> tags,
-			String thumbnailUrl, String imageUrl) {
+			String thumbnailUrl, String imageUrl, String description) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -63,6 +65,7 @@ public class Publication {
 		this.tags = tags;
 		this.thumbnailUrl = thumbnailUrl;
 		this.imageUrl = imageUrl;
+		this.description = description;
 	}
 
 	public int getId() {
@@ -119,6 +122,14 @@ public class Publication {
 
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override
