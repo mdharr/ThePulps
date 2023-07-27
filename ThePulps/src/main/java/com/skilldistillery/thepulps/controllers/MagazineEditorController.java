@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.thepulps.entities.Magazine;
 import com.skilldistillery.thepulps.entities.MagazineEditor;
 import com.skilldistillery.thepulps.services.MagazineEditorService;
 
@@ -26,6 +27,11 @@ public class MagazineEditorController {
 	@GetMapping("magazine-editors")
 	public List<MagazineEditor> getAllMagazineEditors() {
 		return magazineEditorService.getAllMagazineEditors();
+	}
+	
+	@GetMapping("editors/{meid}/magazines")
+	public List<Magazine> getMagazinesByMagazineEditorId(@PathVariable("meid") int magazineEditorId, HttpServletRequest req, HttpServletResponse res) {
+		return magazineEditorService.getAllMagazinesByMagazineEditorId(magazineEditorId);
 	}
 	
 	@GetMapping("magazines/{mid}/editor")
