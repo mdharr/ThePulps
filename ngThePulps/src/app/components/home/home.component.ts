@@ -5,6 +5,9 @@ import { AuthService } from 'src/app/services/auth.service';
 import { Subscription } from 'rxjs';
 import { MagazineService } from 'src/app/services/magazine.service';
 import { Magazine } from 'src/app/models/magazine';
+import { MagazineHtmlService } from 'src/app/services/magazine-html.service';
+import { Router } from '@angular/router';
+import { MagazineHtml } from 'src/app/models/magazine-html';
 
 @Component({
   selector: 'app-home',
@@ -18,11 +21,14 @@ export class HomeComponent implements OnInit {
 
   private publicationSubscription: Subscription | undefined;
   private magazineSubscription: Subscription | undefined;
+  private magazineHtmlSubscription: Subscription | undefined;
 
   constructor(
               private auth: AuthService,
               private publicationService: PublicationService,
-              private magazineService: MagazineService
+              private magazineService: MagazineService,
+              private magazineHtmlService: MagazineHtmlService,
+              private router: Router
               ) {}
 
   ngOnInit() {
@@ -46,7 +52,8 @@ export class HomeComponent implements OnInit {
         console.error(fail);
 
       }
-    })
+    });
+
   }
 
   tempTestDeleteMeLater() {
@@ -60,6 +67,23 @@ export class HomeComponent implements OnInit {
         console.error('Error authenticating: ');
         console.error(fail);
       }
+    });
+  }
+
+  navigateToMagazineHtml(magazine: Magazine): void {
+    this.magazineHtmlService.getMagazineHtmlById(magazine.magazineHtml.magazine.id).subscribe({
+      next: (magazineHtml: MagazineHtml) => {
+        // Assuming magazineHtml has a property fileUrl
+        if (magazineHtml && magazineHtml.fileUrl) {
+          window.open(magazineHtml.fileUrl, '_blank');
+        } else {
+          console.error('MagazineHtml or fileUrl is missing.');
+        }
+      },
+      error: (error) => {
+        console.error('Error retrieving MagazineHtml.');
+        console.error(error);
+      },
     });
   }
 

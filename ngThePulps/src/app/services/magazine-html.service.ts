@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class MagazineHtmlService {
-  private url = environment.baseUrl + 'api/magazine-htmls';
+  private url = environment.baseUrl + 'api';
   private otherUrl = environment.baseUrl + 'api/magazines';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
@@ -45,6 +45,18 @@ export class MagazineHtmlService {
         return throwError(
           () =>
           new Error('MagazineHtmlService.getMagazineHtmlByMagazineId: error retrieving magazine html: ' + err)
+        );
+      })
+    );
+  }
+
+  getMagazineHtmlById(id: number): Observable<MagazineHtml> {
+    return this.http.get<MagazineHtml>(this.url + '/magazine-htmls/' + id).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+          new Error('MagazineHtmlService.getMagazineHtmlById: error retrieving magazine html: ' + err)
         );
       })
     );

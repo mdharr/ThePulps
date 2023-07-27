@@ -32,5 +32,10 @@ public class MagazineHtmlController {
 	public MagazineHtml getMagazineHtmlByMagazineId(@PathVariable("mid") int magazineId, HttpServletRequest req, HttpServletResponse res) {
 		return magazineHtmlService.getMagazineHtmlByMagazineId(magazineId);
 	}
+	
+	@GetMapping("magazine-htmls/{mhid}")
+	public MagazineHtml getMagazineHtmlById(@PathVariable("mhid") int magazineHtmlId, HttpServletRequest req, HttpServletResponse res) {
+		return magazineHtmlService.getMagazineHtmlById(magazineHtmlId);
+	}
 
 }

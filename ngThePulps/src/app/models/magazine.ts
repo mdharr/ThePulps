@@ -1,3 +1,4 @@
+import { MagazineHtml } from "./magazine-html";
 import { Publication } from "./publication";
 
 export class Magazine {
@@ -12,7 +13,7 @@ export class Magazine {
   thumbnailUrl: string;
   imageUrl: string;
   // magazinePdfs: MagazinePdf[];
-  // magazineHtml: MagazineHtml;
+  magazineHtml: MagazineHtml;
   // magazineEditor: MagazineEditor;
 
   constructor(
@@ -22,7 +23,8 @@ export class Magazine {
     createdAt: string = '',
     magazines: Magazine[] = [],
     thumbnailUrl: string = '',
-    imageUrl: string = ''
+    imageUrl: string = '',
+    magazineHtml: MagazineHtml = new MagazineHtml()
   ) {
     this.id = id;
     this.publication = publication;
@@ -31,5 +33,6 @@ export class Magazine {
     this.magazines = magazines;
     this.thumbnailUrl = thumbnailUrl;
     this.imageUrl = imageUrl;
+    this.magazineHtml = magazineHtml;
   }
 }
