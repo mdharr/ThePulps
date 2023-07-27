@@ -1,4 +1,3 @@
-import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
@@ -13,7 +12,7 @@ export class PublicationService {
   private url = environment.baseUrl + 'api/publications';
   private otherUrl = environment.baseUrl + 'api';
 
-  constructor(private http: HttpClient, private datePipe: DatePipe, private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   getHttpOptions() {
     let options = {

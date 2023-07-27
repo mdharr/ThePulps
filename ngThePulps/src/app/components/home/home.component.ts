@@ -1,5 +1,10 @@
+import { PublicationService } from './../../services/publication.service';
 import { Component, OnInit } from '@angular/core';
+import { Publication } from 'src/app/models/publication';
 import { AuthService } from 'src/app/services/auth.service';
+import { Subscription } from 'rxjs';
+import { MagazineService } from 'src/app/services/magazine.service';
+import { Magazine } from 'src/app/models/magazine';
 
 @Component({
   selector: 'app-home',
@@ -8,10 +13,40 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private auth: AuthService) {}
+  publications: Publication[] = [];
+  magazines: Magazine[] = [];
+
+  private publicationSubscription: Subscription | undefined;
+  private magazineSubscription: Subscription | undefined;
+
+  constructor(
+              private auth: AuthService,
+              private publicationService: PublicationService,
+              private magazineService: MagazineService
+              ) {}
 
   ngOnInit() {
     this.tempTestDeleteMeLater(); // DELETE LATER!!!
+    this.publicationSubscription = this.publicationService.indexAll().subscribe({
+      next: (publications) => {
+        this.publications = publications;
+      },
+      error:(fail) => {
+        console.error('Error getting publications');
+        console.error(fail);
+      }
+    });
+
+    this.magazineSubscription = this.magazineService.indexAll().subscribe({
+      next: (magazines) => {
+        this.magazines = magazines;
+      },
+      error: (fail) => {
+        console.error('Error getting magazines');
+        console.error(fail);
+
+      }
+    })
   }
 
   tempTestDeleteMeLater() {
