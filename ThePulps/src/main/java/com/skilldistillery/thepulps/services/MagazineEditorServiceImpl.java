@@ -46,8 +46,11 @@ public class MagazineEditorServiceImpl implements MagazineEditorService {
 	}
 
 	@Override
-	public MagazineEditor getMagazineEditorByMagazineId() {
-		// TODO Auto-generated method stub
+	public MagazineEditor getMagazineEditorByMagazineId(int magazineId) {
+		MagazineEditor magazineEditor = magazineEditorRepo.findByMagazines_Id(magazineId);
+		if(magazineEditor != null) {
+			return magazineEditor;
+		}
 		return null;
 	}
 

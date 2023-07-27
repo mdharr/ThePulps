@@ -11,6 +11,6 @@ public interface MagazineEditorService {
 	
 	List<Magazine> getAllMagazinesByMagazineEditorId(int magazineEditorId);
 	
-	MagazineEditor getMagazineEditorByMagazineId();
+	MagazineEditor getMagazineEditorByMagazineId(int magazineId);
 
 }

@@ -6,6 +6,5 @@ import com.skilldistillery.thepulps.entities.MagazineEditor;
 
 public interface MagazineEditorRepository extends JpaRepository<MagazineEditor, Integer> {
 	
-	MagazineEditor findByMagazine_Id(int magazineId);
-
+	MagazineEditor findByMagazines_Id(int magazineId);	
 }
