@@ -71,6 +71,10 @@ public class Magazine {
 	@OneToOne
 	@JoinColumn(name = "magazine_html_id")
 	private MagazineHtml magazineHtml;
+    
+	@ManyToOne
+	@JoinColumn(name = "magazine_editor_id")
+	private MagazineEditor magazineEditor;
 
 	public Magazine() {
 		super();
@@ -78,7 +82,8 @@ public class Magazine {
 	}
 
 	public Magazine(int id, CoverArtwork coverArtwork, Publication publication, String name, LocalDateTime createdAt,
-			List<Tag> tags, List<Story> stories, String thumbnailUrl, String imageUrl, List<MagazinePdf> magazinePdfs, MagazineHtml magazineHtml) {
+			List<Tag> tags, List<Story> stories, String thumbnailUrl, String imageUrl, List<MagazinePdf> magazinePdfs, 
+			MagazineHtml magazineHtml, MagazineEditor magazineEditor) {
 		super();
 		this.id = id;
 		this.coverArtwork = coverArtwork;
@@ -91,6 +96,7 @@ public class Magazine {
 		this.imageUrl = imageUrl;
 		this.magazinePdfs = magazinePdfs;
 		this.magazineHtml = magazineHtml;
+		this.magazineEditor = magazineEditor;
 	}
 
 	public int getId() {
@@ -179,6 +185,14 @@ public class Magazine {
 
 	public void setMagazineHtml(MagazineHtml magazineHtml) {
 		this.magazineHtml = magazineHtml;
+	}
+
+	public MagazineEditor getMagazineEditor() {
+		return magazineEditor;
+	}
+
+	public void setMagazineEditor(MagazineEditor magazineEditor) {
+		this.magazineEditor = magazineEditor;
 	}
 
 	@Override

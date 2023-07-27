@@ -12,6 +12,7 @@
 		<class>com.skilldistillery.thepulps.entities.UserFollower</class>
 		<class>com.skilldistillery.thepulps.entities.Publication</class>
 		<class>com.skilldistillery.thepulps.entities.Magazine</class>
+		<class>com.skilldistillery.thepulps.entities.MagazineEditor</class>
 		<class>com.skilldistillery.thepulps.entities.MagazineStory</class>
 		<class>com.skilldistillery.thepulps.entities.MagazineStoryId</class>
 		<class>com.skilldistillery.thepulps.entities.MagazinePdf</class>
