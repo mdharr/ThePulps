@@ -67,7 +67,7 @@ public class Magazine {
 	@OneToMany(mappedBy = "magazine")
 	private List<MagazinePdf> magazinePdfs;
 	
-    @JsonIgnore
+//    @JsonIgnore
 	@OneToOne
 	@JoinColumn(name = "magazine_html_id")
 	private MagazineHtml magazineHtml;

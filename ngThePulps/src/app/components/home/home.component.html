@@ -8,8 +8,8 @@
 
 <div class="main">
   <ng-container *ngFor="let magazine of magazines">
-    <div class="magazine-container">
-      <div class="magazine-title" (click)="navigateToMagazineHtml(magazine)">
+    <div class="magazine-container" (click)="magazine && navigateToMagazineHtml(magazine)">
+      <div class="magazine-title">
         <h6>{{ magazine.name }}</h6>
       </div>
       <div class="magazine-thumbnail">

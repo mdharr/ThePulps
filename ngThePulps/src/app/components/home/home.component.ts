@@ -71,20 +71,25 @@ export class HomeComponent implements OnInit {
   }
 
   navigateToMagazineHtml(magazine: Magazine): void {
-    this.magazineHtmlService.getMagazineHtmlById(magazine.magazineHtml.magazine.id).subscribe({
-      next: (magazineHtml: MagazineHtml) => {
-        // Assuming magazineHtml has a property fileUrl
-        if (magazineHtml && magazineHtml.fileUrl) {
-          window.open(magazineHtml.fileUrl, '_blank');
-        } else {
-          console.error('MagazineHtml or fileUrl is missing.');
-        }
-      },
-      error: (error) => {
-        console.error('Error retrieving MagazineHtml.');
-        console.error(error);
-      },
-    });
+    if (magazine && magazine.magazineHtml && magazine.magazineHtml.id) {
+      this.magazineHtmlService.getMagazineHtmlById(magazine.magazineHtml.id).subscribe({
+        next: (magazineHtml: MagazineHtml) => {
+          if (magazineHtml && magazineHtml.fileUrl) {
+            window.open(magazineHtml.fileUrl, '_blank');
+          } else {
+            console.error('MagazineHtml or fileUrl is missing.');
+          }
+        },
+        error: (error) => {
+          console.error('Error retrieving MagazineHtml.');
+          console.error(error);
+        },
+      });
+    } else {
+      console.error('Magazine or MagazineHtml is missing.');
+    }
   }
+
+
 
 }
