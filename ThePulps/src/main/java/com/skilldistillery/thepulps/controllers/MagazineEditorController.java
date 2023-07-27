@@ -1,5 +1,7 @@
 package com.skilldistillery.thepulps.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,6 +22,11 @@ public class MagazineEditorController {
 	
 	@Autowired
 	private MagazineEditorService magazineEditorService;
+	
+	@GetMapping("magazine-editors")
+	public List<MagazineEditor> getAllMagazineEditors() {
+		return magazineEditorService.getAllMagazineEditors();
+	}
 	
 	@GetMapping("magazines/{mid}/editor")
 	public MagazineEditor getMagazineEditorByMagazineId(@PathVariable("mid") int magazineId, HttpServletResponse res, HttpServletRequest req) {
