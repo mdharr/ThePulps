@@ -45,7 +45,7 @@ class PublicationTest {
 	@Test
 	void test_Publication_entity_mapping() {
 		assertNotNull(publication);
-		assertEquals("Weird Tales", publication.getName());
+		assertEquals("Weird Tales Magazine", publication.getName());
 	}
 	
 	@Test

@@ -51,7 +51,7 @@ class MagazineTest {
 	@Test
 	void test_Magazine_Publication_many_to_one_mapping() {
 		assertNotNull(magazine);
-		assertEquals("Weird Tales", magazine.getPublication().getName());
+		assertEquals("Weird Tales Magazine", magazine.getPublication().getName());
 	}
 	
 	@Test

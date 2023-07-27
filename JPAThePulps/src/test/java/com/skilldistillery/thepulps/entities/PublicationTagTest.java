@@ -45,7 +45,7 @@ class PublicationTagTest {
 	@Test
 	void test_PublicationTag_Publication_many_to_many_mapping() {
 		assertNotNull(publicationTag);
-		assertEquals("Weird Tales", publicationTag.getPublication().getName());
+		assertEquals("Weird Tales Magazine", publicationTag.getPublication().getName());
 	}
 	
 	@Test
