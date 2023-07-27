@@ -1,0 +1,13 @@
+.magazine-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.magazine-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  display: flex;
+}

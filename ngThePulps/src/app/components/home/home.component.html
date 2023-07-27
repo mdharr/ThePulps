@@ -6,13 +6,13 @@
   </div>
 </div>
 
-<div *ngFor="let magazine of magazines">
-  <div class="magazine-container">
-    <div class="magazine-title">
-      <h4>{{ magazine.name }}</h4>
-    </div>
-    <div class="magazine-thumbnail">
-      <img src="{{ magazine.thumbnailUrl }}" alt="">
-    </div>
-  </div>
+<div class="main">
+  <ng-container *ngFor="let magazine of magazines" class="magazine-container">
+      <div class="magazine-title">
+        <h4>{{ magazine.name }}</h4>
+      </div>
+      <div class="magazine-thumbnail">
+        <img src="{{ magazine.thumbnailUrl }}" alt="">
+      </div>
+  </ng-container>
 </div>
