@@ -28,6 +28,7 @@
 
 .thumbnail-img {
   border: 1px solid black;
+  max-width: 182px;
 }
 
 .magazine-title {
