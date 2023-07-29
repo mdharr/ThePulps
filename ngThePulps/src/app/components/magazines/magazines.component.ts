@@ -41,9 +41,7 @@ export class MagazinesComponent implements OnInit {
           }
         });
       }
-
     });
-
   }
 
 }
