@@ -8,6 +8,9 @@ import { Magazine } from 'src/app/models/magazine';
 import { MagazineHtmlService } from 'src/app/services/magazine-html.service';
 import { Router } from '@angular/router';
 import { MagazineHtml } from 'src/app/models/magazine-html';
+import { ThisReceiver } from '@angular/compiler';
+import { StoryService } from 'src/app/services/story.service';
+import { Story } from 'src/app/models/story';
 
 @Component({
   selector: 'app-home',
@@ -18,16 +21,19 @@ export class HomeComponent implements OnInit {
 
   publications: Publication[] = [];
   magazines: Magazine[] = [];
+  stories: Story[] = [];
 
   private publicationSubscription: Subscription | undefined;
   private magazineSubscription: Subscription | undefined;
   private magazineHtmlSubscription: Subscription | undefined;
+  private storySubscription: Subscription | undefined;
 
   constructor(
               private auth: AuthService,
               private publicationService: PublicationService,
               private magazineService: MagazineService,
               private magazineHtmlService: MagazineHtmlService,
+              private storyService: StoryService,
               private router: Router
               ) {}
 
@@ -49,6 +55,17 @@ export class HomeComponent implements OnInit {
       },
       error: (fail) => {
         console.error('Error getting magazines');
+        console.error(fail);
+
+      }
+    });
+
+    this.storySubscription = this.storyService.indexAll().subscribe({
+      next: (stories) => {
+        this.stories = stories;
+      },
+      error: (fail) => {
+        console.error('Error getting stories');
         console.error(fail);
 
       }
