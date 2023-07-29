@@ -10,6 +10,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PublicationsComponent } from './components/publications/publications.component';
 import { MagazinesComponent } from './components/magazines/magazines.component';
 import { StoriesComponent } from './components/stories/stories.component';
+import { PublicationDetailsComponent } from './components/publication-details/publication-details.component';
+import { MagazineDetailsComponent } from './components/magazine-details/magazine-details.component';
+import { StoryDetailsComponent } from './components/story-details/story-details.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +20,10 @@ import { StoriesComponent } from './components/stories/stories.component';
     HomeComponent,
     PublicationsComponent,
     MagazinesComponent,
-    StoriesComponent
+    StoriesComponent,
+    PublicationDetailsComponent,
+    MagazineDetailsComponent,
+    StoryDetailsComponent
   ],
   imports: [
     BrowserModule,
