@@ -1,28 +1,12 @@
-<!-- <h1>The Pulps!</h1> -->
-<h2>Publications</h2>
-<div *ngFor="let publication of publications">
+<h1>The Pulps!</h1>
+<div class="categories">
   <div>
-    <h1>{{ publication.name }}</h1>
+    <a [routerLink]="['/publications']">Publications</a>
   </div>
-</div>
-
-<div class="main">
-  <ng-container *ngFor="let magazine of magazines">
-    <div class="magazine-container" (click)="magazine && navigateToMagazineHtml(magazine)">
-      <div class="magazine-card">
-        <div class="magazine-thumbnail">
-          <img class="thumbnail-img" src="{{ magazine.thumbnailUrl }}" alt="" loading="lazy">
-        </div>
-        <div class="magazine-title">
-          <h6>{{ magazine.name }}</h6>
-        </div>
-      </div>
-    </div>
-  </ng-container>
-</div>
-
-<div class="story-container" *ngFor="let story of stories" (click)="navigateToStoryAnchor(story)">
   <div>
-    <p>{{ story.title }}</p>
+    <a [routerLink]="['/magazines']">Magazines</a>
+  </div>
+  <div>
+    <a [routerLink]="['/stories']">Stories</a>
   </div>
 </div>
