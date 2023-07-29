@@ -8,12 +8,14 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PublicationsComponent } from './components/publications/publications.component';
+import { MagazinesComponent } from './components/magazines/magazines.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    PublicationsComponent
+    PublicationsComponent,
+    MagazinesComponent
   ],
   imports: [
     BrowserModule,
