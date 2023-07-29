@@ -9,13 +9,15 @@ import { HomeComponent } from './components/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PublicationsComponent } from './components/publications/publications.component';
 import { MagazinesComponent } from './components/magazines/magazines.component';
+import { StoriesComponent } from './components/stories/stories.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     PublicationsComponent,
-    MagazinesComponent
+    MagazinesComponent,
+    StoriesComponent
   ],
   imports: [
     BrowserModule,
