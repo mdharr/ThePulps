@@ -31,6 +31,7 @@ public class SecurityConfig {
         .antMatchers(HttpMethod.OPTIONS, "/api/**").permitAll() // For CORS, the preflight request
         .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()     // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.GET, "/api/publications").permitAll() // will hit the OPTIONS on the route
+        .antMatchers(HttpMethod.GET, "/api/publications/**").permitAll() // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.GET, "/api/magazines").permitAll() // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.GET, "/api/magazines/**/magazine-html").permitAll() // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.GET, "/api/magazine-htmls/**").permitAll() // will hit the OPTIONS on the route
