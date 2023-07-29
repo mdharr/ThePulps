@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.skilldistillery.thepulps.entities.Story;
 import com.skilldistillery.thepulps.services.StoryService;
@@ -38,15 +39,27 @@ public class StoryController {
     	return storyService.getStoryById(storyId);
     }
     
+//    @GetMapping("stories/{sid}/navigate-to-magazine/{mid}")
+//    public ResponseEntity<String> navigateToMagazineAnchor(
+//            @PathVariable("sid") int storyId,
+//            @PathVariable("mid") int magazineId) {
+//        String url = storyService.getStoryAnchorURL(magazineId, storyId);
+//        if (url != null) {
+//            HttpHeaders headers = new HttpHeaders();
+//            headers.add("Location", url);
+//            return new ResponseEntity<>(headers, HttpStatus.FOUND);
+//        } else {
+//            return new ResponseEntity<>("Story or magazine not found", HttpStatus.NOT_FOUND);
+//        }
+//    }
+    
     @GetMapping("stories/{sid}/navigate-to-magazine/{mid}")
-    public ResponseEntity<Object> navigateToMagazineAnchor(
+    public ResponseEntity<String> getStoryAnchorURL(
             @PathVariable("sid") int storyId,
             @PathVariable("mid") int magazineId) {
         String url = storyService.getStoryAnchorURL(magazineId, storyId);
         if (url != null) {
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Location", url);
-            return new ResponseEntity<>(headers, HttpStatus.FOUND);
+            return new ResponseEntity<>(url, HttpStatus.OK);
         } else {
             return new ResponseEntity<>("Story or magazine not found", HttpStatus.NOT_FOUND);
         }

@@ -49,4 +49,10 @@ export class StoryService {
       })
     );
   }
+
+  getStoryAnchorURL(storyId: number, magazineId: number): Observable<string> {
+    const endpoint = `${this.url}/${storyId}/navigate-to-magazine/${magazineId}`;
+    return this.http.get(endpoint, { responseType: 'text' });
+  }
+
 }

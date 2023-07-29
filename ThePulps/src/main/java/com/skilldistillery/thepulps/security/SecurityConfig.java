@@ -36,6 +36,8 @@ public class SecurityConfig {
         .antMatchers(HttpMethod.GET, "/api/magazine-htmls/**").permitAll() // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.GET, "/api/stories").permitAll() // will hit the OPTIONS on the route
         .antMatchers(HttpMethod.GET, "/api/stories/**").permitAll() // will hit the OPTIONS on the route
+        .antMatchers(HttpMethod.GET, "/api/stories/**/magazine").permitAll() // will hit the OPTIONS on the route
+        .antMatchers(HttpMethod.GET, "/api/stories/**/navigate-to-magazine/**").permitAll() // will hit the OPTIONS on the route
         .antMatchers("/api/**").authenticated() // Requests for our REST API must be authorized.
         .anyRequest().permitAll()               // All other requests are allowed without authentication.
         .and()

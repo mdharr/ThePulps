@@ -37,4 +37,28 @@ export class MagazineService {
       })
     );
   }
+
+  find(id: number): Observable<Magazine> {
+    return this.http.get<Magazine>(`${this.url}/${id}`).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('MagazineService.find(): error retrieving magazine: ' + err)
+        );
+      })
+    );
+  }
+
+  findByStoryId(id: number): Observable<Magazine> {
+    return this.http.get<Magazine>(this.otherUrl + '/stories/' + id + '/magazine').pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('MagazineService.find(): error retrieving magazine: ' + err)
+        );
+      })
+    );
+  }
 }

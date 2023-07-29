@@ -41,5 +41,10 @@ public class MagazineController {
     public List<Story> getAllStoriesByMagazineId(@PathVariable("mid") int magazineId, HttpServletRequest req, HttpServletResponse res) {
     	return magazineService.getAllStoriesByMagazineId(magazineId);
     }
+    
+    @GetMapping("stories/{sid}/magazine")
+    public Magazine getMagazineByStoryId(@PathVariable("sid") int storyId, HttpServletRequest req, HttpServletResponse res) {
+    	return magazineService.getMagazineByStoryId(storyId);
+    }
 
 }

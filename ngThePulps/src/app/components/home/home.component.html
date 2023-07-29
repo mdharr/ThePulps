@@ -21,7 +21,7 @@
   </ng-container>
 </div>
 
-<div class="story-container" *ngFor="let story of stories">
+<div class="story-container" *ngFor="let story of stories" (click)="navigateToStoryAnchor(story)">
   <div>
     <p>{{ story.title }}</p>
   </div>

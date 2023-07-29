@@ -48,3 +48,7 @@
 .story-container {
   display: flex;
 }
+
+.story-container:hover {
+  cursor:pointer;
+}

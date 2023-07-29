@@ -18,5 +18,7 @@ public interface MagazineService {
 //    public boolean deletePublication(int publicationId);
     
     public List<Story> getAllStoriesByMagazineId(int magazineId);
+    
+    public Magazine getMagazineByStoryId(int storyId);
 
 }
