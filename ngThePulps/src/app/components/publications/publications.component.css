@@ -1,0 +1,46 @@
+.publication-container {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+}
+
+.publication-card {
+  background-color: var(--tileBackgroundColor, #fcf0e4);
+  border: 1px rgb(44, 44, 44);
+  border-radius: var(--tileCornerRadius, 4px);
+  box-shadow: 1px 1px 2px 0px;
+  box-sizing: border-box;
+  max-height: 310px;
+  height: 310px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 260px;
+  width: 260px;
+  padding: 5px;
+}
+
+.publication-card:hover {
+  box-shadow: rgba(8, 8, 32, 0.8) 0px 0px 6px 2px;
+    transition: box-shadow 0.1s ease 0s;
+    cursor:pointer;
+}
+
+.thumbnail-img {
+  border: 1px solid black;
+  max-width: 182px;
+}
+
+.publication-title {
+  text-align:center;
+}
+
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.publication-thumbnail {
+  text-align: center;
+}

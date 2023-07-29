@@ -19,21 +19,15 @@ import { Story } from 'src/app/models/story';
 })
 export class HomeComponent implements OnInit {
 
-  publications: Publication[] = [];
-  magazines: Magazine[] = [];
   stories: Story[] = [];
   magazineId: number = 0;
   storyId: number = 0;
 
-  private publicationSubscription: Subscription | undefined;
-  private magazineSubscription: Subscription | undefined;
   private magazineHtmlSubscription: Subscription | undefined;
   private storySubscription: Subscription | undefined;
 
   constructor(
               private auth: AuthService,
-              private publicationService: PublicationService,
-              private magazineService: MagazineService,
               private magazineHtmlService: MagazineHtmlService,
               private storyService: StoryService,
               private router: Router
@@ -41,26 +35,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.tempTestDeleteMeLater(); // DELETE LATER!!!
-    this.publicationSubscription = this.publicationService.indexAll().subscribe({
-      next: (publications) => {
-        this.publications = publications;
-      },
-      error:(fail) => {
-        console.error('Error getting publications');
-        console.error(fail);
-      }
-    });
-
-    this.magazineSubscription = this.magazineService.indexAll().subscribe({
-      next: (magazines) => {
-        this.magazines = magazines;
-      },
-      error: (fail) => {
-        console.error('Error getting magazines');
-        console.error(fail);
-
-      }
-    });
 
     this.storySubscription = this.storyService.indexAll().subscribe({
       next: (stories) => {
@@ -130,25 +104,25 @@ export class HomeComponent implements OnInit {
   //   );
   // }
 
-  navigateToStoryAnchor(story: any): void {
-    this.magazineService.findByStoryId(story.id).subscribe(
-      (magazine: any) => {
-        console.log('Magazine ID:', magazine.id);
+  // navigateToStoryAnchor(story: any): void {
+  //   this.magazineService.findByStoryId(story.id).subscribe(
+  //     (magazine: any) => {
+  //       console.log('Magazine ID:', magazine.id);
 
-        this.storyService.getStoryAnchorURL(story.id, magazine.id).subscribe(
-          (url: string) => {
-            console.log('Navigating to story anchor in magazine:', url);
-            window.open(url, '_blank'); // Open the URL in a new tab
-          },
-          (error) => {
-            console.error('Error navigating to story anchor in magazine', error);
-          }
-        );
-      },
-      (error) => {
-        console.error('Error retrieving magazine or magazineId', error);
-      }
-    );
-  }
+  //       this.storyService.getStoryAnchorURL(story.id, magazine.id).subscribe(
+  //         (url: string) => {
+  //           console.log('Navigating to story anchor in magazine:', url);
+  //           window.open(url, '_blank'); // Open the URL in a new tab
+  //         },
+  //         (error) => {
+  //           console.error('Error navigating to story anchor in magazine', error);
+  //         }
+  //       );
+  //     },
+  //     (error) => {
+  //       console.error('Error retrieving magazine or magazineId', error);
+  //     }
+  //   );
+  // }
 
 }

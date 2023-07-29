@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Magazine } from '../models/magazine';
 import { Publication } from '../models/publication';
 import { AuthService } from './auth.service';
 
@@ -45,6 +46,18 @@ export class PublicationService {
         return throwError(
           () =>
             new Error('PublicationService.find(): error retrieving publication: ' + err)
+        );
+      })
+    );
+  }
+
+  indexMagazinesByPublicationId(id: number): Observable<Magazine[]> {
+    return this.http.get<Magazine[]>(`${this.url}/${id}/magazines`).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('PublicationService.indexMagazinesByPublicationId(): error retrieving magazines: ' + err)
         );
       })
     );

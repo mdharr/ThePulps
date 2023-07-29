@@ -1,7 +1,16 @@
-<p>publications works!</p>
-<!-- <h2>Publications</h2>
-<div *ngFor="let publication of publications">
-  <div>
-    <h1>{{ publication.name }}</h1>
-  </div>
-</div> -->
+<h2>Publications</h2>
+
+<div class="main">
+  <ng-container *ngFor="let publication of publications">
+    <div class="publication-container">
+      <div class="publication-card">
+        <div class="publication-thumbnail">
+          <img class="thumbnail-img" src="{{ publication.thumbnailUrl }}" alt="thumbnail.jpg">
+        </div>
+        <div class="publication-title">
+          <a [routerLink]="['/publications', publication.id, 'magazines']"><h4>{{ publication.name }}</h4></a>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

@@ -13,6 +13,7 @@ import com.skilldistillery.thepulps.entities.Magazine;
 import com.skilldistillery.thepulps.entities.Publication;
 import com.skilldistillery.thepulps.entities.Story;
 import com.skilldistillery.thepulps.repositories.MagazineRepository;
+import com.skilldistillery.thepulps.repositories.PublicationRepository;
 import com.skilldistillery.thepulps.repositories.StoryRepository;
 
 @Service
@@ -23,6 +24,9 @@ public class MagazineServiceImpl implements MagazineService {
 	
 	@Autowired
 	private StoryRepository storyRepo;
+	
+	@Autowired
+	private PublicationRepository publicationRepo;
 
 	@Override
 	public List<Magazine> getAllMagazines() {
@@ -58,6 +62,17 @@ public class MagazineServiceImpl implements MagazineService {
 			Story story = storyOptional.get();
 			Magazine magazine = story.getMagazines().get(0);
 			return magazine;
+		}
+		return null;
+	}
+
+	@Override
+	public List<Magazine> getByPublicationId(int publicationId) {
+		Optional<Publication> publicationOptional = publicationRepo.findById(publicationId);
+		if(publicationOptional.isPresent()) {
+			Publication publication = publicationOptional.get();
+			List<Magazine> magazines = publication.getMagazines();
+			return magazines;
 		}
 		return null;
 	}

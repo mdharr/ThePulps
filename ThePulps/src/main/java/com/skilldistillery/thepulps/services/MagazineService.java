@@ -20,5 +20,7 @@ public interface MagazineService {
     public List<Story> getAllStoriesByMagazineId(int magazineId);
     
     public Magazine getMagazineByStoryId(int storyId);
+    
+    public List<Magazine> getByPublicationId(int publicationId);
 
 }
