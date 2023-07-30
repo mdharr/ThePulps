@@ -125,4 +125,25 @@ export class HomeComponent implements OnInit {
   //   );
   // }
 
+  // navigateToStoryAnchor(story: any): void {
+  //   this.magazineService.findByStoryId(story.id).subscribe(
+  //     (magazine: any) => {
+  //       console.log('Magazine ID:', magazine.id);
+
+  //       this.storyService.getStoryAnchorURL(story.id, magazine.id).subscribe(
+  //         (url: string) => {
+  //           console.log('Navigating to story anchor in magazine:', url);
+  //           window.open(url, '_blank'); // Open the URL in a new tab
+  //         },
+  //         (error) => {
+  //           console.error('Error navigating to story anchor in magazine', error);
+  //         }
+  //       );
+  //     },
+  //     (error) => {
+  //       console.error('Error retrieving magazine or magazineId', error);
+  //     }
+  //   );
+  // }
+
 }
