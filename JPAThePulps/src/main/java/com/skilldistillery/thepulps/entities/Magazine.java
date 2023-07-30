@@ -75,6 +75,9 @@ public class Magazine {
 	@ManyToOne
 	@JoinColumn(name = "magazine_editor_id")
 	private MagazineEditor magazineEditor;
+	
+	@Column(name = "table_of_contents")
+	private String tableOfContents;
 
 	public Magazine() {
 		super();
@@ -83,7 +86,7 @@ public class Magazine {
 
 	public Magazine(int id, CoverArtwork coverArtwork, Publication publication, String name, LocalDateTime createdAt,
 			List<Tag> tags, List<Story> stories, String thumbnailUrl, String imageUrl, List<MagazinePdf> magazinePdfs, 
-			MagazineHtml magazineHtml, MagazineEditor magazineEditor) {
+			MagazineHtml magazineHtml, MagazineEditor magazineEditor, String tableOfContents) {
 		super();
 		this.id = id;
 		this.coverArtwork = coverArtwork;
@@ -97,6 +100,7 @@ public class Magazine {
 		this.magazinePdfs = magazinePdfs;
 		this.magazineHtml = magazineHtml;
 		this.magazineEditor = magazineEditor;
+		this.tableOfContents = tableOfContents;
 	}
 
 	public int getId() {
@@ -193,6 +197,14 @@ public class Magazine {
 
 	public void setMagazineEditor(MagazineEditor magazineEditor) {
 		this.magazineEditor = magazineEditor;
+	}
+
+	public String getTableOfContents() {
+		return tableOfContents;
+	}
+
+	public void setTableOfContents(String tableOfContents) {
+		this.tableOfContents = tableOfContents;
 	}
 
 	@Override

@@ -1,7 +1,16 @@
 <h2>Magazines</h2>
 
 <div class="main">
-  <ng-container *ngFor="let magazine of magazines">
+  <ng-container *ngFor="let magazine of magazines; let i = index">
+    <ng-container *ngIf="i === 0">
+      <div class="table-of-contents-box">
+        <div>
+          <img src="{{ magazine.imageUrl }}" alt="">
+        </div>
+        <div [innerHTML]="magazine?.tableOfContents"></div>
+
+      </div>
+    </ng-container>
     <div class="magazine-container" (click)="magazine && navigateToMagazineHtml(magazine)">
       <div class="magazine-card">
         <div class="magazine-thumbnail">

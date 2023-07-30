@@ -44,3 +44,7 @@
 .magazine-thumbnail {
   text-align: center;
 }
+
+.table-of-contents-box {
+  display: flex;
+}

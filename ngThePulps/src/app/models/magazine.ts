@@ -15,6 +15,7 @@ export class Magazine {
   // magazinePdfs: MagazinePdf[];
   magazineHtml: MagazineHtml;
   // magazineEditor: MagazineEditor;
+  tableOfContents: string;
 
   constructor(
     id: number = 0,
@@ -24,7 +25,8 @@ export class Magazine {
     magazines: Magazine[] = [],
     thumbnailUrl: string = '',
     imageUrl: string = '',
-    magazineHtml: MagazineHtml = new MagazineHtml()
+    magazineHtml: MagazineHtml = new MagazineHtml(),
+    tableOfContents: string = ''
   ) {
     this.id = id;
     this.publication = publication;
@@ -34,5 +36,6 @@ export class Magazine {
     this.thumbnailUrl = thumbnailUrl;
     this.imageUrl = imageUrl;
     this.magazineHtml = magazineHtml;
+    this.tableOfContents = tableOfContents;
   }
 }
