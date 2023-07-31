@@ -13,6 +13,8 @@ import { StoriesComponent } from './components/stories/stories.component';
 import { PublicationDetailsComponent } from './components/publication-details/publication-details.component';
 import { MagazineDetailsComponent } from './components/magazine-details/magazine-details.component';
 import { StoryDetailsComponent } from './components/story-details/story-details.component';
+import { AuthorsComponent } from './components/authors/authors.component';
+import { AuthorDetailsComponent } from './components/author-details/author-details.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { StoryDetailsComponent } from './components/story-details/story-details.
     StoriesComponent,
     PublicationDetailsComponent,
     MagazineDetailsComponent,
-    StoryDetailsComponent
+    StoryDetailsComponent,
+    AuthorsComponent,
+    AuthorDetailsComponent
   ],
   imports: [
     BrowserModule,
