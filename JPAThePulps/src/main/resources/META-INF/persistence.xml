@@ -52,6 +52,7 @@
 		<class>com.skilldistillery.thepulps.entities.StoryAnchorId</class>
 		<class>com.skilldistillery.thepulps.entities.Post</class>
 		<class>com.skilldistillery.thepulps.entities.Comment</class>
+		<class>com.skilldistillery.thepulps.entities.Advertisement</class>
 
 		<!-- end entities -->
 
