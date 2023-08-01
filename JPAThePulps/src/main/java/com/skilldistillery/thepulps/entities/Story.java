@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,13 +16,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.skilldistillery.thepulps.enums.Genre;
 import com.skilldistillery.thepulps.enums.StoryType;
 
 @Entity
@@ -104,8 +103,8 @@ public class Story {
 	@Column(name = "released_at")
 	private LocalDateTime releasedAt;
 	
-    @OneToOne(mappedBy = "storyImage")
-    private StoryImage storyImage;
+	@OneToMany(mappedBy = "story", cascade = CascadeType.ALL)
+	private List<StoryImage> storyImages;
 
 	public Story() {
 		super();
@@ -116,7 +115,7 @@ public class Story {
 			List<Tag> tags, List<Magazine> magazines, List<Collection> collections, List<Member> members,
 			List<StoryComment> storyComments, String thumbnailUrl, String backgroundUrl,
 			List<MagazineHtml> htmlMagazines, List<StoryAnchor> storyAnchors, StoryType storyType,
-			LocalDateTime releasedAt, StoryImage storyImage) {
+			LocalDateTime releasedAt, List<StoryImage> storyImages) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -134,7 +133,7 @@ public class Story {
 		this.storyAnchors = storyAnchors;
 		this.storyType = storyType;
 		this.releasedAt = releasedAt;
-		this.storyImage = storyImage;
+		this.storyImages = storyImages;
 	}
 
 	public int getId() {
@@ -265,12 +264,12 @@ public class Story {
 		this.releasedAt = releasedAt;
 	}
 
-	public StoryImage getStoryImage() {
-		return storyImage;
+	public List<StoryImage> getStoryImages() {
+		return storyImages;
 	}
 
-	public void setStoryImage(StoryImage storyImage) {
-		this.storyImage = storyImage;
+	public void setStoryImages(List<StoryImage> storyImages) {
+		this.storyImages = storyImages;
 	}
 
 	@Override

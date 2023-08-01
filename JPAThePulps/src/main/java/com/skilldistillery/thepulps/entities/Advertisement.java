@@ -8,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Advertisement {
@@ -17,9 +17,9 @@ public class Advertisement {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@OneToOne
-	@JoinColumn(name = "magazine_id")
-	private Magazine magazine;
+    @ManyToOne
+    @JoinColumn(name = "magazine_id")
+    private Magazine magazine;
 	
 	@Column(name = "image_url")
 	private String imageUrl;

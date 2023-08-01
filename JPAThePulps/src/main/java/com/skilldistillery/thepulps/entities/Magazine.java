@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -87,8 +88,8 @@ public class Magazine {
 	@Column(name = "page_count")
 	private int pageCount;
 	
-    @OneToOne(mappedBy = "advertisement")
-    private Advertisement advertisement;
+    @OneToMany(mappedBy = "magazine", cascade = CascadeType.ALL)
+    private List<Advertisement> advertisements;
 
 	public Magazine() {
 		super();
@@ -98,7 +99,7 @@ public class Magazine {
 	public Magazine(int id, CoverArtwork coverArtwork, Publication publication, String name, LocalDateTime createdAt,
 			List<Tag> tags, List<Story> stories, String thumbnailUrl, String imageUrl, List<MagazinePdf> magazinePdfs,
 			MagazineHtml magazineHtml, MagazineEditor magazineEditor, String tableOfContents, LocalDateTime releasedAt,
-			double price, int pageCount, Advertisement advertisement) {
+			double price, int pageCount, List<Advertisement> advertisements) {
 		super();
 		this.id = id;
 		this.coverArtwork = coverArtwork;
@@ -116,7 +117,7 @@ public class Magazine {
 		this.releasedAt = releasedAt;
 		this.price = price;
 		this.pageCount = pageCount;
-		this.advertisement = advertisement;
+		this.advertisements = advertisements;
 	}
 
 	public int getId() {
@@ -247,12 +248,12 @@ public class Magazine {
 		this.pageCount = pageCount;
 	}
 
-	public Advertisement getAdvertisement() {
-		return advertisement;
+	public List<Advertisement> getAdvertisements() {
+		return advertisements;
 	}
 
-	public void setAdvertisement(Advertisement advertisement) {
-		this.advertisement = advertisement;
+	public void setAdvertisements(List<Advertisement> advertisements) {
+		this.advertisements = advertisements;
 	}
 
 	@Override
