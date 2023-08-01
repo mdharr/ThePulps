@@ -53,6 +53,7 @@
 		<class>com.skilldistillery.thepulps.entities.Post</class>
 		<class>com.skilldistillery.thepulps.entities.Comment</class>
 		<class>com.skilldistillery.thepulps.entities.Advertisement</class>
+		<class>com.skilldistillery.thepulps.entities.StoryImage</class>
 
 		<!-- end entities -->
 
