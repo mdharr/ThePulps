@@ -48,3 +48,7 @@
 .table-of-contents-box {
   display: flex;
 }
+
+.magazine-img {
+  width: 500px;
+}
