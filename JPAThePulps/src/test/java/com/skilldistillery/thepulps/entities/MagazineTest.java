@@ -77,5 +77,11 @@ class MagazineTest {
 		assertNotNull(magazine);
 		assertEquals("Edwin Baird", magazine.getMagazineEditor().getName());
 	}
+	
+	@Test
+	void test_Magazine_Advertisement_one_to_many_mapping() {
+		assertNotNull(magazine);
+		assertEquals("https://www.gutenberg.org/files/69607/69607-h/images/ad01.jpg", magazine.getAdvertisements().get(0).getImageUrl());
+	}
 
 }
