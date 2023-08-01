@@ -6,6 +6,8 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,11 +15,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.skilldistillery.thepulps.enums.Genre;
+import com.skilldistillery.thepulps.enums.StoryType;
 
 @Entity
 public class Story {
@@ -92,6 +97,15 @@ public class Story {
 	@JsonIgnore
     @OneToMany(mappedBy = "story")
     private List<StoryAnchor> storyAnchors;
+	
+	@Enumerated(EnumType.STRING)
+	private StoryType storyType = StoryType.NOT_SPECIFIED;
+	
+	@Column(name = "released_at")
+	private LocalDateTime releasedAt;
+	
+    @OneToOne(mappedBy = "storyImage")
+    private StoryImage storyImage;
 
 	public Story() {
 		super();
@@ -100,7 +114,9 @@ public class Story {
 
 	public Story(int id, String title, LocalDateTime createdAt, List<StoryPdf> storyPdfs, List<Author> authors,
 			List<Tag> tags, List<Magazine> magazines, List<Collection> collections, List<Member> members,
-			List<StoryComment> storyComments, String thumbnailUrl, String backgroundUrl, List<MagazineHtml> htmlMagazines, List<StoryAnchor> storyAnchors) {
+			List<StoryComment> storyComments, String thumbnailUrl, String backgroundUrl,
+			List<MagazineHtml> htmlMagazines, List<StoryAnchor> storyAnchors, StoryType storyType,
+			LocalDateTime releasedAt, StoryImage storyImage) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -116,6 +132,9 @@ public class Story {
 		this.backgroundUrl = backgroundUrl;
 		this.htmlMagazines = htmlMagazines;
 		this.storyAnchors = storyAnchors;
+		this.storyType = storyType;
+		this.releasedAt = releasedAt;
+		this.storyImage = storyImage;
 	}
 
 	public int getId() {
@@ -228,6 +247,30 @@ public class Story {
 
 	public void setStoryAnchors(List<StoryAnchor> storyAnchors) {
 		this.storyAnchors = storyAnchors;
+	}
+
+	public StoryType getStoryType() {
+		return storyType;
+	}
+
+	public void setStoryType(StoryType storyType) {
+		this.storyType = storyType;
+	}
+
+	public LocalDateTime getReleasedAt() {
+		return releasedAt;
+	}
+
+	public void setReleasedAt(LocalDateTime releasedAt) {
+		this.releasedAt = releasedAt;
+	}
+
+	public StoryImage getStoryImage() {
+		return storyImage;
+	}
+
+	public void setStoryImage(StoryImage storyImage) {
+		this.storyImage = storyImage;
 	}
 
 	@Override
