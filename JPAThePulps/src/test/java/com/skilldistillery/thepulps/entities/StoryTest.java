@@ -109,5 +109,11 @@ class StoryTest {
 		assertNotNull(story);
 		assertEquals("https://www.gutenberg.org/files/68957/68957-h/68957-h.htm", story.getHtmlMagazines().get(0).getFileUrl());
 	}
+	
+	@Test
+	void test_Story_StoryImage_one_to_many_mapping() {
+		assertNotNull(story);
+		assertEquals("https://www.gutenberg.org/files/69607/69607-h/images/illus1.jpg", story.getStoryImages().get(0).getImageUrl());
+	}
 
 }
