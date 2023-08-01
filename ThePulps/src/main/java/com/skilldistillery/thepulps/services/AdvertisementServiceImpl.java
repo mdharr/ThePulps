@@ -1,20 +1,36 @@
 package com.skilldistillery.thepulps.services;
 
 import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.skilldistillery.thepulps.entities.Advertisement;
+import com.skilldistillery.thepulps.entities.Magazine;
+import com.skilldistillery.thepulps.repositories.AdvertisementRepository;
+import com.skilldistillery.thepulps.repositories.MagazineRepository;
 
 public class AdvertisementServiceImpl implements AdvertisementService {
+	
+	@Autowired
+	private AdvertisementRepository advertisementRepo;
+	
+	@Autowired
+	private MagazineRepository magazineRepo;
 
 	@Override
 	public List<Advertisement> getAllAdvertisements() {
-		// TODO Auto-generated method stub
-		return null;
+		return advertisementRepo.findAll();
 	}
 
 	@Override
 	public List<Advertisement> getAllAdvertisementsByMagazineId(int magazineId) {
-		// TODO Auto-generated method stub
+		Optional<Magazine> magazineOptional = magazineRepo.findById(magazineId);
+		if(magazineOptional.isPresent()) {
+			Magazine magazine = magazineOptional.get();
+			List<Advertisement> advertisements = magazine.getAdvertisements();
+			return advertisements;
+		}
 		return null;
 	}
 
