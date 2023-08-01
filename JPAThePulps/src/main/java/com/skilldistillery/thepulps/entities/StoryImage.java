@@ -9,33 +9,32 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
-public class Advertisement {
+@Table(name = "story_image")
+public class StoryImage {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	@OneToOne
-	@JoinColumn(name = "magazine_id")
-	private Magazine magazine;
+	@JoinColumn(name = "story_id")
+	private Story story;
 	
 	@Column(name = "image_url")
 	private String imageUrl;
-	
-//	@Column(name = "released_at")
-//	private LocalDateTime releasedAt;
 
-	public Advertisement() {
+	public StoryImage() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Advertisement(int id, Magazine magazine, String imageUrl) {
+	public StoryImage(int id, Story story, String imageUrl) {
 		super();
 		this.id = id;
-		this.magazine = magazine;
+		this.story = story;
 		this.imageUrl = imageUrl;
 	}
 
@@ -47,12 +46,12 @@ public class Advertisement {
 		this.id = id;
 	}
 
-	public Magazine getMagazine() {
-		return magazine;
+	public Story getStory() {
+		return story;
 	}
 
-	public void setMagazine(Magazine magazine) {
-		this.magazine = magazine;
+	public void setStory(Story story) {
+		this.story = story;
 	}
 
 	public String getImageUrl() {
@@ -76,16 +75,16 @@ public class Advertisement {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Advertisement other = (Advertisement) obj;
+		StoryImage other = (StoryImage) obj;
 		return id == other.id;
 	}
 
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Advertisement [id=").append(id).append(", magazine=").append(magazine).append(", imageUrl=")
+		builder.append("StoryImage [id=").append(id).append(", story=").append(story).append(", imageUrl=")
 				.append(imageUrl).append("]");
 		return builder.toString();
 	}
-	
+
 }
