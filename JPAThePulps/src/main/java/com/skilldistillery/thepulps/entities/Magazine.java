@@ -78,6 +78,17 @@ public class Magazine {
 	
 	@Column(name = "table_of_contents")
 	private String tableOfContents;
+	
+	@Column(name = "released_at")
+	private LocalDateTime releasedAt;
+	
+	private double price;
+	
+	@Column(name = "page_count")
+	private int pageCount;
+	
+    @OneToOne(mappedBy = "advertisement")
+    private Advertisement advertisement;
 
 	public Magazine() {
 		super();
@@ -85,8 +96,9 @@ public class Magazine {
 	}
 
 	public Magazine(int id, CoverArtwork coverArtwork, Publication publication, String name, LocalDateTime createdAt,
-			List<Tag> tags, List<Story> stories, String thumbnailUrl, String imageUrl, List<MagazinePdf> magazinePdfs, 
-			MagazineHtml magazineHtml, MagazineEditor magazineEditor, String tableOfContents) {
+			List<Tag> tags, List<Story> stories, String thumbnailUrl, String imageUrl, List<MagazinePdf> magazinePdfs,
+			MagazineHtml magazineHtml, MagazineEditor magazineEditor, String tableOfContents, LocalDateTime releasedAt,
+			double price, int pageCount, Advertisement advertisement) {
 		super();
 		this.id = id;
 		this.coverArtwork = coverArtwork;
@@ -101,6 +113,10 @@ public class Magazine {
 		this.magazineHtml = magazineHtml;
 		this.magazineEditor = magazineEditor;
 		this.tableOfContents = tableOfContents;
+		this.releasedAt = releasedAt;
+		this.price = price;
+		this.pageCount = pageCount;
+		this.advertisement = advertisement;
 	}
 
 	public int getId() {
@@ -205,6 +221,38 @@ public class Magazine {
 
 	public void setTableOfContents(String tableOfContents) {
 		this.tableOfContents = tableOfContents;
+	}
+
+	public LocalDateTime getReleasedAt() {
+		return releasedAt;
+	}
+
+	public void setReleasedAt(LocalDateTime releasedAt) {
+		this.releasedAt = releasedAt;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public int getPageCount() {
+		return pageCount;
+	}
+
+	public void setPageCount(int pageCount) {
+		this.pageCount = pageCount;
+	}
+
+	public Advertisement getAdvertisement() {
+		return advertisement;
+	}
+
+	public void setAdvertisement(Advertisement advertisement) {
+		this.advertisement = advertisement;
 	}
 
 	@Override

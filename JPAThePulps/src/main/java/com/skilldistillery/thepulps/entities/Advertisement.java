@@ -23,9 +23,6 @@ public class Advertisement {
 	
 	@Column(name = "image_url")
 	private String imageUrl;
-	
-//	@Column(name = "released_at")
-//	private LocalDateTime releasedAt;
 
 	public Advertisement() {
 		super();
