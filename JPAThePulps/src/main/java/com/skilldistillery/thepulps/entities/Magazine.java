@@ -83,10 +83,10 @@ public class Magazine {
 	@Column(name = "released_at")
 	private LocalDateTime releasedAt;
 	
-	private double price;
+	private Double price;
 	
 	@Column(name = "page_count")
-	private int pageCount;
+	private Integer pageCount;
 	
     @OneToMany(mappedBy = "magazine", cascade = CascadeType.ALL)
     private List<Advertisement> advertisements;
@@ -99,7 +99,7 @@ public class Magazine {
 	public Magazine(int id, CoverArtwork coverArtwork, Publication publication, String name, LocalDateTime createdAt,
 			List<Tag> tags, List<Story> stories, String thumbnailUrl, String imageUrl, List<MagazinePdf> magazinePdfs,
 			MagazineHtml magazineHtml, MagazineEditor magazineEditor, String tableOfContents, LocalDateTime releasedAt,
-			double price, int pageCount, List<Advertisement> advertisements) {
+			Double price, Integer pageCount, List<Advertisement> advertisements) {
 		super();
 		this.id = id;
 		this.coverArtwork = coverArtwork;
@@ -232,19 +232,19 @@ public class Magazine {
 		this.releasedAt = releasedAt;
 	}
 
-	public double getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
-	public int getPageCount() {
+	public Integer getPageCount() {
 		return pageCount;
 	}
 
-	public void setPageCount(int pageCount) {
+	public void setPageCount(Integer pageCount) {
 		this.pageCount = pageCount;
 	}
 

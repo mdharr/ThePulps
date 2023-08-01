@@ -192,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `magazine` (
   `magazine_editor_id` INT NULL,
   `table_of_contents` TEXT NULL,
   `released_at` DATETIME NULL,
-  `price` DECIMAL NULL,
+  `price` DECIMAL(5,2) NULL,
   `page_count` INT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_magazine_cover_artwork1_idx` (`cover_artwork_id` ASC),
