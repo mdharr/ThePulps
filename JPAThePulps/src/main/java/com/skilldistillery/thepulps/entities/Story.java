@@ -97,6 +97,7 @@ public class Story {
     @OneToMany(mappedBy = "story")
     private List<StoryAnchor> storyAnchors;
 	
+	@Column(name = "story_type")
 	@Enumerated(EnumType.STRING)
 	private StoryType storyType = StoryType.NOT_SPECIFIED;
 	

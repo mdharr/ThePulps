@@ -12,14 +12,14 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class CoverArtistTest {
+class StoryImageTest {
 
 	private static EntityManagerFactory emf;
 	
 	private EntityManager em;
 	
-	private CoverArtist coverArtist;
-	
+	private StoryImage storyImage;
+
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPAThePulps");
@@ -33,25 +33,25 @@ class CoverArtistTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		coverArtist = em.find(CoverArtist.class, new CoverArtistId(1, 1));
+		storyImage = em.find(StoryImage.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		coverArtist = null;
+		storyImage = null;
 	}
 
 	@Test
-	void test_CoverArtist_CoverArtwork_many_to_many_mapping() {
-		assertNotNull(coverArtist);
-		assertEquals("https://ia800908.us.archive.org/BookReader/BookReaderImages.php?zip=/33/items/WeirdTalesV01n01192303/Weird%20Tales%20v01n01%20%281923-03%29_jp2.zip&file=Weird%20Tales%20v01n01%20%281923-03%29_jp2/Weird%20Tales%20v01n01%20%281923-03%29_0000.jp2&id=WeirdTalesV01n01192303&scale=2&rotate=0", coverArtist.getCoverArtwork().getImageUrl());
+	void test_StoryImage_entity_mapping() {
+		assertNotNull(storyImage);
+		assertEquals("https://www.gutenberg.org/files/69607/69607-h/images/illus1.jpg", storyImage.getImageUrl());
 	}
 	
 	@Test
-	void test_CoverArtist_Artist_many_to_many_mapping() {
-		assertNotNull(coverArtist);
-		assertEquals("Richard R. Epperly", coverArtist.getArtist().getName());
+	void test_StoryImage_Story_one_to_many_mapping() {
+		assertNotNull(storyImage);
+		assertEquals("The Mystery of Black Jean", storyImage.getStory().getTitle());
 	}
 
 }

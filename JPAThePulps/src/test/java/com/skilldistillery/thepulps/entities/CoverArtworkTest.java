@@ -45,7 +45,7 @@ class CoverArtworkTest {
 	@Test
 	void test_CoverArtwork_entity_mapping() {
 		assertNotNull(coverArtwork);
-		assertEquals("https://www.gutenberg.org/files/68957/68957-h/images/cover.jpg", coverArtwork.getImageUrl());
+		assertEquals("https://ia800908.us.archive.org/BookReader/BookReaderImages.php?zip=/33/items/WeirdTalesV01n01192303/Weird%20Tales%20v01n01%20%281923-03%29_jp2.zip&file=Weird%20Tales%20v01n01%20%281923-03%29_jp2/Weird%20Tales%20v01n01%20%281923-03%29_0000.jp2&id=WeirdTalesV01n01192303&scale=2&rotate=0", coverArtwork.getImageUrl());
 	}
 	
 	@Test
