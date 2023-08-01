@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.thepulps.entities.Story;
 import com.skilldistillery.thepulps.entities.StoryImage;
 import com.skilldistillery.thepulps.repositories.StoryImageRepository;
 import com.skilldistillery.thepulps.repositories.StoryRepository;
 
+@Service
 public class StoryImageServiceImpl implements StoryImageService {
 	
 	@Autowired

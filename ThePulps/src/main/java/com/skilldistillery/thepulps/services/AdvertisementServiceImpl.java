@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.skilldistillery.thepulps.entities.Advertisement;
 import com.skilldistillery.thepulps.entities.Magazine;
 import com.skilldistillery.thepulps.repositories.AdvertisementRepository;
 import com.skilldistillery.thepulps.repositories.MagazineRepository;
 
+@Service
 public class AdvertisementServiceImpl implements AdvertisementService {
 	
 	@Autowired
