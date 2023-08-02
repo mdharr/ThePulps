@@ -18,7 +18,7 @@ export class Story {
   imageUrl: string;
   htmlMagazines: MagazineHtml[];
   storyAnchors: StoryAnchor[];
-  // storyType
+  storyType: StoryType;
   releasedAt: string;
   storyImages: StoryImage[];
 
@@ -31,6 +31,7 @@ export class Story {
     imageUrl: string = '',
     htmlMagazines: MagazineHtml[] = [],
     storyAnchors: StoryAnchor[] = [],
+    storyType: StoryType = StoryType.NOT_SPECIFIED,
     releasedAt: string = '',
     storyImages: StoryImage[] = []
   ) {
@@ -42,7 +43,18 @@ export class Story {
     this.imageUrl = imageUrl;
     this.htmlMagazines = htmlMagazines;
     this.storyAnchors = storyAnchors;
+    this.storyType = storyType;
     this.releasedAt = releasedAt;
     this.storyImages = storyImages;
   }
+}
+
+export enum StoryType {
+  SHORT_STORY = 'SHORT_STORY',
+  NOVELETTE = 'NOVELETTE',
+  SERIAL = 'SERIAL',
+  SHORT_FICTION = 'SHORT_FICTION',
+  ESSAY = 'ESSAY',
+  POEM = 'POEM',
+  NOT_SPECIFIED = 'NOT_SPECIFIED'
 }
