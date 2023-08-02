@@ -4,8 +4,6 @@ export class StoryImage {
   id: number;
   story: Story;
   imageUrl: string;
-  // stories: Story[];
-  // storyAnchors: StoryAnchor[];
 
   constructor(
     id: number = 0,

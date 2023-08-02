@@ -1,6 +1,7 @@
 import { Magazine } from "./magazine";
 import { MagazineHtml } from "./magazine-html";
 import { StoryAnchor } from "./story-anchor";
+import { StoryImage } from "./story-image";
 
 export class Story {
   id: number;
@@ -17,6 +18,9 @@ export class Story {
   imageUrl: string;
   htmlMagazines: MagazineHtml[];
   storyAnchors: StoryAnchor[];
+  // storyType
+  releasedAt: string;
+  storyImages: StoryImage[];
 
   constructor(
     id: number = 0,
@@ -26,7 +30,9 @@ export class Story {
     thumbnailUrl: string = '',
     imageUrl: string = '',
     htmlMagazines: MagazineHtml[] = [],
-    storyAnchors: StoryAnchor[] = []
+    storyAnchors: StoryAnchor[] = [],
+    releasedAt: string = '',
+    storyImages: StoryImage[] = []
   ) {
     this.id = id;
     this.title = title;
@@ -36,5 +42,7 @@ export class Story {
     this.imageUrl = imageUrl;
     this.htmlMagazines = htmlMagazines;
     this.storyAnchors = storyAnchors;
+    this.releasedAt = releasedAt;
+    this.storyImages = storyImages;
   }
 }
