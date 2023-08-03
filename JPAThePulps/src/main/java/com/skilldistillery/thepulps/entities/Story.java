@@ -80,12 +80,6 @@ public class Story {
 	@OrderBy("createdAt ASC") // ordering storyComments by their createdAt column
 	private List<StoryComment> storyComments;
 	
-	@Column(name = "thumbnail_url")
-	private String thumbnailUrl;
-	
-	@Column(name = "background_url")
-	private String backgroundUrl;
-	
 	@JsonIgnore
     @ManyToMany
     @JoinTable(name = "story_anchor",
@@ -114,9 +108,8 @@ public class Story {
 
 	public Story(int id, String title, LocalDateTime createdAt, List<StoryPdf> storyPdfs, List<Author> authors,
 			List<Tag> tags, List<Magazine> magazines, List<Collection> collections, List<Member> members,
-			List<StoryComment> storyComments, String thumbnailUrl, String backgroundUrl,
-			List<MagazineHtml> htmlMagazines, List<StoryAnchor> storyAnchors, StoryType storyType,
-			LocalDateTime releasedAt, List<StoryImage> storyImages) {
+			List<StoryComment> storyComments, List<MagazineHtml> htmlMagazines, List<StoryAnchor> storyAnchors,
+			StoryType storyType, LocalDateTime releasedAt, List<StoryImage> storyImages) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -128,8 +121,6 @@ public class Story {
 		this.collections = collections;
 		this.members = members;
 		this.storyComments = storyComments;
-		this.thumbnailUrl = thumbnailUrl;
-		this.backgroundUrl = backgroundUrl;
 		this.htmlMagazines = htmlMagazines;
 		this.storyAnchors = storyAnchors;
 		this.storyType = storyType;
@@ -215,22 +206,6 @@ public class Story {
 
 	public void setStoryComments(List<StoryComment> storyComments) {
 		this.storyComments = storyComments;
-	}
-
-	public String getThumbnailUrl() {
-		return thumbnailUrl;
-	}
-
-	public void setThumbnailUrl(String thumbnailUrl) {
-		this.thumbnailUrl = thumbnailUrl;
-	}
-
-	public String getBackgroundUrl() {
-		return backgroundUrl;
-	}
-
-	public void setBackgroundUrl(String backgroundUrl) {
-		this.backgroundUrl = backgroundUrl;
 	}
 
 	public List<MagazineHtml> getHtmlMagazines() {
