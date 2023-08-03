@@ -87,11 +87,10 @@ CREATE TABLE IF NOT EXISTS `story` (
   `title` VARCHAR(255) NULL,
   `created_at` TIMESTAMP NULL,
   `description` VARCHAR(255) NULL,
-  `thumbnail_url` VARCHAR(255) NULL,
-  `background_url` VARCHAR(255) NULL,
-  `story_type` ENUM('SHORT_STORY', 'NOVELETTE', 'SERIAL', 'SHORT_FICTION', 'ESSAY', 'POEM', 'NOT_SPECIFIED') NULL,
+  `story_type` ENUM('SHORT_STORY', 'NOVELETTE', 'SERIAL', 'SHORT_FICTION', 'ESSAY', 'POEM', 'EDITORIAL', 'NOT_SPECIFIED') NULL,
   `released_at` DATETIME NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `title_UNIQUE` (`title` ASC))
 ENGINE = InnoDB;
 
 
@@ -1010,54 +1009,95 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `thepulpsdb`;
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (1, 'The Mystery of Black Jean', '2023-03-03T12:35:22', 'A story of blood-curdling realism, with a smashing surprise at the end.', NULL, NULL, 'SHORT_STORY', '1923-03-01T00:00:00');
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (2, 'The Grave', '2023-03-03T12:35:22', 'A soul-gripping story of terror.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (3, 'Hark! The Rattle!', '2023-03-03T12:35:22', 'An uncommon tale that will cling to your memory for many a day.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (4, 'The Ghost Guard', '2023-03-03T12:35:22', 'A “spooky” tale with a grim background.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (5, 'The Ghoul and the Corpse', '2023-03-03T12:35:22', 'An amazing yarn of weird adventure in the frozen North.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (6, 'Fear', '2023-03-03T12:35:22', 'Showing how fear can drive a strong man to the verge of insanity.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (7, 'The Place of Madness', '2023-03-03T12:35:22', 'What two hours in a prison “solitary” did to a man.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (8, 'The Closing Hand', '2023-03-03T12:35:22', 'A brief story powerfully written.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (9, 'The Unknown Beast', '2023-03-03T12:35:22', 'An unusual tale of a terrifying monster.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (10, 'The Basket', '2023-03-03T12:35:22', 'A queer little story about San Francisco.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (11, 'The Accusing Voice', '2023-03-03T12:35:22', 'The singular experience of Allen Defoe.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (12, 'The Sequel', '2023-03-03T12:35:22', 'A new conclusion to Edgar Allen Poe’s “Cask of Amontillado.”', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (13, 'The Weaving Shadows', '2023-03-03T12:35:22', 'Chet Burke’s strange adventures in a haunted house.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (14, 'Nimba, the Cave Girl', '2023-03-03T12:35:22', 'An odd, fantastic little story of the Stone Age.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (15, 'The Young Man Who Wanted to Die', '2023-03-03T12:35:22', 'An anonymous author submits a startling answer to the question, “What comes after death?”', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (16, 'The Scarlet Night', '2023-03-03T12:35:22', 'A tale with an eerie thrill.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (17, 'The Extraordinary Experiment of Dr. Calgroni', '2023-03-03T12:35:22', 'An eccentric doctor creates a frightful living thing.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (18, 'The Return of Paul Slavsky', '2023-03-03T12:35:22', 'A “creepy” tale that ends in a shuddering, breath-taking way.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (19, 'The House of Death', '2023-03-03T12:35:22', 'The strange secret of a lonely woman.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (20, 'The Gallows', '2023-03-03T12:35:22', 'An out-of-the-ordinary story.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (21, 'The Skull', '2023-03-03T12:35:22', 'A grim tale with a terrifying end.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (22, 'The Ape-Man', '2023-03-03T12:35:22', 'A Jungle tale that is somehow “different.”', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (23, 'The Dead Man’s Tale', '2023-03-03T12:35:22', 'An astounding yarn that will hold you spellbound and make you breathe fast with a new mental sensation.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (24, 'Ooze', '2023-03-03T12:35:22', 'A Remarkable short novel by a master of “gooseflesh” fiction.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (25, 'The Chain', '2023-03-03T12:35:22', 'Craigie is at his best here.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (26, 'The Thing of a Thousand Shapes', '2023-03-03T12:35:22', 'Don’t start this story late at night.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (27, 'The Eyrie', '2023-03-03T12:35:22', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (28, 'The Scar', '2023-03-03T12:35:22', 'A Thrilling Novelette.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (29, 'Beyond the Door', '2023-03-03T12:35:22', 'A Short Story of Gripping Interest.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (30, 'The Tortoise Shell Comb', '2023-03-03T12:35:22', 'A Fantasy of a Mad Brain.	', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (31, 'A Photographic Phantasm', '2023-03-03T12:35:22', NULL, NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (32, 'The Living Nightmare', '2023-03-03T12:35:22', 'A Night in a House of Death.	', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (33, 'The Incubus', '2023-03-03T12:35:22', 'A Frightful Adventure in an Ancient Tomb.	', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (34, 'The Bodymaster', '2023-03-03T12:35:22', 'An Amazing Novelette.', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (35, 'Jungle Death', '2023-03-03T12:35:22', 'A Story in Which Crocodiles and Voodooism Play the Stellar Roles.	', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (36, 'The Snake Fiend', '2023-03-03T12:35:22', 'A Tale of Diabolic Terror.	', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (37, 'A Square of Canvas', '2023-03-03T12:35:22', 'A Story of an Insane Artist.	', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (38, 'The Affair of the Man in Scarlet', '2023-03-03T12:35:22', 'A Weird Story of the Thirteenth Century.	', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (39, 'The Hideous Face', '2023-03-03T12:35:22', 'A Grim Tale of Frightful Revenge.	', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (40, 'The Forty Jars', '2023-03-03T12:35:22', 'A Strange Story of the Orient.	', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (41, 'The Whispering Thing', '2023-03-03T12:35:22', 'A Two-part Novel of Death and Terror.	', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (42, 'The Thing of a Thousand Shapes', '2023-03-03T12:35:22', 'The Concluding Chapters of a Weird Novel.	', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (43, 'The Conquering Will', '2023-03-03T12:35:22', 'Do the Dead Return to Life?	', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (44, 'Six Feet of Willow', '2023-03-03T12:35:22', 'The Strange Tale of a Yellow Man and His Beloved Reptile.	', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (45, 'The Hall of the Dead', '2023-03-03T12:35:22', 'An Occult Story of Ancient Egypt.	', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (46, 'The Parlor Cemetery', '2023-03-03T12:35:22', 'A Grisly Satire.	', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (47, 'Golden Glow', '2023-03-03T12:35:22', 'A “Haunted House” Story with a Touch of Humor.	', NULL, NULL, NULL, NULL);
-INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `thumbnail_url`, `background_url`, `story_type`, `released_at`) VALUES (48, 'The Eyrie', '2023-03-03T12:35:22', NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (1, 'The Mystery of Black Jean', '2023-03-03T12:35:22', 'A story of blood-curdling realism, with a smashing surprise at the end.', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (2, 'The Grave', '2023-03-03T12:35:22', 'A soul-gripping story of terror.', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (3, 'Hark! The Rattle!', '2023-03-03T12:35:22', 'An uncommon tale that will cling to your memory for many a day.', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (4, 'The Ghost Guard', '2023-03-03T12:35:22', 'A “spooky” tale with a grim background.', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (5, 'The Ghoul and the Corpse', '2023-03-03T12:35:22', 'An amazing yarn of weird adventure in the frozen North.', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (6, 'Fear', '2023-03-03T12:35:22', 'Showing how fear can drive a strong man to the verge of insanity.', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (7, 'The Place of Madness', '2023-03-03T12:35:22', 'What two hours in a prison “solitary” did to a man.', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (8, 'The Closing Hand', '2023-03-03T12:35:22', 'A brief story powerfully written.', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (9, 'The Unknown Beast', '2023-03-03T12:35:22', 'An unusual tale of a terrifying monster.', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (10, 'The Basket', '2023-03-03T12:35:22', 'A queer little story about San Francisco.', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (11, 'The Accusing Voice', '2023-03-03T12:35:22', 'The singular experience of Allen Defoe.', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (12, 'The Sequel', '2023-03-03T12:35:22', 'A new conclusion to Edgar Allen Poe’s “Cask of Amontillado.”', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (13, 'The Weaving Shadows', '2023-03-03T12:35:22', 'Chet Burke’s strange adventures in a haunted house.', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (14, 'Nimba, the Cave Girl', '2023-03-03T12:35:22', 'An odd, fantastic little story of the Stone Age.', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (15, 'The Young Man Who Wanted to Die', '2023-03-03T12:35:22', 'An anonymous author submits a startling answer to the question, “What comes after death?”', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (16, 'The Scarlet Night', '2023-03-03T12:35:22', 'A tale with an eerie thrill.', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (17, 'The Extraordinary Experiment of Dr. Calgroni', '2023-03-03T12:35:22', 'An eccentric doctor creates a frightful living thing.', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (18, 'The Return of Paul Slavsky', '2023-03-03T12:35:22', 'A “creepy” tale that ends in a shuddering, breath-taking way.', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (19, 'The House of Death', '2023-03-03T12:35:22', 'The strange secret of a lonely woman.', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (20, 'The Gallows', '2023-03-03T12:35:22', 'An out-of-the-ordinary story.', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (21, 'The Skull', '2023-03-03T12:35:22', 'A grim tale with a terrifying end.', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (22, 'The Ape-Man', '2023-03-03T12:35:22', 'A Jungle tale that is somehow “different.”', 'SHORT_STORY', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (23, 'The Dead Man’s Tale', '2023-03-03T12:35:22', 'An astounding yarn that will hold you spellbound and make you breathe fast with a new mental sensation.', 'NOVELETTE', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (24, 'Ooze', '2023-03-03T12:35:22', 'A Remarkable short novel by a master of “gooseflesh” fiction.', 'NOVELETTE', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (25, 'The Chain', '2023-03-03T12:35:22', 'Craigie is at his best here.', 'NOVELETTE', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (26, 'The Thing of a Thousand Shapes (Part 1 of 2)', '2023-03-03T12:35:22', 'Don’t start this story late at night.', 'SERIAL', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (27, 'The Eyrie (Weird Tales, March 1923)', '2023-03-03T12:35:22', NULL, 'EDITORIAL', '1923-03-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (28, 'The Scar', '2023-03-03T12:35:22', 'A Thrilling Novelette.', 'NOVELETTE', '1923-04-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (29, 'Beyond the Door', '2023-03-03T12:35:22', 'A Short Story of Gripping Interest.', 'SHORT_STORY', '1923-04-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (30, 'The Tortoise Shell Comb', '2023-03-03T12:35:22', 'A Fantasy of a Mad Brain.	', 'SHORT_STORY', '1923-04-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (31, 'A Photographic Phantasm', '2023-03-03T12:35:22', NULL, 'SHORT_STORY', '1923-04-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (32, 'The Living Nightmare', '2023-03-03T12:35:22', 'A Night in a House of Death.	', 'SHORT_STORY', '1923-04-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (33, 'The Incubus', '2023-03-03T12:35:22', 'A Frightful Adventure in an Ancient Tomb.	', 'SHORT_STORY', '1923-04-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (34, 'The Bodymaster', '2023-03-03T12:35:22', 'An Amazing Novelette.', 'NOVELETTE', '1923-04-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (35, 'Jungle Death', '2023-03-03T12:35:22', 'A Story in Which Crocodiles and Voodooism Play the Stellar Roles.	', 'SHORT_STORY', '1923-04-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (36, 'The Snake Fiend', '2023-03-03T12:35:22', 'A Tale of Diabolic Terror.	', 'SHORT_STORY', '1923-04-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (37, 'A Square of Canvas', '2023-03-03T12:35:22', 'A Story of an Insane Artist.	', 'SHORT_STORY', '1923-04-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (38, 'The Affair of the Man in Scarlet', '2023-03-03T12:35:22', 'A Weird Story of the Thirteenth Century.	', 'SHORT_STORY', '1923-04-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (39, 'The Hideous Face', '2023-03-03T12:35:22', 'A Grim Tale of Frightful Revenge.	', 'SHORT_STORY', '1923-04-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (40, 'The Forty Jars', '2023-03-03T12:35:22', 'A Strange Story of the Orient.	', 'SHORT_STORY', '1923-04-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (41, 'The Whispering Thing (Part 1 of 2)', '2023-03-03T12:35:22', 'A Two-part Novel of Death and Terror.	', 'SERIAL', '1923-04-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (42, 'The Thing of a Thousand Shapes (Part 2 of 2)', '2023-03-03T12:35:22', 'The Concluding Chapters of a Weird Novel.	', 'SERIAL', '1923-04-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (43, 'The Conquering Will', '2023-03-03T12:35:22', 'Do the Dead Return to Life?	', 'SHORT_STORY', '1923-04-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (44, 'Six Feet of Willow', '2023-03-03T12:35:22', 'The Strange Tale of a Yellow Man and His Beloved Reptile.	', 'SHORT_STORY', '1923-04-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (45, 'The Hall of the Dead', '2023-03-03T12:35:22', 'An Occult Story of Ancient Egypt.	', 'SHORT_STORY', '1923-04-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (46, 'The Parlor Cemetery', '2023-03-03T12:35:22', 'A Grisly Satire.	', 'SHORT_STORY', '1923-04-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (47, 'Golden Glow', '2023-03-03T12:35:22', 'A “Haunted House” Story with a Touch of Humor.	', 'SHORT_STORY', '1923-04-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (48, 'The Eyrie (Weird Tales, April 1923)', '2023-03-03T12:35:22', NULL, 'EDITORIAL', '1923-04-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (49, 'The Moon Terror (Part 1 of 2)', '2023-03-03T12:35:22', 'A Remarkable Novel', 'SERIAL', '1923-05-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (50, 'The Secret Fear', '2023-03-03T12:35:22', 'A \"Creepy\" Detective Story', 'SHORT_STORY', '1923-05-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (51, 'Jungle Beasts', '2023-03-03T12:35:22', 'A Complete Novelette', 'NOVELETTE', '1923-05-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (52, 'The Golden Caverns', '2023-03-03T12:35:22', 'A Condensed Novel', 'NOVELETTE', '1923-05-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (53, 'Vials of Insects', '2023-03-03T12:35:22', 'Short Story', 'SHORT_STORY', '1923-05-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (54, 'An Eye for an Eye', '2023-03-03T12:35:22', 'Short Story', 'SHORT_STORY', '1923-05-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (55, 'The Floor Above', '2023-03-03T12:35:22', 'A Short Story with a Horrifying Climax', 'SHORT_STORY', '1923-05-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (56, 'Penelope', '2023-03-03T12:35:22', 'A Fantastic Tale', 'SHORT_STORY', '1923-05-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (57, 'The Purple Heart', '2023-03-03T12:35:22', 'The Story of a Haunted Cabin', 'SHORT_STORY', '1923-05-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (58, 'Feline', '2023-03-03T12:35:22', 'A Whimsical Storiette', 'SHORT_STORY', '1923-05-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (59, 'Two Hours of Death', '2023-03-03T12:35:22', 'A Ghost Story', 'SHORT_STORY', '1923-05-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (60, 'Midnight Black', '2023-03-03T12:35:22', 'Short Story', 'SHORT_STORY', '1923-05-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (61, 'The Haunted and the Haunters', '2023-03-03T12:35:22', 'An Old Masterpiece', 'SHORT_STORY', '1923-05-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (62, 'The Whispering Thing (Part 2 of 2)', '2023-03-03T12:35:22', 'The Conclusion of a Frightful Mystery Novel', 'SERIAL', '1923-05-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (63, 'The Death Cell', '2023-03-03T12:35:22', 'A Weird Short Story', 'SHORT_STORY', '1923-05-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (64, 'The Devil Plant', '2023-03-03T12:35:22', 'A Story of Ghastly Retribution', 'SHORT_STORY', '1923-05-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (65, 'The Thunder Voice', '2023-03-03T12:35:22', 'The Story of a Hairy Monster', 'SHORT_STORY', '1923-05-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (66, 'Case No. 27', '2023-03-03T12:35:22', 'A Few Minutes in a Madhouse', 'SHORT_STORY', '1923-05-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (67, 'The Finale', '2023-03-03T12:35:22', 'A Short Story', 'SHORT_STORY', '1923-05-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (68, 'The Closed Cabinet', '2023-03-03T12:35:22', 'A Story of the Eighteenth Century', 'SHORT_STORY', '1923-05-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (69, 'The Eyrie (Weird Tales, May 1923)', '2023-03-03T12:35:22', NULL, 'EDITORIAL', '1923-05-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (70, 'The Evening Wolves', '2023-03-03T12:35:22', 'An Exciting Tale of Weird Events', 'SHORT_STORY', '1923-06-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (71, 'Desert Madness', '2023-03-03T12:35:22', 'A Fanciful Novel of the Red Desert', 'SHORT_STORY', '1923-06-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (72, 'The Jailer of Souls', '2023-03-03T12:35:22', 'A Powerful Novel of Sinister Madmen that Mounts to an Astounding Climax', 'SHORT_STORY', '1923-06-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (73, 'Jack O\' Mystery', '2023-03-03T12:35:22', 'A Modern Ghost Story', 'SHORT_STORY', '1923-06-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (74, 'Osiris', '2023-03-03T12:35:22', 'A Weird Tale of an Egyptian Mummy', 'SHORT_STORY', '1923-06-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (75, 'The Well', '2023-03-03T12:35:22', 'A Short Story', 'SHORT_STORY', '1923-06-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (76, 'The Phantom Wolfhound', '2023-03-03T12:35:22', 'A Spooky Yarn by the Author of \"The Thing of a Thousand Shapes\"', 'SHORT_STORY', '1923-06-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (77, 'The Murders in the Rue Morgue', '2023-03-03T12:35:22', 'A Masterpiece of Weird Fiction', 'SHORT_STORY', '1923-06-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (78, 'The Moon Terror (Part 2 of 2)', '2023-03-03T12:35:22', 'Final Thrilling Installment of the Mysterious Chinese Moon Worshipers', 'SERIAL', '1923-06-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (79, 'The Man the Law Forgot', '2023-03-03T12:35:22', 'A Remarkable Story of the Dead Returned to Life', 'SHORT_STORY', '1923-06-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (80, 'The Blade of Vengenance', '2023-03-03T12:35:22', 'A Powerful, Gripping Story Well Told', 'SHORT_STORY', '1923-06-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (81, 'The Gray Death', '2023-03-03T12:35:22', 'Horrifying and Incredible Tale of the Amazon Valley', 'SHORT_STORY', '1923-06-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (82, 'The Voice in the Fog', '2023-03-03T12:35:22', 'Another Thriller by the Author of \"Whispering Wires\"', 'SHORT_STORY', '1923-06-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (83, 'The Invisible Terror', '2023-03-03T12:35:22', 'An Uncanny Tale of the Jungle', 'SHORT_STORY', '1923-06-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (84, 'The Escape', '2023-03-03T12:35:22', 'A Short Story', 'SHORT_STORY', '1923-06-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (85, 'The Siren', '2023-03-03T12:35:22', 'A Storiette That Is \"Different\"', 'SHORT_STORY', '1923-06-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (86, 'The Madman', '2023-03-03T12:35:22', 'A Night of Horror in the Mortuary', 'SHORT_STORY', '1923-06-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (87, 'The Chair', '2023-03-03T12:35:22', 'An Electrocution Vividly Described by an Eyewitness', 'SHORT_STORY', '1923-06-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (88, 'The Cauldron', '2023-03-03T12:35:22', 'True Adventures of Terror', 'SHORT_STORY', '1923-06-01T00:00:00');
+INSERT INTO `story` (`id`, `title`, `created_at`, `description`, `story_type`, `released_at`) VALUES (89, 'The Eyrie (Weird Tales, June 1923)', '2023-03-03T12:35:22', NULL, 'EDITORIAL', '1923-06-01T00:00:00');
 
 COMMIT;
 
@@ -1784,6 +1824,37 @@ INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `
 INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (41, 'Francis D. Grierson', 41, NULL, NULL);
 INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (42, 'C. E. Howard', 42, NULL, NULL);
 INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (43, 'Harry Irving Shumway', 43, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (44, 'A. G. Birch', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (45, 'Kenneth Duane Whipple', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (46, 'William P. Barron', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (47, 'Pault Ellsworth Triem', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (48, 'G. W. Crane', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (49, 'M. Humphreys', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (50, 'Vincent Starrett', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (51, 'Herman Sisk', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (52, 'Bruce Grant', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (53, 'E. Thayles Emmons', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (54, 'Bulwer Lytton', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (55, 'F. K. Moss', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (56, 'Lyle Wislon Holden', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (57, 'F. Walter Wilson', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (58, 'Mollie Frank Ellis', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (59, 'William Merrit', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (60, 'Harold Freeman Miners', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (61, 'Edwin McLaren', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (62, 'Adam Hull Shirk', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (63, 'Adelbert Kline', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (64, 'Edgar Allan Poe', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (65, 'Walter Noble Burus', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (66, 'George Warburton Lewis', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (67, 'Loual B. Sugarman', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (68, 'Henry Leverage', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (69, 'Hugh Thomason', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (70, 'Helen Rowe Henze', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (71, 'Tarleton Collier', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (72, 'Herbert Hipwell', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (73, 'Dr. Harry E. Mereness', NULL, NULL, NULL);
+INSERT INTO `author` (`id`, `full_name`, `author_profile_id`, `thumbnail_url`, `image_url`) VALUES (74, 'Preson Langley Hickey', NULL, NULL, NULL);
 
 COMMIT;
 
