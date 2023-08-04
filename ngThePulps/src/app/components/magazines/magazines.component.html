@@ -2,7 +2,7 @@
 
 <div class="main">
   <ng-container *ngFor="let magazine of magazines; let i = index">
-    <ng-container *ngIf="i === 0">
+    <!-- <ng-container *ngIf="i === 0">
       <div class="table-of-contents-box">
         <div class="magazine-img">
           <img src="{{ magazine.imageUrl }}" alt="">
@@ -10,8 +10,9 @@
         <div [innerHTML]="magazine?.tableOfContents"></div>
 
       </div>
-    </ng-container>
-    <div class="magazine-container" (click)="magazine && navigateToMagazineHtml(magazine)">
+    </ng-container> -->
+    <!-- <div class="magazine-container" (click)="magazine && navigateToMagazineHtml(magazine)"> -->
+    <div class="magazine-container" [routerLink]="['/publications', publicationId, 'magazines', magazine.id]">
       <div class="magazine-card">
         <div class="magazine-thumbnail">
           <img class="thumbnail-img" src="{{ magazine.thumbnailUrl }}" alt="" loading="lazy">
