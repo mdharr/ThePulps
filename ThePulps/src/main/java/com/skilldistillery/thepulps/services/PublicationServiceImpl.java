@@ -93,4 +93,9 @@ public class PublicationServiceImpl implements PublicationService {
 		return Collections.emptyList();
 	}
 
+	@Override
+	public Publication getPublicationByName(String publicationName) {
+		return publicationRepo.findByName(publicationName);
+	}
+
 }

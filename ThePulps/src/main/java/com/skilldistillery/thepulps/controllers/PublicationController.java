@@ -79,5 +79,15 @@ public class PublicationController {
     public List<Magazine> getAllMagazinesByPublicationId(@PathVariable("pid") int publicationId, HttpServletRequest req, HttpServletResponse res) {
     	return publicationService.getAllMagazinesByPublicationId(publicationId);
     }
+    
+    // url experiment
+    @GetMapping("publications/items/{fpn}")
+    public Publication getPublicationByName(@PathVariable("fpn") String formattedPublicationName, HttpServletResponse res) {
+    	String originalName = formattedPublicationName.replace("-", " ");
+    	if(publicationService.getPublicationByName(originalName) == null) {
+    		res.setStatus(404);
+    	}
+    	return publicationService.getPublicationByName(originalName);
+    }
 
 }

@@ -18,6 +18,9 @@ public interface PublicationService {
 //    public boolean deletePublication(int publicationId);
     
     public List<Magazine> getAllMagazinesByPublicationId(int publicationId);
+    
+    // url experiment
+    public Publication getPublicationByName(String publicationName);
 
 	
 }
