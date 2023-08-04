@@ -80,7 +80,7 @@ public class PublicationController {
     	return publicationService.getAllMagazinesByPublicationId(publicationId);
     }
     
-    // url experiment
+    // url experiment stretch goal
     @GetMapping("publications/items/{fpn}")
     public Publication getPublicationByName(@PathVariable("fpn") String formattedPublicationName, HttpServletResponse res) {
     	String originalName = formattedPublicationName.replace("-", " ");

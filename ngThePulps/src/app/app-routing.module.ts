@@ -13,6 +13,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'publications', component: PublicationsComponent },
   { path: 'publications/:publicationId', component: PublicationDetailsComponent },
+  // url endpoint stretch goal
+  // { path: 'publications/:publicationName', component: PublicationDetailsComponent },
   { path: 'publications/:publicationId/magazines', component: MagazinesComponent },
   { path: 'publications/:publicationId/magazines/:magazineId', component: MagazineDetailsComponent },
   { path: 'publications/:publicationId/magazines/:magazineId/stories', component: StoriesComponent },

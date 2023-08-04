@@ -34,4 +34,9 @@ export class PublicationsComponent implements OnInit {
 
   }
 
+  // url experiment stretch goal
+  formatPublicationNameForUrl(name: string): string {
+    return name.toLowerCase().replace(/\s+/g, '-');
+  }
+
 }

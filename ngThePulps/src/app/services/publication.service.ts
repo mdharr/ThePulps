@@ -62,4 +62,17 @@ export class PublicationService {
       })
     );
   }
+
+  // url experiment stretch goal
+  findByName(name: string): Observable<Publication> {
+    return this.http.get<Publication>(`${this.url}/items/${name}`).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('PublicationService.findByName(): error retrieving publication: ' + err)
+        );
+      })
+    );
+  }
 }

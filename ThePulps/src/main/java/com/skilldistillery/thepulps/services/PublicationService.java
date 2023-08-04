@@ -19,7 +19,7 @@ public interface PublicationService {
     
     public List<Magazine> getAllMagazinesByPublicationId(int publicationId);
     
-    // url experiment
+    // url experiment stretch goal
     public Publication getPublicationByName(String publicationName);
 
 	
