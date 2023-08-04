@@ -1,4 +1,23 @@
-<p>magazine-details works!</p>
-<div>
-  <p>{{ magazine.name }}</p>
+<h2>Magazine Details</h2>
+
+<div class="main">
+    <div class="magazine-container" [routerLink]="['/publications', publicationId, 'magazines', magazine.id, 'stories']">
+      <div class="magazine-card">
+        <div class="magazine-thumbnail">
+          <img class="thumbnail-img" src="{{ magazine.thumbnailUrl }}" alt="" loading="lazy">
+        </div>
+        <div class="magazine-title">
+          <h6>{{ magazine.name }}</h6>
+        </div>
+      </div>
+    </div>
+    <div>
+      <ul>
+        <li>Name: {{ magazine.name }}</li>
+        <li>Released: {{ magazine.releasedAt | json}}</li>
+        <li>Price: ${{ magazine.price }}</li>
+        <li>Vol. {{ magazine.volume }}</li>
+        <li>No. {{ magazine.issue }}</li>
+      </ul>
+    </div>
 </div>

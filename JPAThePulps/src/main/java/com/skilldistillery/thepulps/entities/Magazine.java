@@ -72,6 +72,10 @@ public class Magazine {
 	@OneToOne
 	@JoinColumn(name = "magazine_html_id")
 	private MagazineHtml magazineHtml;
+	
+	private int volume;
+	
+	private int issue;
     
 	@ManyToOne
 	@JoinColumn(name = "magazine_editor_id")
@@ -98,7 +102,7 @@ public class Magazine {
 
 	public Magazine(int id, CoverArtwork coverArtwork, Publication publication, String name, LocalDateTime createdAt,
 			List<Tag> tags, List<Story> stories, String thumbnailUrl, String imageUrl, List<MagazinePdf> magazinePdfs,
-			MagazineHtml magazineHtml, MagazineEditor magazineEditor, String tableOfContents, LocalDateTime releasedAt,
+			MagazineHtml magazineHtml, int volume, int issue, MagazineEditor magazineEditor, String tableOfContents, LocalDateTime releasedAt,
 			Double price, Integer pageCount, List<Advertisement> advertisements) {
 		super();
 		this.id = id;
@@ -112,6 +116,8 @@ public class Magazine {
 		this.imageUrl = imageUrl;
 		this.magazinePdfs = magazinePdfs;
 		this.magazineHtml = magazineHtml;
+		this.volume = volume;
+		this.issue = issue;
 		this.magazineEditor = magazineEditor;
 		this.tableOfContents = tableOfContents;
 		this.releasedAt = releasedAt;
@@ -206,6 +212,22 @@ public class Magazine {
 
 	public void setMagazineHtml(MagazineHtml magazineHtml) {
 		this.magazineHtml = magazineHtml;
+	}
+
+	public int getVolume() {
+		return volume;
+	}
+
+	public void setVolume(int volume) {
+		this.volume = volume;
+	}
+
+	public int getIssue() {
+		return issue;
+	}
+
+	public void setIssue(int issue) {
+		this.issue = issue;
 	}
 
 	public MagazineEditor getMagazineEditor() {

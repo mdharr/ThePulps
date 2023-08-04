@@ -1,7 +1,16 @@
 .story-container {
   display: flex;
+  width:fit-content;
 }
 
-.story-container:hover {
-  cursor:pointer;
+.story-title:hover {
+  cursor: pointer;
+}
+
+ul {
+  list-style-type: decimal;
+}
+
+li {
+  width:fit-content;
 }

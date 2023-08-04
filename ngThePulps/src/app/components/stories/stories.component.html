@@ -1,7 +1,10 @@
-<p>stories works!</p>
+<h2>Stories</h2>
 
-<!-- <div class="story-container" *ngFor="let story of stories" (click)="navigateToStoryAnchor(story)">
-  <div>
-    <p>{{ story.title }}</p>
-  </div>
-</div> -->
+<ul>
+  <ng-container *ngFor="let story of stories">
+    <li class="story-title" (click)="navigateToStoryAnchor(story)">{{ story.title }} <b>&#xB7;</b> <span> {{ formatStoryType(story.storyType) }}</span></li>
+  </ng-container>
+</ul>
+<div class="story-container" *ngFor="let story of stories">
+
+</div>

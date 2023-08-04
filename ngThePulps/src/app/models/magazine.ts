@@ -16,6 +16,8 @@ export class Magazine {
   imageUrl: string;
   // magazinePdfs: MagazinePdf[];
   magazineHtml: MagazineHtml;
+  volume: number;
+  issue: number;
   // magazineEditor: MagazineEditor;
   tableOfContents: string;
   releasedAt: string;
@@ -32,6 +34,8 @@ export class Magazine {
     thumbnailUrl?: string,
     imageUrl?: string,
     magazineHtml?: MagazineHtml,
+    volume?: number,
+    issue?: number,
     tableOfContents?: string,
     releasedAt?: string,
     price?: number,
@@ -46,6 +50,8 @@ export class Magazine {
     this.thumbnailUrl = thumbnailUrl || '';
     this.imageUrl = imageUrl || '';
     this.magazineHtml = magazineHtml || new MagazineHtml();
+    this.volume = volume || 0;
+    this.issue = issue || 0;
     this.tableOfContents = tableOfContents || '';
     this.releasedAt = releasedAt || '';
     this.price = price || 0;

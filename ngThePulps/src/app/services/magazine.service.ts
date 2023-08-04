@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Magazine } from '../models/magazine';
+import { Story } from '../models/story';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -45,6 +46,18 @@ export class MagazineService {
         return throwError(
           () =>
             new Error('MagazineService.find(): error retrieving magazine: ' + err)
+        );
+      })
+    );
+  }
+
+  indexStories(id: number): Observable<Story[]> {
+    return this.http.get<Story[]>(`${this.url}/${id}/stories`).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('MagazineService.indexStories(): error retrieving magazine stories: ' + err)
         );
       })
     );
