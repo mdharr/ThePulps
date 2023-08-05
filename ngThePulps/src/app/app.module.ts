@@ -15,6 +15,7 @@ import { MagazineDetailsComponent } from './components/magazine-details/magazine
 import { StoryDetailsComponent } from './components/story-details/story-details.component';
 import { AuthorsComponent } from './components/authors/authors.component';
 import { AuthorDetailsComponent } from './components/author-details/author-details.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AuthorDetailsComponent } from './components/author-details/author-detai
     MagazineDetailsComponent,
     StoryDetailsComponent,
     AuthorsComponent,
-    AuthorDetailsComponent
+    AuthorDetailsComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
