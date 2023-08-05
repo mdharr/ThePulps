@@ -16,6 +16,12 @@ import { StoryDetailsComponent } from './components/story-details/story-details.
 import { AuthorsComponent } from './components/authors/authors.component';
 import { AuthorDetailsComponent } from './components/author-details/author-details.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -36,7 +42,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule
+    NgbModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
