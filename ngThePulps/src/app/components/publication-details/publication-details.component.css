@@ -1,16 +1,15 @@
 .publication-container {
   display: flex;
   margin: 5px;
+  flex-direction: column;
 }
 
 .publication-card {
-  background-color: var(--tileBackgroundColor, #fcf0e4);
-  border: 1px rgb(44, 44, 44);
+  /* background-color: var(--tileBackgroundColor, #fcf0e4); */
+  /* border: 1px rgb(44, 44, 44);
   border-radius: var(--tileCornerRadius, 4px);
-  box-shadow: 1px 1px 2px 0px;
+  box-shadow: 1px 1px 2px 0px; */
   box-sizing: border-box;
-  max-height: 350px;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -20,14 +19,15 @@
 }
 
 .publication-card:hover {
-  box-shadow: rgba(8, 8, 32, 0.8) 0px 0px 6px 2px;
-    transition: box-shadow 0.1s ease 0s;
+  /* box-shadow: rgba(8, 8, 32, 0.8) 0px 0px 6px 2px;
+    transition: box-shadow 0.1s ease 0s; */
     cursor:pointer;
 }
 
 .thumbnail-img {
   border: 1px solid black;
   max-width: 182px;
+  margin: 30px;
 }
 
 .publication-title {
@@ -45,7 +45,36 @@
 }
 
 .description-box {
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left: 60px;
+  padding-right: 60px;
   text-align: justify;
+}
+
+.card-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 25px;
+}
+
+.publication-title a {
+  text-decoration: none;
+  color: #9e0000;
+}
+
+::ng-deep .mat-typography h4 {
+  font-size: 20px;
+    font-weight: 600;
+}
+
+.publication-description {
+  font-size: 20px;
+  font-family: "AlegreyaRegular", Georgia, serif;
+  font-style: normal;
+  font-weight: normal;
+  margin-top: 0.51em;
+  text-align: justify;
+  margin-bottom: 0.49em;
+  text-indent: 1em;
+  line-height: 1.5;
 }

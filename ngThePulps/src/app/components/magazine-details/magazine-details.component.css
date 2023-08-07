@@ -5,7 +5,7 @@
 }
 
 .magazine-card {
-  background-color: var(--tileBackgroundColor, #fcf0e4);
+  /* background-color: var(--tileBackgroundColor, #fcf0e4); */
   border: 1px rgb(44, 44, 44);
   border-radius: var(--tileCornerRadius, 4px);
   box-shadow: 1px 1px 2px 0px;

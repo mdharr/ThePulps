@@ -5,7 +5,7 @@
 }
 
 .publication-card {
-  background-color: var(--tileBackgroundColor, #fcf0e4);
+  /* background-color: var(--tileBackgroundColor, #fcf0e4); */
   border: 1px rgb(44, 44, 44);
   border-radius: var(--tileCornerRadius, 4px);
   box-shadow: 1px 1px 2px 0px;
@@ -33,6 +33,20 @@
 
 .publication-title {
   text-align:center;
+}
+
+.publication-title a {
+  text-decoration: none;
+  color: #9e0000;
+}
+
+.publication-title a:hover {
+  text-decoration: underline;
+}
+
+::ng-deep .mat-typography h4 {
+  font-size: 20px;
+    font-weight: 600;
 }
 
 .main {

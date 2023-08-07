@@ -3,10 +3,13 @@
 }
 
 .mat-toolbar {
+  background-color: #800020;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   position: fixed;
+  color: #fff;
 }
 
 a {
+  color: #fff;
   text-decoration: none;
 }

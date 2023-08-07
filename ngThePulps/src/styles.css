@@ -3,3 +3,15 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+  background-image: none;
+  background-size: auto;
+  background-image: url(https://media.discordapp.net/attachments/1080302897599877181/1137948192277794847/Light-Parchment-Texture.jpg?width=1492&height=992);
+  background-position: top left;
+  background-size: cover;
+  background-attachment: scroll;
+  background-repeat: repeat;
+  background-color: rgba(10,10,0,.95);
+  color: #000;
+}
