@@ -1,3 +1,4 @@
+import { Author } from "./author";
 import { Magazine } from "./magazine";
 import { MagazineHtml } from "./magazine-html";
 import { StoryAnchor } from "./story-anchor";
@@ -8,7 +9,7 @@ export class Story {
   title: string;
   createdAt: string;
   // storyPdfs: StoryPdf[];
-  // authors: Author[];
+  authors: Author[];
   // tags: Tag[];
   magazines: Magazine[];
   // collections: Collection[];
@@ -24,6 +25,7 @@ export class Story {
     id: number = 0,
     title: string = '',
     createdAt: string = '',
+    authors: Author[] = [],
     magazines: Magazine[] = [],
     htmlMagazines: MagazineHtml[] = [],
     storyAnchors: StoryAnchor[] = [],
@@ -34,6 +36,7 @@ export class Story {
     this.id = id;
     this.title = title;
     this.createdAt = createdAt;
+    this.authors = authors;
     this.magazines = magazines;
     this.htmlMagazines = htmlMagazines;
     this.storyAnchors = storyAnchors;
