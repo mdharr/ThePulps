@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Author } from 'src/app/models/author';
 import { Magazine } from 'src/app/models/magazine';
 import { Story } from 'src/app/models/story';
 import { AuthService } from 'src/app/services/auth.service';
@@ -19,6 +20,7 @@ export class StoriesComponent implements OnInit {
   publicationId: number = 0;
   magazineId: number = 0;
   stories: Story[] = [];
+  authors: Author[] = [];
 
   private magazineSubscription: Subscription | undefined;
   private storySubscription: Subscription | undefined;
@@ -94,6 +96,11 @@ export class StoriesComponent implements OnInit {
     const words = type.split('_');
     const formattedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
     return formattedWords.join(' ');
+  }
+
+  getAuthorsByStoryId(story: any): Author[] {
+    this.storyService.getAuthorsByStoryId(story.id)
+    return [];
   }
 
 }
