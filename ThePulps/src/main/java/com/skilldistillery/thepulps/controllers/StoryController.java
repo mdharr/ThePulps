@@ -43,7 +43,7 @@ public class StoryController {
     
     @GetMapping("stories/{sid}/authors")
     public List<Author> getAuthorsByStoryId(@PathVariable("sid") int storyId, HttpServletResponse res, HttpServletRequest req) {
-    	return null;
+    	return storyService.getAuthorsByStoryId(storyId);
     }
     
 //    @GetMapping("stories/{sid}/navigate-to-magazine/{mid}")
