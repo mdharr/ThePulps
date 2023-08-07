@@ -1,10 +1,21 @@
 .categories {
   display: flex;
   flex-direction: column;
+  padding: 10px;
 }
 
 .magazine-img {
   border: 1px solid black;
   width: fit-content;
   margin: 15px;
+}
+
+.categories div a {
+  text-decoration: none;
+  color: #9e0000;
+  font-size: 20px;
+}
+
+.categories div a:hover {
+  text-decoration: underline;
 }
