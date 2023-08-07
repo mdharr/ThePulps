@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Author } from '../models/author';
 import { Story } from '../models/story';
 import { AuthService } from './auth.service';
 
@@ -45,6 +46,18 @@ export class StoryService {
         return throwError(
           () =>
           new Error('StoryService.getStoryById: error retrieving story: ' + err)
+        );
+      })
+    );
+  }
+
+  getAuthorsByStoryId(id: number): Observable<Author[]> {
+    return this.http.get<Author[]>(this.url + '/' + id + '/authors').pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+          new Error('StoryService.getAuthorsStoryId: error retrieving story authors: ' + err)
         );
       })
     );
