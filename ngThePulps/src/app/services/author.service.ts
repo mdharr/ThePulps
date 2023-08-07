@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Author } from '../models/author';
+import { Story } from '../models/story';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -48,6 +49,18 @@ export class AuthorService {
         );
       })
     );
+  }
+
+  getStoriesByAuthorId(id: number): Observable<Story[]> {
+    return this.http.get<Story[]>(this.url + '/' + id + '/stories').pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+          new Error('AuthorService.getStoriesByAuthorId: error retrieving author stories: ' + err)
+        );
+      })
+    )
   }
 
 }

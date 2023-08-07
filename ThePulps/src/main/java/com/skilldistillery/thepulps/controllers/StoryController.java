@@ -2,6 +2,7 @@ package com.skilldistillery.thepulps.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import com.skilldistillery.thepulps.entities.Author;
 import com.skilldistillery.thepulps.entities.Story;
 import com.skilldistillery.thepulps.services.StoryService;
 
@@ -37,6 +39,11 @@ public class StoryController {
     		res.setStatus(404);
     	}
     	return storyService.getStoryById(storyId);
+    }
+    
+    @GetMapping("stories/{sid}/authors")
+    public List<Author> getAuthorsByStoryId(@PathVariable("sid") int storyId, HttpServletResponse res, HttpServletRequest req) {
+    	return null;
     }
     
 //    @GetMapping("stories/{sid}/navigate-to-magazine/{mid}")
