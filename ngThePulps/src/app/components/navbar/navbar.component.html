@@ -1,5 +1,18 @@
-<mat-toolbar role="heading">
+<mat-toolbar role="heading" style="display:flex;">
     <mat-toolbar-row>
       <a [routerLink]="['/']"><h1 class="title">The Pulps</h1></a>
     </mat-toolbar-row>
+    <mat-toolbar-row>
+      <button mat-button [matMenuTriggerFor]="afterMenu" id="quick-jump-btn" (menuOpened)="menuOpen()" (click)="rotateChevronTop()"><span class="rotate" style="vertical-align: middle;" [ngClass]="{highlight: isRotated1}">{{ quickJumpText }}</span><span><mat-icon class="rotate" style="vertical-align: middle;" [ngClass]="{down: isRotated1}">arrow_drop_down</mat-icon></span></button>
+      <mat-menu #afterMenu="matMenu" xPosition="after" class="toolbar-menu" (closed)="resetRotationState()">
+        <div class="menu-items">
+          <button mat-menu-item [routerLink]="['publications']">Publications</button>
+          <button mat-menu-item [routerLink]="['/magazines']">Magazines</button>
+          <button mat-menu-item [routerLink]="['/stories']">Stories</button>
+          <button mat-menu-item [routerLink]="['/authors']">Authors</button>
+        </div>
+      </mat-menu>
+    </mat-toolbar-row>
 </mat-toolbar>
+
+

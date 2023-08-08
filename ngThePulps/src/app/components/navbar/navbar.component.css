@@ -7,9 +7,63 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   position: fixed;
   color: #fff;
+  display: flex;
+  flex-direction: row;
+}
+
+.mat-toolbar-row {
+  width: fit-content;
 }
 
 a {
   color: #fff;
   text-decoration: none;
+}
+
+a:hover {
+  color: #FFD700;
+}
+
+.navbar-rows-wrapper {
+  display: flex;
+}
+
+#quick-jump-btn {
+  margin-left: 5px;
+  background: #800020;
+  border: 1px solid rgba(158,159,162,.12);
+  box-shadow: 0 20px 20px 0 rgba(0,0,0,.08);
+  transition: all cubic-bezier(.4,0,.2,1) .15s;
+}
+
+::ng-deep .mat-toolbar .mat-mdc-button {
+  min-width: 40px !important;
+}
+
+.rotate {
+  -moz-transition: all .0.1s linear;
+  -webkit-transition: all .0.1s linear;
+  transition: all 0.1s linear;
+  color: lightgray;
+}
+
+.down {
+  -moz-transform:rotate(-180deg);
+  -webkit-transform:rotate(-180deg);
+  transform:rotate(-180deg);
+  color: #fff;
+}
+
+.highlight {
+  color: #fff;
+}
+
+.menu-items {
+}
+
+::ng-deep .mat-mdc-menu-content {
+  /* color: var(--text-color); */
+  padding: 0 !important;
+  background-image: url(https://media.discordapp.net/attachments/1080302897599877181/1137948192277794847/Light-Parchment-Texture.jpg?width=1492&height=992);
+
 }
