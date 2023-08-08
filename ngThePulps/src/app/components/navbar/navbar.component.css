@@ -67,3 +67,12 @@ a:hover {
   background-image: url(https://media.discordapp.net/attachments/1080302897599877181/1137948192277794847/Light-Parchment-Texture.jpg?width=1492&height=992);
 
 }
+
+.banner-wrapper {
+  padding-top: 64px;
+  border-bottom: 1px solid;
+}
+
+.banner-image {
+  width: 100%;
+}

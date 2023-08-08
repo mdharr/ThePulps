@@ -7,7 +7,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 body {
   background-image: none;
   background-size: auto;
-  background-image: url(https://media.discordapp.net/attachments/1080302897599877181/1137948192277794847/Light-Parchment-Texture.jpg?width=1492&height=992);
+  background-image: url(https://thepulps.s3.amazonaws.com/assets/Light-Parchment-Texture.jpg);
   background-position: top left;
   background-size: cover;
   background-attachment: scroll;
