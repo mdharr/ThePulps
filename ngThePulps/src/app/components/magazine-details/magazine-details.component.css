@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   margin: 5px;
+  width: 400px;
 }
 
 .magazine-card {
@@ -49,7 +50,11 @@
   display: flex;
 }
 
-.magazine-img {
-  width: 500px;
+.magazine-image {
+  width: 400px;
+}
+
+.image-box {
+  width: 100%;
 }
 
