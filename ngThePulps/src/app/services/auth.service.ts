@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError, tap } from 'rxjs';
+import { Observable, catchError, throwError, tap, BehaviorSubject } from 'rxjs';
 import { User } from '../models/user';
 import { Buffer } from "buffer";
 import { environment } from 'src/environments/environment';
@@ -10,9 +10,18 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
 
-  // Set port number to server's port
-  // private baseUrl = 'http://localhost:8092/';
   private url = environment.baseUrl;
+
+  private loggedInUserSubject: BehaviorSubject<User> = new BehaviorSubject<User>(new User());
+  private loggedInUser: User = new User();
+
+  private isLoggedIn = false; // flag to track authentication state
+
+  userId: number = 0; // User ID property
+
+  private loggedInSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  private loggedIn = new BehaviorSubject<boolean>(false);
+  loggedIn$ = this.loggedInSubject.asObservable();
 
   constructor(private http: HttpClient) {}
 
@@ -45,6 +54,11 @@ export class AuthService {
         // While credentials are stored in browser localStorage, we consider
         // ourselves logged in.
         localStorage.setItem('credentials', credentials);
+        this.isLoggedIn = true;
+        this.loggedIn.next(true);
+        localStorage.setItem('isLoggedIn', 'true');
+        this.loggedInUser = newUser; // store the logged-in user object
+        this.loggedInUserSubject.next(this.loggedInUser); // emit the logged-in user object using the BehaviorSubject
         return newUser;
       }),
       catchError((err: any) => {
@@ -56,8 +70,24 @@ export class AuthService {
     );
   }
 
-  logout(): void {
+  logout(): Observable<any> {
     localStorage.removeItem('credentials');
+    localStorage.removeItem('isLoggedIn');
+    localStorage.clear();
+    return this.http.post(this.url + 'logout', null).pipe(
+      tap(() => {
+        // set isLoggedIn to false in localStorage
+        this.loggedIn.next(false);
+        this.loggedInUser = new User(); // clear the logged-in user object
+        this.loggedInUserSubject.next(this.loggedInUser); // emit null to indicate no logged-in user using the BehaviorSubject
+      }),
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('AuthService.logout(): error logging out user.')
+        );
+      })
+    );
   }
 
   getLoggedInUser(): Observable<User> {
@@ -84,6 +114,11 @@ export class AuthService {
       );
   }
 
+  isAuthenticated() {
+    // Check isLoggedIn flag and local storage or cookie
+    return this.isLoggedIn || localStorage.getItem('isLoggedIn') === 'true';
+  }
+
   checkLogin(): boolean {
     if (localStorage.getItem('credentials')) {
       return true;
@@ -97,5 +132,23 @@ export class AuthService {
 
   getCredentials(): string | null {
     return localStorage.getItem('credentials');
+  }
+
+  // Setter for user ID
+  setUserId(userId: number): void {
+    this.userId = userId;
+  }
+
+  // Getter for user ID
+  getUserId(): number {
+    return this.userId;
+  }
+
+  setLoggedIn(loggedIn: boolean): void {
+    this.loggedInSubject.next(loggedIn);
+  }
+
+  getCurrentLoggedInUser(): BehaviorSubject<User> {
+    return this.loggedInUserSubject;
   }
 }

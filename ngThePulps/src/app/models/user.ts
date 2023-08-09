@@ -1,3 +1,5 @@
+import { first } from "rxjs";
+
 export class User {
 
   id: number;
@@ -5,18 +7,31 @@ export class User {
   password: string;
   enabled: boolean;
   role: string;
+  // userProfile: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+  imageUrl: string;
 
   constructor(
     id: number = 0,
     username: string = '',
     password: string = '',
     enabled: boolean = false,
-    role: string = ''
+    role: string = '',
+    email: string = '',
+    firstName: string = '',
+    lastName: string = '',
+    imageUrl: string = ''
   ) {
     this.id = id;
     this.username = username;
     this.password = password;
     this.enabled = enabled;
     this.role = role;
+    this.email = email;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.imageUrl = imageUrl;
   }
 }

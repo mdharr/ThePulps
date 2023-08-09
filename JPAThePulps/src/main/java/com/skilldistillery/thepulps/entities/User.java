@@ -54,6 +54,9 @@ public class User {
 	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Post> posts;
+	
+	@Column(name = "image_url")
+	private String imageUrl;
 
 	public User() {
 		super();
@@ -61,7 +64,7 @@ public class User {
 
 	public User(int id, String username, String password, Boolean enabled, String role, List<Collection> collections,
 			List<StoryComment> storyComments, UserProfile userProfile, String email, String firstName, String lastName,
-			List<Post> posts) {
+			List<Post> posts, String imageUrl) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -75,6 +78,7 @@ public class User {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.posts = posts;
+		this.imageUrl = imageUrl;
 	}
 
 	public int getId() {
@@ -171,6 +175,14 @@ public class User {
 
 	public void setPosts(List<Post> posts) {
 		this.posts = posts;
+	}
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 
 	@Override

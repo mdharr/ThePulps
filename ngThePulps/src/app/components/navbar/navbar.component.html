@@ -1,21 +1,56 @@
-<mat-toolbar role="heading" style="display:flex;" id="navbarId">
+<div class="banner-wrapper image-container" #bannerWrapper>
+  <img class="banner-image" src="https://thepulps.s3.amazonaws.com/assets/reh-character-color.jpg" alt="">
+  <div class="image-vignette"></div>
+</div>
+<mat-toolbar [ngClass]="{ 'fixed-toolbar': isToolbarFixed }" role="heading" id="navbarId">
     <mat-toolbar-row>
       <a [routerLink]="['/']"><h1 class="title">The Pulps</h1></a>
+      <mat-toolbar-row>
+        <button mat-button [matMenuTriggerFor]="afterMenu" id="quick-jump-btn" (menuOpened)="menuOpen()" (click)="rotateChevronTop()"><span class="rotate" style="vertical-align: middle;" [ngClass]="{highlight: isRotated1}">{{ quickJumpText }}</span><span><mat-icon class="rotate" style="vertical-align: middle;" [ngClass]="{down: isRotated1}">arrow_drop_down</mat-icon></span></button>
+        <mat-menu #afterMenu="matMenu" xPosition="after" class="toolbar-menu" (closed)="resetRotationState()">
+          <div class="menu-items">
+            <button mat-menu-item [routerLink]="['publications']">Publications</button>
+            <button mat-menu-item [routerLink]="['/magazines']">Magazines</button>
+            <button mat-menu-item [routerLink]="['/stories']">Stories</button>
+            <button mat-menu-item [routerLink]="['/authors']">Authors</button>
+          </div>
+        </mat-menu>
+      </mat-toolbar-row>
     </mat-toolbar-row>
-    <mat-toolbar-row>
-      <button mat-button [matMenuTriggerFor]="afterMenu" id="quick-jump-btn" (menuOpened)="menuOpen()" (click)="rotateChevronTop()"><span class="rotate" style="vertical-align: middle;" [ngClass]="{highlight: isRotated1}">{{ quickJumpText }}</span><span><mat-icon class="rotate" style="vertical-align: middle;" [ngClass]="{down: isRotated1}">arrow_drop_down</mat-icon></span></button>
-      <mat-menu #afterMenu="matMenu" xPosition="after" class="toolbar-menu" (closed)="resetRotationState()">
-        <div class="menu-items">
-          <button mat-menu-item [routerLink]="['publications']">Publications</button>
-          <button mat-menu-item [routerLink]="['/magazines']">Magazines</button>
-          <button mat-menu-item [routerLink]="['/stories']">Stories</button>
-          <button mat-menu-item [routerLink]="['/authors']">Authors</button>
-        </div>
-      </mat-menu>
+    <mat-toolbar-row class="user-login-row">
+      <span class="example-spacer"></span>
+      <button class="animated-ui" mat-button *ngIf="!loggedIn()" (click)="open(loginmodal)">
+        <span class="login-text">Login</span>
+      </button>
+      <button mat-button class="animated-ui" *ngIf="!loggedIn()" (click)="open(registermodal)">
+        <span class="register-text">Register</span>
+      </button>
+      <a *ngIf="loggedIn()" style="cursor: pointer;" [routerLink]="['/users', loggedInUser.id]"><div class="avatar" id="userThumbnail" [style.background-image]="'url(' + loggedInUser.imageUrl + ')'" [style.background-position]="'center'"></div></a>
+      <button mat-button class="animated-ui" *ngIf="loggedIn()" [routerLink]="['/users', loggedInUser.id]"><span class="profile-text">{{ loggedInUser.username }}</span></button>
+      <button class="logout-text animated-ui" mat-button *ngIf="loggedIn()">
+        <app-logout></app-logout>
+      </button>
     </mat-toolbar-row>
 </mat-toolbar>
-<div class="banner-wrapper" #bannerWrapper>
+
+<!-- <div class="banner-wrapper" #bannerWrapper>
   <img class="banner-image" src="https://thepulps.s3.amazonaws.com/assets/reh-character-color.jpg" alt="">
+</div> -->
+
+<ng-template #loginmodal let-modal>
+  <div *ngIf="!loggedIn()">
+  <div class="modal-body">
+    <app-login></app-login>
+  </div>
 </div>
+</ng-template>
+
+<ng-template #registermodal let-modal>
+  <div *ngIf="!loggedIn()">
+  <div class="modal-body">
+    <app-register></app-register>
+  </div>
+</div>
+</ng-template>
 
 

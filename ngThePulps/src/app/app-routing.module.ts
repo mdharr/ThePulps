@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
 import { MagazineDetailsComponent } from './components/magazine-details/magazine-details.component';
 import { MagazinesComponent } from './components/magazines/magazines.component';
 import { PublicationDetailsComponent } from './components/publication-details/publication-details.component';
@@ -11,6 +12,7 @@ import { StoryDetailsComponent } from './components/story-details/story-details.
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'publications', component: PublicationsComponent },
   { path: 'publications/:publicationId', component: PublicationDetailsComponent },
   // url endpoint stretch goal

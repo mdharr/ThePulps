@@ -8,7 +8,6 @@ import { Magazine } from 'src/app/models/magazine';
 import { MagazineHtmlService } from 'src/app/services/magazine-html.service';
 import { Router } from '@angular/router';
 import { MagazineHtml } from 'src/app/models/magazine-html';
-import { ThisReceiver } from '@angular/compiler';
 import { StoryService } from 'src/app/services/story.service';
 import { Story } from 'src/app/models/story';
 
@@ -34,7 +33,7 @@ export class HomeComponent implements OnInit {
               ) {}
 
   ngOnInit() {
-    this.tempTestDeleteMeLater(); // DELETE LATER!!!
+    // this.tempTestDeleteMeLater();
 
     this.storySubscription = this.storyService.indexAll().subscribe({
       next: (stories) => {
@@ -49,19 +48,20 @@ export class HomeComponent implements OnInit {
 
   }
 
-  tempTestDeleteMeLater() {
-    this.auth.login('admin', 'wombat1').subscribe({
-      next: (data) => {
-        console.log('Logged in: ');
-        console.log(data);
+  // test login
+  // tempTestDeleteMeLater() {
+  //   this.auth.login('admin', 'wombat1').subscribe({
+  //     next: (data) => {
+  //       console.log('Logged in: ');
+  //       console.log(data);
 
-      },
-      error: (fail) => {
-        console.error('Error authenticating: ');
-        console.error(fail);
-      }
-    });
-  }
+  //     },
+  //     error: (fail) => {
+  //       console.error('Error authenticating: ');
+  //       console.error(fail);
+  //     }
+  //   });
+  // }
 
   navigateToMagazineHtml(magazine: Magazine): void {
     if (magazine && magazine.magazineHtml && magazine.magazineHtml.id) {
