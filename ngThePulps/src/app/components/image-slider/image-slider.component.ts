@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Magazine } from 'src/app/models/magazine';
 
 @Component({
@@ -6,16 +6,31 @@ import { Magazine } from 'src/app/models/magazine';
   templateUrl: './image-slider.component.html',
   styleUrls: ['./image-slider.component.css']
 })
-export class ImageSliderComponent implements OnInit {
+export class ImageSliderComponent implements OnInit, OnChanges {
   @Input() magazines: Magazine[] = [];
-  private slideWidth = 158.88 * 10;
+  private slideWidth = 158.88;
   private slideCount = 0;
   private maxOffset = 0;
   public offsetX = 0;
 
   ngOnInit(): void {
-    // Calculate the total number of slides and the maximum translation offset
-    this.magazines = this.magazines;
+    this.calculateSliderValues();
+
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['magazines']) {
+      this.calculateSliderValues();
+      console.log('magazines: ' + this.magazines);
+      console.log('slide width: ' + this.slideWidth);
+      console.log('slide count: ' + this.slideCount);
+      console.log('max offset: ' + this.maxOffset);
+      console.log('offsetX: ' + this.offsetX);
+
+    }
+  }
+
+  private calculateSliderValues(): void {
     this.slideCount = this.magazines.length;
     this.maxOffset = this.slideWidth * (this.slideCount - 1);
   }
@@ -28,13 +43,17 @@ export class ImageSliderComponent implements OnInit {
     }
   }
 
-
   // Move the slider to the right
   moveRight(): void {
     this.offsetX -= this.slideWidth;
-    // if (this.offsetX < 0) {
-    //   this.offsetX = this.maxOffset;
-    // }
+    if (this.offsetX > this.slideWidth) {
+      this.offsetX = this.maxOffset;
+    }
+    console.log('magazines: ' + this.magazines);
+    console.log('slide width: ' + this.slideWidth);
+    console.log('slide count: ' + this.slideCount);
+    console.log('max offset: ' + this.maxOffset);
+    console.log('offsetX: ' + this.offsetX);
   }
 
 }
