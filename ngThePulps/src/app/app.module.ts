@@ -28,6 +28,7 @@ import { ImageSliderComponent } from './components/image-slider/image-slider.com
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterComponent } from './components/register/register.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { RegisterComponent } from './components/register/register.component';
     ImageSliderComponent,
     LoginComponent,
     LogoutComponent,
-    RegisterComponent
+    RegisterComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
