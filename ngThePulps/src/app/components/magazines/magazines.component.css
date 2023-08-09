@@ -7,8 +7,8 @@
 .magazine-card {
   /* background-color: var(--tileBackgroundColor, #fcf0e4); */
   border: 1px rgb(44, 44, 44);
-  border-radius: var(--tileCornerRadius, 4px);
-  box-shadow: 1px 1px 2px 0px;
+  /* border-radius: var(--tileCornerRadius, 4px); */
+  /* box-shadow: 1px 1px 2px 0px; */
   box-sizing: border-box;
   max-height: 310px;
   height: 310px;
@@ -21,7 +21,7 @@
 }
 
 .magazine-card:hover {
-  box-shadow: rgba(8, 8, 32, 0.8) 0px 0px 6px 2px;
+  /* box-shadow: rgba(8, 8, 32, 0.8) 0px 0px 6px 2px; */
     transition: box-shadow 0.1s ease 0s;
     cursor:pointer;
 }
@@ -53,8 +53,18 @@
 
 .magazine-img {
   width: 500px;
+  transition: all .3s cubic-bezier(.165,.84,.44,1);
 }
 
 ::ng-deep .mat-typography h6 {
   font-size: larger;
+}
+
+.magazine-thumbnail {
+  transform: scale(.95);
+  transition: all .3s ease-in-out;
+}
+
+.magazine-thumbnail:hover {
+  transform: scale(1);
 }

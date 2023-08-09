@@ -1,4 +1,4 @@
-<mat-toolbar role="heading" style="display:flex;">
+<mat-toolbar role="heading" style="display:flex;" id="navbarId">
     <mat-toolbar-row>
       <a [routerLink]="['/']"><h1 class="title">The Pulps</h1></a>
     </mat-toolbar-row>
@@ -14,7 +14,7 @@
       </mat-menu>
     </mat-toolbar-row>
 </mat-toolbar>
-<div class="banner-wrapper">
+<div class="banner-wrapper" #bannerWrapper>
   <img class="banner-image" src="https://thepulps.s3.amazonaws.com/assets/reh-character-color.jpg" alt="">
 </div>
 

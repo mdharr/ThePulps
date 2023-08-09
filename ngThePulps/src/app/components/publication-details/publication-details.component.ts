@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { PublicationService } from 'src/app/services/publication.service';
 import { Publication } from 'src/app/models/publication';
+import { Magazine } from 'src/app/models/magazine';
 
 @Component({
   selector: 'app-publication-details',

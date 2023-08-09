@@ -1,0 +1,11 @@
+<div class="slider-container">
+  <div class="slider" [style.transform]="'translateX(' + offsetX + 'px)'">
+    <div *ngFor="let magazine of magazines; let i = index" class="slide">
+      <img [src]="magazine.thumbnailUrl" alt="thumbnail.jpg" />
+    </div>
+  </div>
+</div>
+
+<!-- Add navigation buttons for moving the slider left and right -->
+<button (click)="moveLeft()">Previous</button>
+<button (click)="moveRight()">Next</button>

@@ -31,7 +31,7 @@ public class Publication {
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@OneToMany(mappedBy = "publication")
 	private List<Magazine> magazines;
 	
