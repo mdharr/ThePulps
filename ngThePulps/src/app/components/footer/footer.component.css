@@ -1,0 +1,17 @@
+.footer {
+  background-color: #800020;
+  padding: 10px;
+  text-align: center;
+  color: #fff;
+}
+
+.github-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.github-link:hover {
+  color: #FFD700;
+  text-decoration: none;
+  cursor: pointer;
+}

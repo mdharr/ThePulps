@@ -5,3 +5,9 @@
 .body {
   margin-top: 50px;
 }
+
+.footer-wrapper {
+  bottom: 0;
+  position: fixed;
+  width: 100%;
+}
