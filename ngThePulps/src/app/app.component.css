@@ -1,5 +1,13 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .main {
   padding: 25px;
+  min-height: calc(120vh - 60px);
+  box-sizing: border-box;
 }
 
 .body {
@@ -7,7 +15,7 @@
 }
 
 .footer-wrapper {
-  bottom: 0;
   position: fixed;
+  bottom: 0;
   width: 100%;
 }
