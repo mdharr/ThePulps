@@ -125,13 +125,21 @@ a:hover {
 .image-container {
   position: relative;
   overflow: hidden;
+  /* height: 225px;
+  max-height: 225px; */
 }
 
 .image-container img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Maintain aspect ratio while covering the container */
+  object-fit: cover;
+  opacity: 0; /* Start with zero opacity */
+  transition: opacity 0.5s ease-in-out; /* Add a transition for opacity */
+}
+
+.image-container img.loaded {
+  opacity: 1; /* When the 'loaded' class is added, set opacity to 1 */
 }
 
 .image-vignette {

@@ -1,7 +1,11 @@
 <div class="banner-wrapper image-container" #bannerWrapper>
-  <img class="banner-image" src="https://thepulps.s3.amazonaws.com/assets/reh-character-color.jpg" alt="">
+  <img class="banner-image" src="https://thepulps.s3.amazonaws.com/assets/reh-character-color.jpg" alt=""
+       #bannerImage (load)="onImageLoad()">
   <div class="image-vignette"></div>
 </div>
+
+
+
 <mat-toolbar [ngClass]="{ 'fixed-toolbar': isToolbarFixed }" role="heading" id="navbarId">
     <mat-toolbar-row>
       <a [routerLink]="['/']"><h1 class="title">The Pulps</h1></a>

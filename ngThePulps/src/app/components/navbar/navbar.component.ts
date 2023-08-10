@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, inject, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, inject, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription, tap } from 'rxjs';
@@ -15,6 +15,8 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   // property init
   title: string = "Dashboard";
   @ViewChild('bannerWrapper', { static: false }) bannerWrapperRef!: ElementRef<HTMLDivElement>;
+  @ViewChild('bannerImage', { static: false }) bannerImageRef!: ElementRef<HTMLImageElement>;
+
   loggedInUser: User = new User();
   isRotated1: boolean = false;
   quickJumpText: string = 'Browse';
@@ -28,6 +30,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   router = inject(Router);
   authService = inject(AuthService);
   modalService = inject(NgbModal);
+  renderer = inject(Renderer2);
 
   ngOnInit(): void {
     this.authService.getCurrentLoggedInUser().subscribe((user: User) => {
@@ -125,5 +128,10 @@ onWindowScroll() {
   this.isToolbarFixed = scrollPosition >= bannerHeight;
 }
 
+onImageLoad() {
+  console.log('Image loaded');
+  console.log('bannerImageRef', this.bannerImageRef); // Check if the reference is correctly selected
+  this.renderer.addClass(this.bannerImageRef.nativeElement, 'loaded');
+}
 
 }
