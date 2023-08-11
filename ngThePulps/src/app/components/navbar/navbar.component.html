@@ -36,7 +36,7 @@
         <span class="register-text">Register</span>
       </button>
 
-      <a *ngIf="loggedIn()" style="cursor: pointer;" [routerLink]="['/users', loggedInUser.id]"><div class="avatar" id="userThumbnail" [style.background-image]="'url(' + loggedInUser.imageUrl + ')'" [style.background-position]="'center'"></div></a>
+      <a *ngIf="loggedIn() && loggedInUser.imageUrl" style="cursor: pointer;" [routerLink]="['/users', loggedInUser.id]"><div class="avatar" id="userThumbnail" [style.background-image]="'url(' + loggedInUser.imageUrl + ')'" [style.background-position]="'center'"></div></a>
       <button mat-button class="animated-ui" *ngIf="loggedIn()" [routerLink]="['/users', loggedInUser.id]"><span class="profile-text">{{ loggedInUser.username }}</span></button>
       <button class="logout-text animated-ui" mat-button *ngIf="loggedIn()">
         <app-logout></app-logout>
