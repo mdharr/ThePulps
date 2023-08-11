@@ -24,16 +24,36 @@ export class RegisterDialogComponent {
   register(newUser: User): void {
     console.log('Registering user:');
     console.log(newUser);
+    if (newUser.password !== newUser.confirmPassword) {
+      // Password and confirmPassword do not match
+      console.log("Passwords do not match");
+      this.snackBar.open('Passwords do not match', 'Dismiss', {
+        duration: 4000,
+        panelClass: ['mat-toolbar', 'mat-primary'],
+        verticalPosition: 'bottom'
+      });
+      return;
+    }
     this.authService.register(newUser).subscribe({
       next: (registeredUser) => {
         this.authService.login(newUser.username, newUser.password).subscribe({
           next: (loggedInUser) => {
             this.dialogRef.close();
-            this.router.navigateByUrl('/home');
+            this.router.navigateByUrl('/');
+            this.snackBar.open('Success! Welcome ' + this.capitalizeFirstLetter(newUser.username), 'Dismiss', {
+              duration: 4000,
+              panelClass: ['mat-toolbar', 'mat-primary'],
+              verticalPosition: 'bottom'
+            });
           },
           error: (problem) => {
             console.error('RegisterComponent.register(): Error logging in user:');
             console.error(problem);
+            this.snackBar.open('Signup unsuccessful', 'Dismiss', {
+              duration: 4000,
+              panelClass: ['mat-toolbar', 'mat-primary'],
+              verticalPosition: 'bottom'
+            });
           }
         });
       },
@@ -46,6 +66,10 @@ export class RegisterDialogComponent {
 
   dismissDialog() {
     this.dialogRef.close();
+  }
+
+  capitalizeFirstLetter(text: string): string {
+    return text.charAt(0).toUpperCase() + text.slice(1);
   }
 
 }
