@@ -63,8 +63,23 @@
 .magazine-thumbnail {
   transform: scale(.95);
   transition: all .3s ease-in-out;
+  display: flex;
+  justify-content: center;
 }
 
 .magazine-thumbnail:hover {
   transform: scale(1);
+}
+
+.magazine-thumbnail img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0; /* Start with zero opacity */
+  transition: opacity 0.5s ease-in-out; /* Add a transition for opacity */
+}
+
+.magazine-thumbnail img.loaded {
+  opacity: 1; /* When the 'loaded' class is added, set opacity to 1 */
 }

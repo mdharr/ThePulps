@@ -73,7 +73,7 @@ a:hover {
 ::ng-deep .mat-mdc-menu-content {
   /* color: var(--text-color); */
   padding: 0 !important;
-  background-image: url(https://thepulps.s3.amazonaws.com/assets/Light-Parchment-Texture.jpg);
+  /* background-image: url(https://thepulps.s3.amazonaws.com/assets/Light-Parchment-Texture.jpg); */
 
 }
 

@@ -4,6 +4,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription, tap } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
   selector: 'app-navbar',
@@ -31,6 +32,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   authService = inject(AuthService);
   modalService = inject(NgbModal);
   renderer = inject(Renderer2);
+  dialogService = inject(DialogService);
 
   ngOnInit(): void {
     this.authService.getCurrentLoggedInUser().subscribe((user: User) => {
@@ -121,17 +123,25 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   }
 
   @HostListener('window:scroll', ['$event'])
-onWindowScroll() {
-  const bannerHeight = this.bannerWrapperRef.nativeElement.offsetHeight;
-  const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+  onWindowScroll() {
+    const bannerHeight = this.bannerWrapperRef.nativeElement.offsetHeight;
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
 
-  this.isToolbarFixed = scrollPosition >= bannerHeight;
-}
+    this.isToolbarFixed = scrollPosition >= bannerHeight;
+  }
 
-onImageLoad() {
-  console.log('Image loaded');
-  console.log('bannerImageRef', this.bannerImageRef); // Check if the reference is correctly selected
-  this.renderer.addClass(this.bannerImageRef.nativeElement, 'loaded');
-}
+  onImageLoad() {
+    console.log('Image loaded');
+    console.log('bannerImageRef', this.bannerImageRef); // Check if the reference is correctly selected
+    this.renderer.addClass(this.bannerImageRef.nativeElement, 'loaded');
+  }
+
+  openLoginDialog() {
+    this.dialogService.openLoginDialog();
+  }
+
+  openSignupDialog() {
+    this.dialogService.openRegisterDialog();
+  }
 
 }

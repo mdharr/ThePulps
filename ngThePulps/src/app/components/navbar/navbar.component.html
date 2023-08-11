@@ -21,14 +21,21 @@
         </mat-menu>
       </mat-toolbar-row>
     </mat-toolbar-row>
-    <mat-toolbar-row class="user-login-row">
-      <span class="example-spacer"></span>
-      <button class="animated-ui" mat-button *ngIf="!loggedIn()" (click)="open(loginmodal)">
+    <mat-toolbar-row>
+      <!-- <span class="example-spacer"></span> -->
+      <!-- <button class="animated-ui" mat-button *ngIf="!loggedIn()" (click)="open(loginmodal)">
         <span class="login-text">Login</span>
       </button>
       <button mat-button class="animated-ui" *ngIf="!loggedIn()" (click)="open(registermodal)">
         <span class="register-text">Register</span>
+      </button> -->
+      <button mat-button *ngIf="!loggedIn()" (click)="openLoginDialog()">
+        <span class="login-text">Login</span>
       </button>
+      <button mat-button *ngIf="!loggedIn()" (click)="openSignupDialog()">
+        <span class="register-text">Register</span>
+      </button>
+
       <a *ngIf="loggedIn()" style="cursor: pointer;" [routerLink]="['/users', loggedInUser.id]"><div class="avatar" id="userThumbnail" [style.background-image]="'url(' + loggedInUser.imageUrl + ')'" [style.background-position]="'center'"></div></a>
       <button mat-button class="animated-ui" *ngIf="loggedIn()" [routerLink]="['/users', loggedInUser.id]"><span class="profile-text">{{ loggedInUser.username }}</span></button>
       <button class="logout-text animated-ui" mat-button *ngIf="loggedIn()">
@@ -36,10 +43,6 @@
       </button>
     </mat-toolbar-row>
 </mat-toolbar>
-
-<!-- <div class="banner-wrapper" #bannerWrapper>
-  <img class="banner-image" src="https://thepulps.s3.amazonaws.com/assets/reh-character-color.jpg" alt="">
-</div> -->
 
 <ng-template #loginmodal let-modal>
   <div *ngIf="!loggedIn()">

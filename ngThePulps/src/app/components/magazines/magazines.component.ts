@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Magazine } from 'src/app/models/magazine';
@@ -18,6 +18,8 @@ export class MagazinesComponent implements OnInit {
   magazines: Magazine[] = [];
   publicationId: number = 0;
 
+  @ViewChild('magazineImage', { static: false }) magazineImageRef!: ElementRef<HTMLImageElement>;
+
   private magazineSubscription: Subscription | undefined;
 
   constructor(
@@ -25,7 +27,8 @@ export class MagazinesComponent implements OnInit {
               private magazineService: MagazineService,
               private publicationService: PublicationService,
               private activatedRoute: ActivatedRoute,
-              private magazineHtmlService: MagazineHtmlService
+              private magazineHtmlService: MagazineHtmlService,
+              private renderer: Renderer2
     ) {}
 
   ngOnInit() {
@@ -65,6 +68,13 @@ export class MagazinesComponent implements OnInit {
     } else {
       console.error('Magazine or MagazineHtml is missing.');
     }
+  }
+
+  onImageLoad(imageElement: HTMLImageElement) {
+    console.log('Image loaded');
+    console.log('Image element', imageElement); // Check if the correct image element is passed
+
+    this.renderer.addClass(imageElement, 'loaded');
   }
 
 }

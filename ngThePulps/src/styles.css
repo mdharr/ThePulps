@@ -4,14 +4,20 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+body::before {
+  content: "";
+  background-image: url(https://thepulps.s3.amazonaws.com/assets/Light-Parchment-Texture.jpg);
+  display: none;
+}
+
 body {
-  background-image: none;
+  /* background-image: none; */
   background-size: auto;
   background-image: url(https://thepulps.s3.amazonaws.com/assets/Light-Parchment-Texture.jpg);
   background-position: top left;
   background-size: cover;
   background-attachment: scroll;
   background-repeat: repeat;
-  background-color: rgba(10,10,0,.95);
+  /* background-color: rgba(10,10,0,.95); */
   color: #000;
 }

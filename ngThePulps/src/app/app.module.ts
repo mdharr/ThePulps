@@ -24,11 +24,15 @@ import { MatListModule } from '@angular/material/list';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
+import { RegisterDialogComponent } from './components/register-dialog/register-dialog.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +51,9 @@ import { FooterComponent } from './components/footer/footer.component';
     LoginComponent,
     LogoutComponent,
     RegisterComponent,
-    FooterComponent
+    FooterComponent,
+    LoginDialogComponent,
+    RegisterDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +68,9 @@ import { FooterComponent } from './components/footer/footer.component';
     MatListModule,
     MatButtonModule,
     MatMenuModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

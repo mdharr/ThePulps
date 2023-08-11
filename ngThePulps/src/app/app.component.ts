@@ -9,6 +9,7 @@ export class AppComponent {
   title = 'ngThePulps';
 
   showFooter = false;
+  // backgroundImageLoaded = false;
 
   @HostListener('window:scroll')
   onScroll() {
@@ -24,4 +25,15 @@ export class AppComponent {
       this.showFooter = false;
     }
   }
+
+  // onBackgroundImageLoad() {
+  //   this.backgroundImageLoaded = true;
+  //   // You can call a function here to load your components
+  //   this.loadComponents();
+  // }
+
+  // loadComponents() {
+  //   // Load your components here
+  // }
+
 }

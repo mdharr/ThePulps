@@ -1,6 +1,6 @@
 
-<div class="main">
-  <ng-container *ngFor="let magazine of magazines; let i = index">
+<!-- <div class="main">
+  <ng-container *ngFor="let magazine of magazines; let i = index"> -->
     <!-- <ng-container *ngIf="i === 0">
       <div class="table-of-contents-box">
         <div class="magazine-img">
@@ -11,10 +11,25 @@
       </div>
     </ng-container> -->
     <!-- <div class="magazine-container" (click)="magazine && navigateToMagazineHtml(magazine)"> -->
+    <!-- <div class="magazine-container" [routerLink]="['/publications', publicationId, 'magazines', magazine.id]">
+      <div class="magazine-card">
+        <div class="magazine-thumbnail">
+          <img class="thumbnail-img" src="{{ magazine.thumbnailUrl }}" alt="" #magazineImage (load)="onImageLoad()">
+        </div>
+        <div class="magazine-title">
+          <h6>{{ magazine.name }}</h6>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div> -->
+
+<div class="main">
+  <ng-container *ngFor="let magazine of magazines; let i = index">
     <div class="magazine-container" [routerLink]="['/publications', publicationId, 'magazines', magazine.id]">
       <div class="magazine-card">
         <div class="magazine-thumbnail">
-          <img class="thumbnail-img" src="{{ magazine.thumbnailUrl }}" alt="" loading="lazy">
+          <img class="thumbnail-img" src="{{ magazine.thumbnailUrl }}" alt="" loading="lazy" #magazineImage (load)="onImageLoad(magazineImage)">
         </div>
         <div class="magazine-title">
           <h6>{{ magazine.name }}</h6>
@@ -23,3 +38,4 @@
     </div>
   </ng-container>
 </div>
+
