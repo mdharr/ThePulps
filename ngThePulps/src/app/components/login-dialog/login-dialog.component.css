@@ -22,7 +22,13 @@
 .overlay-titleCloser {
   color: #888;
   text-decoration: none;
+  transition: font-size 0.2s;
+}
+
+.overlay-titleCloser:hover {
+  color: #cf142b;
   cursor: pointer;
+  font-size: larger;
 }
 
 .login-form {

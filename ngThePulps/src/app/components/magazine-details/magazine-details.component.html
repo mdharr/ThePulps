@@ -2,9 +2,9 @@
 <div class="main">
     <div class="magazine-container" [routerLink]="['/publications', publicationId, 'magazines', magazine.id, 'stories']">
         <div class="image-box">
-          <img class="magazine-image" src="{{ magazine.imageUrl }}" alt="" loading="lazy">
+          <img class="magazine-image" src="{{ magazine.imageUrl }}" alt="" #magazineImage (load)="onImageLoad(magazineImage, magazineTitle)">
         </div>
-        <div class="magazine-title">
+        <div class="magazine-title" #magazineTitle>
           <h6>{{ magazine.name }}</h6>
         </div>
     </div>

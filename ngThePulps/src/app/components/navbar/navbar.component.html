@@ -8,7 +8,7 @@
 
 <mat-toolbar [ngClass]="{ 'fixed-toolbar': isToolbarFixed }" role="heading" id="navbarId">
     <mat-toolbar-row>
-      <a [routerLink]="['/']"><h1 class="title">The Pulps</h1></a>
+      <button mat-button [routerLink]="['/']"><h1 class="title">The Pulps</h1></button>
       <mat-toolbar-row>
         <button mat-button [matMenuTriggerFor]="afterMenu" id="quick-jump-btn" (menuOpened)="menuOpen()" (click)="rotateChevronTop()"><span class="rotate" style="vertical-align: middle;" [ngClass]="{highlight: isRotated1}">{{ quickJumpText }}</span><span><mat-icon class="rotate" style="vertical-align: middle;" [ngClass]="{down: isRotated1}">arrow_drop_down</mat-icon></span></button>
         <mat-menu #afterMenu="matMenu" xPosition="after" class="toolbar-menu" (closed)="resetRotationState()">
@@ -30,7 +30,7 @@
         <span class="register-text">Register</span>
       </button> -->
       <button mat-button *ngIf="!loggedIn()" (click)="openLoginDialog()">
-        <span class="login-text">Login</span>
+        <span class="login-text">Log in</span>
       </button>
       <button mat-button *ngIf="!loggedIn()" (click)="openSignupDialog()">
         <span class="register-text">Register</span>

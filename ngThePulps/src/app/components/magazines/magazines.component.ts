@@ -70,11 +70,8 @@ export class MagazinesComponent implements OnInit {
     }
   }
 
-  onImageLoad(imageElement: HTMLImageElement) {
-    console.log('Image loaded');
-    console.log('Image element', imageElement); // Check if the correct image element is passed
-
-    this.renderer.addClass(imageElement, 'loaded');
+  onImageLoad(magazineImage: HTMLImageElement) {
+    this.renderer.addClass(magazineImage, 'loaded');
   }
 
 }

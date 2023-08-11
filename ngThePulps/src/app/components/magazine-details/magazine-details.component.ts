@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Magazine } from 'src/app/models/magazine';
@@ -24,7 +24,8 @@ export class MagazineDetailsComponent implements OnInit {
               private auth: AuthService,
               private magazineService: MagazineService,
               private activatedRoute: ActivatedRoute,
-              private magazineHtmlService: MagazineHtmlService
+              private magazineHtmlService: MagazineHtmlService,
+              private renderer: Renderer2
     ) {}
 
   ngOnInit() {
@@ -46,6 +47,11 @@ export class MagazineDetailsComponent implements OnInit {
         });
       }
     });
+  }
+
+  onImageLoad(magazineImage: HTMLImageElement, magazineTitle: HTMLDivElement) {
+    this.renderer.addClass(magazineImage, 'loaded');
+    this.renderer.setStyle(magazineTitle, 'display', 'block');
   }
 
 }

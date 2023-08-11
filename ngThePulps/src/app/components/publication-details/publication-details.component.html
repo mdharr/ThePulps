@@ -1,10 +1,11 @@
 
 <div class="main">
-    <div class="publication-container">
+    <div class="publication-container" #publicationContainer>
       <div class="card-container">
-        <div class="publication-card">
+        <div class="publication-card" #publicationCard>
           <div class="publication-thumbnail">
-            <img class="thumbnail-img" src="{{ publication.thumbnailUrl }}" alt="thumbnail.jpg">
+            <img class="thumbnail-img" src="{{ publication.thumbnailUrl }}" alt="thumbnail.jpg" #publicationImage
+            (load)="onImageLoad(publicationImage, publicationContainer)">
           </div>
           <hr>
           <div class="publication-title">

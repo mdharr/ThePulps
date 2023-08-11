@@ -1,5 +1,5 @@
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { PublicationService } from 'src/app/services/publication.service';
@@ -22,6 +22,7 @@ export class PublicationDetailsComponent implements OnInit, OnDestroy {
   auth = inject(AuthService);
   publicationService = inject(PublicationService);
   activatedRoute = inject(ActivatedRoute);
+  renderer = inject(Renderer2);
 
   // subscription declaration
   private paramsSubscription: Subscription | undefined;
@@ -93,5 +94,12 @@ export class PublicationDetailsComponent implements OnInit, OnDestroy {
   //       }
   //     });
   // }
+
+  onImageLoad(publicationImage: HTMLImageElement, publicationContainer: HTMLDivElement) {
+    this.renderer.setStyle(publicationContainer, 'display', 'block');
+    setTimeout(() => {
+      this.renderer.addClass(publicationImage, 'loaded');
+    }, 100);
+  }
 
 }

@@ -8,6 +8,8 @@ body::before {
   content: "";
   background-image: url(https://thepulps.s3.amazonaws.com/assets/Light-Parchment-Texture.jpg);
   display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 
 body {
@@ -20,4 +22,5 @@ body {
   background-repeat: repeat;
   /* background-color: rgba(10,10,0,.95); */
   color: #000;
+  opacity: 1;
 }
