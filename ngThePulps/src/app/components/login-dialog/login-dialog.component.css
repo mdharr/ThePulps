@@ -26,7 +26,7 @@
 }
 
 .overlay-titleCloser:hover {
-  color: #cf142b;
+  color: #fff;
   cursor: pointer;
   font-size: larger;
 }
@@ -76,4 +76,17 @@ button#loginFormBtn:hover {
     max-width: 100%;
     padding: 15px;
   }
+}
+
+.cancel-box {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.cancel-box:hover {
+  background-color: crimson;
 }
