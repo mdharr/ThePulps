@@ -37,4 +37,16 @@ export class ArtistService {
       })
     );
   }
+
+  getArtistById(id: number): Observable<Artist> {
+    return this.http.get<Artist>(this.url + '/' + id).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+          new Error('ArtistService.getArtistById: error retrieving artist: ' + err)
+        );
+      })
+    );
+  }
 }
