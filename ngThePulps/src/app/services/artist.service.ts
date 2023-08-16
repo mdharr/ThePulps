@@ -9,7 +9,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class ArtistService {
-  private url = environment.baseUrl + 'api/authors';
+  private url = environment.baseUrl + 'api/artists';
   private otherUrl = environment.baseUrl + 'api';
 
   constructor(private http: HttpClient, private authService: AuthService) { }
