@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Author } from 'src/app/models/author';
 
 @Component({
@@ -6,6 +6,10 @@ import { Author } from 'src/app/models/author';
   templateUrl: './authors.component.html',
   styleUrls: ['./authors.component.css']
 })
-export class AuthorsComponent {
+export class AuthorsComponent implements OnInit {
 authors: Author[] = [];
+
+ngOnInit(): void {
+
+}
 }
