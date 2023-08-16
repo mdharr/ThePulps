@@ -33,6 +33,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { RegisterDialogComponent } from './components/register-dialog/register-dialog.component';
+import { ArtistsComponent } from './components/artists/artists.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { RegisterDialogComponent } from './components/register-dialog/register-d
     RegisterComponent,
     FooterComponent,
     LoginDialogComponent,
-    RegisterDialogComponent
+    RegisterDialogComponent,
+    ArtistsComponent
   ],
   imports: [
     BrowserModule,
