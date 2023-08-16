@@ -28,7 +28,8 @@ const routes: Routes = [
   { path: 'magazines/:magazineId/stories/:storyId', component: StoryDetailsComponent },
   { path: 'stories', component: StoriesComponent },
   { path: 'stories/:storyId', component: StoryDetailsComponent },
-  { path: 'authors', component: AuthorsComponent }
+  { path: 'authors', component: AuthorsComponent },
+  { path: 'artists', component: ArtistsComponent },
 ];
 
 @NgModule({
