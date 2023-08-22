@@ -66,10 +66,10 @@
   display: flex;
   justify-content: center;
 }
-
+/*
 .magazine-thumbnail:hover {
   transform: scale(1);
-}
+} */
 
 .magazine-thumbnail img {
   display: block;
@@ -78,8 +78,47 @@
   object-fit: cover;
   opacity: 0; /* Start with zero opacity */
   transition: opacity 0.5s ease-in-out; /* Add a transition for opacity */
+  box-shadow: 0 0.3125em 0.625em rgba(0,0,0,.25);
 }
 
 .magazine-thumbnail img.loaded {
   opacity: 1; /* When the 'loaded' class is added, set opacity to 1 */
 }
+
+.main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.magazine-container {
+  text-decoration: none;
+  color: #333;
+  width: 100%;
+  max-width: 240px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.magazine-container:hover {
+  transform: translateY(-5px);
+}
+
+.magazine-card {
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.magazine-thumbnail img {
+  /* max-width: 100%; */
+  height: auto;
+}
+
+.magazine-title h6 {
+  font-size: 16px;
+  margin-top: 10px;
+}
+

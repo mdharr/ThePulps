@@ -24,7 +24,7 @@
   </ng-container>
 </div> -->
 
-<div class="main">
+<!-- <div class="main">
   <ng-container *ngFor="let magazine of magazines; let i = index">
     <div class="magazine-container" [routerLink]="['/publications', publicationId, 'magazines', magazine.id]">
       <div class="magazine-card">
@@ -37,5 +37,21 @@
       </div>
     </div>
   </ng-container>
+</div> -->
+
+<div class="main">
+  <ng-container *ngFor="let magazine of magazines; let i = index">
+    <a class="magazine-container" [routerLink]="['/publications', publicationId, 'magazines', magazine.id]">
+      <div class="magazine-card">
+        <div class="magazine-thumbnail">
+          <img class="thumbnail-img" src="{{ magazine.thumbnailUrl }}" alt="" loading="lazy" #magazineImage (load)="onImageLoad(magazineImage)">
+        </div>
+        <div class="magazine-title">
+          <h6>{{ magazine.name }}</h6>
+        </div>
+      </div>
+    </a>
+  </ng-container>
 </div>
+
 
