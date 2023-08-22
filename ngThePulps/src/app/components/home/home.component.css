@@ -43,8 +43,6 @@
 }
 
 .category-item:hover {
-  color: #fff;
-  background-color: #800020;
+  background-color: #f8f8f8;
   transform: translateY(-5px);
 }
-
