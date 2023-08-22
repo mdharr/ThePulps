@@ -1,5 +1,5 @@
 
-<ul>
+<!-- <ul>
   <ng-container *ngFor="let story of stories; let lastStory = last">
     <li class="story-title" (click)="navigateToStoryAnchor(story)">
       {{ story.title }} <b>&#xB7;</b> <span> {{ formatStoryType(story.storyType) }}</span>
@@ -17,4 +17,23 @@
 
 <div class="story-container" *ngFor="let story of stories">
 
+</div> -->
+<div class="table-of-contents">
+  <h2>Table of Contents</h2>
+  <ul>
+    <ng-container *ngFor="let story of stories; let lastStory = last">
+      <li class="story-item" (click)="navigateToStoryAnchor(story)">
+        <div class="story-title">{{ story.title }}</div>
+        <div class="story-meta">
+          <span class="story-type">{{ formatStoryType(story.storyType) }}</span>
+          <span *ngIf="story.authors.length > 0" class="author-label"> by </span>
+          <span *ngFor="let author of story.authors; let lastAuthor = last" class="author-name">
+            {{ author.fullName }}
+            <span *ngIf="story.authors.length > 1 && !lastAuthor">{{ ' and ' }}</span>
+            <!-- <span *ngIf="lastAuthor">{{ ', ' }}</span> -->
+          </span>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
 </div>

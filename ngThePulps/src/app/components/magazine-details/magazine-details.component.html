@@ -1,5 +1,5 @@
 
-<div class="main">
+<!-- <div class="main">
     <div class="magazine-container" [routerLink]="['/publications', publicationId, 'magazines', magazine.id, 'stories']">
         <div class="image-box">
           <img class="magazine-image" src="{{ magazine.imageUrl }}" alt="" #magazineImage (load)="onImageLoad(magazineImage, magazineTitle)">
@@ -17,4 +17,24 @@
         <li>No. {{ magazine.issue }}</li>
       </ol>
     </div>
+</div> -->
+
+<div class="main">
+  <div class="magazine-container" [routerLink]="['/publications', publicationId, 'magazines', magazine.id, 'stories']">
+      <div class="image-box">
+          <img class="magazine-image" src="{{ magazine.imageUrl }}" alt="" #magazineImage (load)="onImageLoad(magazineImage, magazineTitle)">
+      </div>
+      <div class="magazine-details">
+          <div class="magazine-title" #magazineTitle>
+              <h6>{{ magazine.name }}</h6>
+          </div>
+          <ul class="magazine-info">
+              <li><strong>Released:</strong> {{ magazine.releasedAt | date:'longDate' }}</li>
+              <li><strong>Price:</strong> ${{ magazine.price }}</li>
+              <li><strong>Volume:</strong> {{ magazine.volume }}</li>
+              <li><strong>Issue:</strong> {{ magazine.issue }}</li>
+          </ul>
+      </div>
+  </div>
 </div>
+
