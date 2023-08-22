@@ -16,14 +16,34 @@
   </ng-container>
 </div> -->
 
-<div class="main">
+<!-- <div class="main">
   <ul>
     <ng-container *ngFor="let publication of publications">
       <li>
         <div class="publication-title">
-          <a [routerLink]="['/publications', publication.id]"><h4>{{ publication.name }}</h4></a>
+          <a [routerLink]="['/publications', publication.id, 'magazines']"><h4>{{ publication.name }}</h4></a>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+</div> -->
+
+<div class="main">
+  <ul class="publication-list">
+    <ng-container *ngFor="let publication of publications">
+      <li class="publication-item">
+        <div class="publication-card">
+          <a [routerLink]="['/publications', publication.id, 'magazines']" class="publication-thumbnail">
+            <img class="thumbnail-img" src="{{ publication.thumbnailUrl }}" alt="" loading="lazy">
+          </a>
+          <div class="publication-title">
+            <a [routerLink]="['/publications', publication.id, 'magazines']">
+              <h4>{{ publication.name }}</h4>
+            </a>
+          </div>
         </div>
       </li>
     </ng-container>
   </ul>
 </div>
+
