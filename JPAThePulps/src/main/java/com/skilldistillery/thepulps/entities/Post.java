@@ -30,7 +30,6 @@ public class Post {
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	@MapsId(value = "userId")
 	private User user;
 	
 	private String title;

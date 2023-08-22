@@ -40,7 +40,6 @@ public class MemberGroup {
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	@MapsId(value = "userId")
 	private User user;
 	
 	@JsonIgnore

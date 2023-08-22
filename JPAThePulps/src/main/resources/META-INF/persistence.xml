@@ -54,6 +54,7 @@
 		<class>com.skilldistillery.thepulps.entities.Comment</class>
 		<class>com.skilldistillery.thepulps.entities.Advertisement</class>
 		<class>com.skilldistillery.thepulps.entities.StoryImage</class>
+		<class>com.skilldistillery.thepulps.entities.Story</class>
 
 		<!-- end entities -->
 
