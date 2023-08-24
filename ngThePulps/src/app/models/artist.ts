@@ -1,20 +1,19 @@
 export class Artist {
 
   id: number;
-  fullName: string;
-
-  thumbnailUrl: string;
+  name: string;
   imageUrl: string;
+  description: string;
 
   constructor(
     id: number = 0,
-    fullName: string = '',
-    thumbnailUrl: string = '',
-    imageUrl: string = ''
+    name: string = '',
+    imageUrl: string = '',
+    description: string = ''
   ) {
     this.id = id;
-    this.fullName = fullName;
-    this.thumbnailUrl = thumbnailUrl;
+    this.name = name;
     this.imageUrl = imageUrl;
+    this.description = description;
   }
 }
