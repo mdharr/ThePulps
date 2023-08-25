@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Author } from 'src/app/models/author';
@@ -25,13 +25,11 @@ export class StoriesComponent implements OnInit {
   private magazineSubscription: Subscription | undefined;
   private storySubscription: Subscription | undefined;
 
-  constructor(
-              private auth: AuthService,
-              private magazineService: MagazineService,
-              private activatedRoute: ActivatedRoute,
-              private magazineHtmlService: MagazineHtmlService,
-              private storyService: StoryService
-    ) {}
+  auth = inject(AuthService);
+  magazineService = inject(MagazineService);
+  activatedRoute = inject(ActivatedRoute);
+  magazineHtmlService = inject(MagazineHtmlService);
+  storyService = inject(StoryService);
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
@@ -99,7 +97,7 @@ export class StoriesComponent implements OnInit {
   }
 
   getAuthorsByStoryId(story: any): Author[] {
-    this.storyService.getAuthorsByStoryId(story.id)
+    this.storyService.getAuthorsByStoryId(story.id).subscribe
     return [];
   }
 
