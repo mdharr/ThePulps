@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -11,17 +11,13 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LogoutComponent {
   userId: number = 0; // Retrieve userId from AuthService
 
-
-  constructor(
-              private authService: AuthService,
-              private router: Router,
-              private snackBar: MatSnackBar,
-              // private userService: UserService
-  ) {}
+  auth = inject(AuthService);
+  router = inject(Router);
+  snackBar = inject(MatSnackBar);
 
   logout() {
     console.log("Logging out");
-    this.authService.logout();
+    this.auth.logout();
     this.router.navigateByUrl('home');
     this.snackBar.open('Logout Successful!', 'Dismiss', {
       duration: 3000, // Duration in milliseconds for which the snackbar will be shown
