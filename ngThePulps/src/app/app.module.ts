@@ -34,6 +34,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { LoginDialogComponent } from './components/login-dialog/login-dialog.component';
 import { RegisterDialogComponent } from './components/register-dialog/register-dialog.component';
 import { ArtistsComponent } from './components/artists/artists.component';
+import { UserCollectionsComponent } from './components/user-collections/user-collections.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ArtistsComponent } from './components/artists/artists.component';
     FooterComponent,
     LoginDialogComponent,
     RegisterDialogComponent,
-    ArtistsComponent
+    ArtistsComponent,
+    UserCollectionsComponent
   ],
   imports: [
     BrowserModule,
