@@ -51,7 +51,7 @@ export class UserService {
     );
   }
   indexUserCollections(id: number): Observable<Collection[]> {
-    return this.http.get<Collection[]>(`${this.url}/${id}\collections`).pipe(
+    return this.http.get<Collection[]>(`${this.url}/${id}/collections`).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
