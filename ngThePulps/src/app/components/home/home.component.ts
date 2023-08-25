@@ -1,5 +1,5 @@
 import { PublicationService } from './../../services/publication.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Publication } from 'src/app/models/publication';
 import { AuthService } from 'src/app/services/auth.service';
 import { Subscription } from 'rxjs';
@@ -25,12 +25,10 @@ export class HomeComponent implements OnInit {
   private magazineHtmlSubscription: Subscription | undefined;
   private storySubscription: Subscription | undefined;
 
-  constructor(
-              private auth: AuthService,
-              private magazineHtmlService: MagazineHtmlService,
-              private storyService: StoryService,
-              private router: Router
-              ) {}
+  auth = inject(AuthService);
+  magazineHtmlService = inject(MagazineHtmlService);
+  storyService = inject(StoryService);
+  router = inject(Router);
 
   ngOnInit() {
     // this.tempTestDeleteMeLater();
