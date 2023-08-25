@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Publication } from 'src/app/models/publication';
 import { AuthService } from 'src/app/services/auth.service';
@@ -15,10 +15,8 @@ export class PublicationsComponent implements OnInit {
 
   private publicationSubscription: Subscription | undefined;
 
-  constructor(
-              private auth: AuthService,
-              private publicationService: PublicationService
-    ) {}
+  auth = inject(AuthService);
+  publicationService = inject(PublicationService);
 
   ngOnInit() {
 
