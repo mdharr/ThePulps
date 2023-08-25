@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { User } from 'src/app/models/user';
@@ -12,14 +12,12 @@ import { AuthService } from 'src/app/services/auth.service';
 export class LoginDialogComponent {
   loginUser: User = new User();
 
-  constructor(
-    private dialogRef: MatDialogRef<LoginDialogComponent>,
-    private authService: AuthService,
-    private snackBar: MatSnackBar
-  ) {}
+  dialogRef = inject(MatDialogRef<LoginDialogComponent>);
+  auth = inject(AuthService);
+  snackBar = inject(MatSnackBar);
 
   login(loginUser: User) {
-    this.authService.login(this.loginUser.username, this.loginUser.password).subscribe({
+    this.auth.login(this.loginUser.username, this.loginUser.password).subscribe({
       next: (loggedInUser) => {
         console.log("Login success");
         this.dialogRef.close();
