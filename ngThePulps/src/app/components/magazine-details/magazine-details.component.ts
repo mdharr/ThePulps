@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, inject, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Magazine } from 'src/app/models/magazine';
@@ -20,13 +20,11 @@ export class MagazineDetailsComponent implements OnInit {
 
   private magazineSubscription: Subscription | undefined;
 
-  constructor(
-              private auth: AuthService,
-              private magazineService: MagazineService,
-              private activatedRoute: ActivatedRoute,
-              private magazineHtmlService: MagazineHtmlService,
-              private renderer: Renderer2
-    ) {}
+  auth = inject(AuthService);
+  magazineService = inject(MagazineService);
+  activatedRoute = inject(ActivatedRoute);
+  magazineHtmlService = inject(MagazineHtmlService);
+  renderer = inject(Renderer2);
 
   ngOnInit() {
     this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
