@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -15,11 +15,10 @@ export class RegisterDialogComponent {
 
   newUser: User = new User();
 
-  constructor(private authService: AuthService,
-              private router: Router,
-              private dialogRef: MatDialogRef<RegisterDialogComponent>,
-              private snackBar: MatSnackBar
-              ) {}
+  auth = inject(AuthService);
+  router = inject(Router);
+  dialogRef = inject(MatDialogRef<RegisterDialogComponent>);
+  snackBar = inject(MatSnackBar);
 
   register(newUser: User): void {
     console.log('Registering user:');
@@ -34,9 +33,9 @@ export class RegisterDialogComponent {
       });
       return;
     }
-    this.authService.register(newUser).subscribe({
+    this.auth.register(newUser).subscribe({
       next: (registeredUser) => {
-        this.authService.login(newUser.username, newUser.password).subscribe({
+        this.auth.login(newUser.username, newUser.password).subscribe({
           next: (loggedInUser) => {
             this.dialogRef.close();
             this.router.navigateByUrl('/');
