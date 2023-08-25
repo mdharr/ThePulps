@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -18,18 +18,15 @@ export class LoginComponent {
 
   public loggedInUserCount: number = 0;
 
-  constructor(
-              private authService: AuthService,
-              private router: Router,
-              private modalService: NgbModal,
-              // private userService: UserService,
-              private snackBar: MatSnackBar,
-              private cdr: ChangeDetectorRef
-  ) {}
+  auth = inject(AuthService);
+  router = inject(Router);
+  modalService = inject(NgbModal);
+  snackBar = inject(MatSnackBar);
+  cdr = inject(ChangeDetectorRef);
 
   login(loginUser: User) {
     console.log("logging in");
-    this.authService.login(loginUser.username, loginUser.password).subscribe({
+    this.auth.login(loginUser.username, loginUser.password).subscribe({
       next: (loggedInUser) => {
         console.log("login success")
         console.log(loggedInUser);
