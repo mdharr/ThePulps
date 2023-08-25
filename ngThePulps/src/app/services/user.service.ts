@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Collection } from '../models/collection';
 import { User } from '../models/user';
 import { AuthService } from './auth.service';
 
@@ -45,6 +46,17 @@ export class UserService {
         return throwError(
           () =>
             new Error('UserService.find(): error retrieving user: ' + err)
+        );
+      })
+    );
+  }
+  indexUserCollections(id: number): Observable<Collection[]> {
+    return this.http.get<Collection[]>(`${this.url}/${id}\collections`).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('UserService.find(): error retrieving user collections: ' + err)
         );
       })
     );
