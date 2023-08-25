@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/models/user';
@@ -13,16 +13,16 @@ export class RegisterComponent {
 
   newUser: User = new User();
 
-  constructor(private authService: AuthService,
-              private router: Router,
-              private modalService: NgbModal) {}
+  auth = inject(AuthService);
+  router = inject(Router);
+  modalService = inject(NgbModal);
 
   register(newUser: User): void {
     console.log('Registering user:');
     console.log(newUser);
-    this.authService.register(newUser).subscribe({
+    this.auth.register(newUser).subscribe({
       next: (registeredUser) => {
-        this.authService.login(newUser.username, newUser.password).subscribe({
+        this.auth.login(newUser.username, newUser.password).subscribe({
           next: (loggedInUser) => {
             this.modalService.dismissAll();
             this.router.navigateByUrl('/home');
