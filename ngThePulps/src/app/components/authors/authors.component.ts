@@ -7,9 +7,9 @@ import { Author } from 'src/app/models/author';
   styleUrls: ['./authors.component.css']
 })
 export class AuthorsComponent implements OnInit {
-authors: Author[] = [];
+  authors: Author[] = [];
 
-ngOnInit(): void {
+  ngOnInit(): void {
 
-}
+  }
 }
