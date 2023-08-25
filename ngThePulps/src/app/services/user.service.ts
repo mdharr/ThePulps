@@ -31,7 +31,7 @@ export class UserService {
         return throwError(
           () =>
           new Error(
-            'MagazineService.indexAll(): error retrieving magazine list: ' + err
+            'UserService.indexAll(): error retrieving users list: ' + err
           )
         );
       })
@@ -44,7 +44,7 @@ export class UserService {
         console.log(err);
         return throwError(
           () =>
-            new Error('MagazineService.find(): error retrieving magazine: ' + err)
+            new Error('UserService.find(): error retrieving user: ' + err)
         );
       })
     );
