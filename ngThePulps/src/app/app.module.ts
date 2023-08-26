@@ -35,6 +35,7 @@ import { LoginDialogComponent } from './components/login-dialog/login-dialog.com
 import { RegisterDialogComponent } from './components/register-dialog/register-dialog.component';
 import { ArtistsComponent } from './components/artists/artists.component';
 import { UserCollectionsComponent } from './components/user-collections/user-collections.component';
+import { StoriesAllComponent } from './components/stories-all/stories-all.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { UserCollectionsComponent } from './components/user-collections/user-col
     LoginDialogComponent,
     RegisterDialogComponent,
     ArtistsComponent,
-    UserCollectionsComponent
+    UserCollectionsComponent,
+    StoriesAllComponent
   ],
   imports: [
     BrowserModule,
