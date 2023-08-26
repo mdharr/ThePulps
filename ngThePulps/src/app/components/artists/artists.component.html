@@ -2,3 +2,13 @@
 <div *ngFor="let artist of artists">
 
 </div>
+
+<div class="main">
+  <ng-container *ngFor="let artist of artists; let i = index">
+    <div class="artist-container">
+      <ul>
+        <li>{{artist.name}}</li>
+      </ul>
+    </div>
+  </ng-container>
+</div>

@@ -31,7 +31,6 @@ public class UserProfile {
 
 	public UserProfile() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public UserProfile(int id, String imageUrl, String bio, User user) {
