@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Story } from 'src/app/models/story';
 import { StoryService } from 'src/app/services/story.service';
@@ -8,7 +8,7 @@ import { StoryService } from 'src/app/services/story.service';
   templateUrl: './stories-all.component.html',
   styleUrls: ['./stories-all.component.css']
 })
-export class StoriesAllComponent {
+export class StoriesAllComponent implements OnInit, OnDestroy {
   stories: Story[] = [];
 
   private storiesSubscription: Subscription | undefined;
@@ -26,5 +26,11 @@ export class StoriesAllComponent {
         console.error(fail);
       }
     });
+  }
+
+  ngOnDestroy() {
+    if (this.storiesSubscription) {
+      this.storiesSubscription.unsubscribe();
+    }
   }
 }
