@@ -36,6 +36,7 @@ import { RegisterDialogComponent } from './components/register-dialog/register-d
 import { ArtistsComponent } from './components/artists/artists.component';
 import { UserCollectionsComponent } from './components/user-collections/user-collections.component';
 import { StoriesAllComponent } from './components/stories-all/stories-all.component';
+import { MagazinesAllComponent } from './components/magazines-all/magazines-all.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { StoriesAllComponent } from './components/stories-all/stories-all.compon
     RegisterDialogComponent,
     ArtistsComponent,
     UserCollectionsComponent,
-    StoriesAllComponent
+    StoriesAllComponent,
+    MagazinesAllComponent
   ],
   imports: [
     BrowserModule,
