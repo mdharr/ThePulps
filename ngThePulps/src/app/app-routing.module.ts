@@ -9,6 +9,7 @@ import { MagazinesAllComponent } from './components/magazines-all/magazines-all.
 import { MagazinesComponent } from './components/magazines/magazines.component';
 import { PublicationDetailsComponent } from './components/publication-details/publication-details.component';
 import { PublicationsComponent } from './components/publications/publications.component';
+import { StoriesAllComponent } from './components/stories-all/stories-all.component';
 import { StoriesComponent } from './components/stories/stories.component';
 import { StoryDetailsComponent } from './components/story-details/story-details.component';
 
@@ -28,7 +29,7 @@ const routes: Routes = [
   { path: 'magazines/:magazineId', component: MagazineDetailsComponent },
   { path: 'magazines/:magazineId/stories', component: StoriesComponent },
   { path: 'magazines/:magazineId/stories/:storyId', component: StoryDetailsComponent },
-  { path: 'stories', component: StoriesComponent },
+  { path: 'stories', component: StoriesAllComponent },
   { path: 'stories/:storyId', component: StoryDetailsComponent },
   { path: 'authors', component: AuthorsComponent },
   { path: 'artists', component: ArtistsComponent },
