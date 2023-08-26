@@ -22,7 +22,7 @@ export class ArtistsComponent implements OnInit {
         this.artists = artists;
       },
       error: (fail) => {
-        console.error('Error getting magazine');
+        console.error('Error getting artists');
         console.error(fail);
       }
     });
