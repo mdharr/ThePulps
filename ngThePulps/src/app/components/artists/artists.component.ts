@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Artist } from 'src/app/models/artist';
 import { ArtistService } from 'src/app/services/artist.service';
@@ -8,7 +8,7 @@ import { ArtistService } from 'src/app/services/artist.service';
   templateUrl: './artists.component.html',
   styleUrls: ['./artists.component.css']
 })
-export class ArtistsComponent implements OnInit {
+export class ArtistsComponent implements OnInit, OnDestroy {
   artists: Artist[] = [];
 
   private artistsSubscription: Subscription | undefined;
@@ -26,5 +26,11 @@ export class ArtistsComponent implements OnInit {
         console.error(fail);
       }
     });
+  }
+
+  ngOnDestroy() {
+    if (this.artistsSubscription) {
+      this.artistsSubscription.unsubscribe();
+    }
   }
 }
