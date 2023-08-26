@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Author } from 'src/app/models/author';
@@ -14,7 +14,7 @@ import { StoryService } from 'src/app/services/story.service';
   templateUrl: './stories.component.html',
   styleUrls: ['./stories.component.css']
 })
-export class StoriesComponent implements OnInit {
+export class StoriesComponent implements OnInit, OnDestroy {
 
   magazine: Magazine = new Magazine();
   publicationId: number = 0;
@@ -59,6 +59,15 @@ export class StoriesComponent implements OnInit {
         })
       }
     });
+  }
+
+  ngOnDestroy() {
+    if (this.magazineSubscription) {
+      this.magazineSubscription.unsubscribe();
+    }
+    if (this.storySubscription) {
+      this.storySubscription.unsubscribe();
+    }
   }
 
     navigateToStoryAnchor(story: any): void {
