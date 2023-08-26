@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Publication } from 'src/app/models/publication';
 import { AuthService } from 'src/app/services/auth.service';
@@ -9,7 +9,7 @@ import { PublicationService } from 'src/app/services/publication.service';
   templateUrl: './publications.component.html',
   styleUrls: ['./publications.component.css']
 })
-export class PublicationsComponent implements OnInit {
+export class PublicationsComponent implements OnInit, OnDestroy {
 
   publications: Publication[] = [];
 
@@ -30,6 +30,12 @@ export class PublicationsComponent implements OnInit {
       }
     });
 
+  }
+
+  ngOnDestroy() {
+    if (this.publicationSubscription) {
+      this.publicationSubscription.unsubscribe();
+    }
   }
 
   // url experiment stretch goal
