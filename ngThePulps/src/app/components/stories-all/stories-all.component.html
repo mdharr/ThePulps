@@ -1,1 +1,9 @@
-<p>stories-all works!</p>
+<div class="main">
+  <ng-container *ngFor="let story of stories; let i = index">
+    <div class="story-container">
+      <ul>
+        <li>{{story.title}}</li>
+      </ul>
+    </div>
+  </ng-container>
+</div>
