@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, Renderer2 } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Magazine } from 'src/app/models/magazine';
@@ -12,7 +12,7 @@ import { PublicationService } from 'src/app/services/publication.service';
   templateUrl: './magazine-details.component.html',
   styleUrls: ['./magazine-details.component.css']
 })
-export class MagazineDetailsComponent implements OnInit {
+export class MagazineDetailsComponent implements OnInit, OnDestroy {
 
   magazine: Magazine =  new Magazine();
   publicationId: number = 0;
@@ -45,6 +45,12 @@ export class MagazineDetailsComponent implements OnInit {
         });
       }
     });
+  }
+
+  ngOnDestroy() {
+    if (this.magazineSubscription) {
+      this.magazineSubscription.unsubscribe();
+    }
   }
 
   onImageLoad(magazineImage: HTMLImageElement, magazineTitle: HTMLDivElement) {
