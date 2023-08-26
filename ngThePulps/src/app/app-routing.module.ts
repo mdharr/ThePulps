@@ -5,6 +5,7 @@ import { AuthorsComponent } from './components/authors/authors.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { MagazineDetailsComponent } from './components/magazine-details/magazine-details.component';
+import { MagazinesAllComponent } from './components/magazines-all/magazines-all.component';
 import { MagazinesComponent } from './components/magazines/magazines.component';
 import { PublicationDetailsComponent } from './components/publication-details/publication-details.component';
 import { PublicationsComponent } from './components/publications/publications.component';
@@ -23,7 +24,7 @@ const routes: Routes = [
   { path: 'publications/:publicationId/magazines/:magazineId', component: MagazineDetailsComponent },
   { path: 'publications/:publicationId/magazines/:magazineId/stories', component: StoriesComponent },
   { path: 'publications/:publicationId/magazines/:magazineId/stories/:storyId', component: StoryDetailsComponent },
-  { path: 'magazines', component: MagazinesComponent },
+  { path: 'magazines', component: MagazinesAllComponent },
   { path: 'magazines/:magazineId', component: MagazineDetailsComponent },
   { path: 'magazines/:magazineId/stories', component: StoriesComponent },
   { path: 'magazines/:magazineId/stories/:storyId', component: StoryDetailsComponent },

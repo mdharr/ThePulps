@@ -1,1 +1,9 @@
-<p>magazines-all works!</p>
+<div class="main">
+  <ng-container *ngFor="let magazine of magazines; let i = index">
+    <div class="magazine-container">
+      <ul>
+        <li>{{magazine.name}}</li>
+      </ul>
+    </div>
+  </ng-container>
+</div>
