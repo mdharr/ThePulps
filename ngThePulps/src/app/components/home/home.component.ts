@@ -1,5 +1,5 @@
 import { PublicationService } from './../../services/publication.service';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Publication } from 'src/app/models/publication';
 import { AuthService } from 'src/app/services/auth.service';
 import { Subscription } from 'rxjs';
@@ -16,7 +16,7 @@ import { Story } from 'src/app/models/story';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
   stories: Story[] = [];
   magazineId: number = 0;
@@ -44,6 +44,15 @@ export class HomeComponent implements OnInit {
       }
     });
 
+  }
+
+  ngOnDestroy() {
+    if (this.storySubscription) {
+      this.storySubscription.unsubscribe();
+    }
+    if (this.magazineHtmlSubscription) {
+      this.magazineHtmlSubscription.unsubscribe();
+    }
   }
 
   // test login
