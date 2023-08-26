@@ -1,4 +1,9 @@
-<p>authors works!</p>
-<div *ngFor="let author of authors">
-
+<div class="main">
+  <ng-container *ngFor="let author of authors; let i = index">
+    <div class="artist-container">
+      <ul>
+        <li>{{author.fullName}}</li>
+      </ul>
+    </div>
+  </ng-container>
 </div>
