@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Collection } from 'src/app/models/collection';
 import { User } from 'src/app/models/user';
 
 @Component({
@@ -9,6 +10,7 @@ import { User } from 'src/app/models/user';
 export class UserCollectionsComponent implements OnInit, OnDestroy {
 
   user: User = new User();
+  collections: Collection[] = [];
 
   ngOnInit(): void {
 
