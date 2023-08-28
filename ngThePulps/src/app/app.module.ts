@@ -37,6 +37,7 @@ import { ArtistsComponent } from './components/artists/artists.component';
 import { UserCollectionsComponent } from './components/user-collections/user-collections.component';
 import { StoriesAllComponent } from './components/stories-all/stories-all.component';
 import { MagazinesAllComponent } from './components/magazines-all/magazines-all.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { MagazinesAllComponent } from './components/magazines-all/magazines-all.
     ArtistsComponent,
     UserCollectionsComponent,
     StoriesAllComponent,
-    MagazinesAllComponent
+    MagazinesAllComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
