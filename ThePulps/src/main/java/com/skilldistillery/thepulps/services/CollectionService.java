@@ -8,7 +8,9 @@ public interface CollectionService {
 	
 	public List<Collection> getAllCollections();
 	
-	public List<Collection> getByUserId(int userId);
+//	public List<Collection> getByUserId(int userId);
+	
+	public List<Collection> getByUser(String username);
 	
     Collection createCollection(String username, Collection collection);
     

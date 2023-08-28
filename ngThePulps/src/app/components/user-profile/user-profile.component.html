@@ -1,1 +1,4 @@
 <p>user-profile works!</p>
+<div>
+  <p [routerLink]="['/users/' + loggedInUser.id + '/collections']">{{loggedInUser.username}}'s Collections</p>
+</div>

@@ -32,14 +32,23 @@ public class CollectionServiceImpl implements CollectionService {
 		return collectionRepo.findAll();
 	}
 
+//	@Override
+//	public List<Collection> getByUserId(int userId) {
+//		Optional<User> userOptional = userRepo.findById(userId);
+//		if(userOptional.isPresent()) {
+//			User user = userOptional.get();
+//			return collectionRepo.findByUserId(userId);
+//		}
+//		return Collections.emptyList();
+//	}
+	
 	@Override
-	public List<Collection> getByUserId(int userId) {
-		Optional<User> userOptional = userRepo.findById(userId);
-		if(userOptional.isPresent()) {
-			User user = userOptional.get();
-			return collectionRepo.findByUserId(userId);
+	public List<Collection> getByUser(String username) {
+		User user = userRepo.findByUsername(username);
+		if(user != null) {
+			return user.getCollections();
 		}
-		return Collections.emptyList();
+		return null;
 	}
 
     @Override

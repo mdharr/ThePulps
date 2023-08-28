@@ -34,8 +34,8 @@ public class CollectionController {
 	}
 	
 	@GetMapping("users/{uid}/collections")
-	public List<Collection> getAllUserCollectionsByUserId(@PathVariable("uid") int userId, HttpServletRequest req, HttpServletResponse res) {
-		return collectionService.getByUserId(userId);
+	public List<Collection> getAllUserCollectionsByUserId(@PathVariable("uid") int userId, Principal principal, HttpServletRequest req, HttpServletResponse res) {
+		return collectionService.getByUser(principal.getName());
 	}
 	
 	@PostMapping("users/{uid}/collections")
@@ -46,7 +46,7 @@ public class CollectionController {
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(collection.getId());
-			res.setHeader("Location", url.toString());			
+			res.setHeader("Location", url.toString());		
 		} catch (Exception e) {
 			e.printStackTrace();
 			res.setStatus(400);
