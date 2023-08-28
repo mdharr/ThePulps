@@ -13,6 +13,7 @@ import { StoriesAllComponent } from './components/stories-all/stories-all.compon
 import { StoriesComponent } from './components/stories/stories.component';
 import { StoryDetailsComponent } from './components/story-details/story-details.component';
 import { UserCollectionsComponent } from './components/user-collections/user-collections.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -34,6 +35,7 @@ const routes: Routes = [
   { path: 'stories/:storyId', component: StoryDetailsComponent },
   { path: 'authors', component: AuthorsComponent },
   { path: 'artists', component: ArtistsComponent },
+  { path: 'users/:userId', component: UserProfileComponent },
   { path: 'users/:userId/collections', component: UserCollectionsComponent },
 ];
 
