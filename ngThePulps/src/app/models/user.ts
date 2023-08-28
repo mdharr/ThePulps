@@ -1,4 +1,5 @@
 import { first } from "rxjs";
+import { Collection } from "./collection";
 
 export class User {
 
@@ -8,6 +9,7 @@ export class User {
   confirmPassword: string;
   enabled: boolean;
   role: string;
+  collections: Collection[];
   // userProfile: number;
   email: string;
   firstName: string;
@@ -21,6 +23,7 @@ export class User {
     confirmPassword: string = '',
     enabled: boolean = false,
     role: string = '',
+    collections: Collection[] = [],
     email: string = '',
     firstName: string = '',
     lastName: string = '',
@@ -32,6 +35,7 @@ export class User {
     this.confirmPassword = confirmPassword;
     this.enabled = enabled;
     this.role = role;
+    this.collections = collections;
     this.email = email;
     this.firstName = firstName;
     this.lastName = lastName;

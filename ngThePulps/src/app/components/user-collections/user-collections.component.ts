@@ -26,6 +26,10 @@ export class UserCollectionsComponent implements OnInit, OnDestroy {
     this.loggedInUserSubscription = this.authService.getLoggedInUser().pipe(
       tap(user => {
         this.loggedInUser = user;
+        console.log("User " + this.loggedInUser.username);
+        this.collections = user.collections;
+        console.log("Collections " + this.collections);
+
       })
     ).subscribe({
       error: (error) => {

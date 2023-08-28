@@ -1,1 +1,8 @@
 <p>user-collections works!</p>
+<div>
+  <ng-container *ngFor="let collections of loggedInUser.collections">
+    <ul>
+      <li>{{ collections.name | json }}</li>
+    </ul>
+  </ng-container>
+</div>
