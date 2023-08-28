@@ -12,6 +12,7 @@ import { PublicationsComponent } from './components/publications/publications.co
 import { StoriesAllComponent } from './components/stories-all/stories-all.component';
 import { StoriesComponent } from './components/stories/stories.component';
 import { StoryDetailsComponent } from './components/story-details/story-details.component';
+import { UserCollectionsComponent } from './components/user-collections/user-collections.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'stories/:storyId', component: StoryDetailsComponent },
   { path: 'authors', component: AuthorsComponent },
   { path: 'artists', component: ArtistsComponent },
+  { path: 'users/:userId/collections', component: UserCollectionsComponent },
 ];
 
 @NgModule({
