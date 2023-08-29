@@ -26,6 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
@@ -82,6 +83,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     MatDialogModule,
     MatInputModule,
     ReactiveFormsModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

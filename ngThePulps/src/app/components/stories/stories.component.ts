@@ -70,7 +70,7 @@ export class StoriesComponent implements OnInit, OnDestroy {
     }
   }
 
-    navigateToStoryAnchor(story: any): void {
+  navigateToStoryAnchor(story: any): void {
     this.magazineService.findByStoryId(story.id).subscribe(
       (magazine: any) => {
         console.log('Magazine ID:', magazine.id);

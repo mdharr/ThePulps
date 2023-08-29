@@ -1,8 +1,29 @@
-<p>user-collections works!</p>
-<div>
-  <ng-container *ngFor="let collections of loggedInUser.collections">
+<!-- <div>
+  <ng-container *ngFor="let collection of collections">
     <ul>
-      <li>{{ collections.name | json }}</li>
+      <li>{{ collection.name }}</li>
     </ul>
+    <ng-container *ngFor="let story of collection.stories">
+      <ul>
+        <li>{{ story.title }}</li>
+      </ul>
+    </ng-container>
   </ng-container>
+</div> -->
+
+<div>
+  <mat-accordion>
+    <ng-container *ngFor="let collection of collections">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          {{ collection.name }}
+        </mat-expansion-panel-header>
+        <ul>
+          <li *ngFor="let story of collection.stories">
+            {{ story.title }}
+          </li>
+        </ul>
+      </mat-expansion-panel>
+    </ng-container>
+  </mat-accordion>
 </div>

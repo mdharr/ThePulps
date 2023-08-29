@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { Subscription, tap } from 'rxjs';
 import { Collection } from 'src/app/models/collection';
+import { Story } from 'src/app/models/story';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
@@ -14,6 +15,7 @@ export class UserCollectionsComponent implements OnInit, OnDestroy {
 
   loggedInUser: User = new User();
   collections: Collection[] = [];
+  stories: Story[] = [];
 
   private loggedInUserSubscription: Subscription | undefined
   private userSubscription: Subscription | undefined
@@ -27,8 +29,6 @@ export class UserCollectionsComponent implements OnInit, OnDestroy {
       tap(user => {
         this.loggedInUser = user;
         console.log("User " + this.loggedInUser.username);
-        this.collections = user.collections;
-        console.log("Collections " + this.collections);
 
       })
     ).subscribe({
