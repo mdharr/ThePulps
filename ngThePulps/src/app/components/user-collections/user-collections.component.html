@@ -19,9 +19,11 @@
           {{ collection.name }}
         </mat-expansion-panel-header>
         <ul>
-          <li *ngFor="let story of collection.stories">
-            {{ story.title }}
-          </li>
+          <ng-container *ngFor="let story of collection.stories" >
+            <li (click)="navigateToStoryAnchor(story)">
+              {{ story.title }}
+            </li>
+          </ng-container>
         </ul>
       </mat-expansion-panel>
     </ng-container>

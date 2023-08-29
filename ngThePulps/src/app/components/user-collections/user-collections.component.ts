@@ -4,6 +4,8 @@ import { Collection } from 'src/app/models/collection';
 import { Story } from 'src/app/models/story';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { MagazineService } from 'src/app/services/magazine.service';
+import { StoryService } from 'src/app/services/story.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -22,6 +24,8 @@ export class UserCollectionsComponent implements OnInit, OnDestroy {
 
   authService = inject(AuthService);
   userService = inject(UserService);
+  magazineService = inject(MagazineService);
+  storyService = inject(StoryService);
 
   ngOnInit(): void {
 
@@ -53,4 +57,24 @@ export class UserCollectionsComponent implements OnInit, OnDestroy {
 
   }
 
+  navigateToStoryAnchor(story: any): void {
+    this.magazineService.findByStoryId(story.id).subscribe(
+      (magazine: any) => {
+        console.log('Magazine ID:', magazine.id);
+
+        this.storyService.getStoryAnchorURL(story.id, magazine.id).subscribe(
+          (url: string) => {
+            console.log('Navigating to story anchor in magazine:', url);
+            window.open(url, '_blank');
+          },
+          (error) => {
+            console.error('Error navigating to story anchor in magazine', error);
+          }
+        );
+      },
+      (error) => {
+        console.error('Error retrieving magazine or magazineId', error);
+      }
+    );
+  }
 }
