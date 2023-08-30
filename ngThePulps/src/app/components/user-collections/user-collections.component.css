@@ -1,0 +1,4 @@
+.story-items:hover {
+  cursor: pointer;
+  width:fit-content;
+}

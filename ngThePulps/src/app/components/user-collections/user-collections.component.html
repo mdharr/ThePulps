@@ -7,7 +7,7 @@
             {{ collection.name }}
           </mat-expansion-panel-header>
           <ul>
-            <li *ngFor="let story of collection.stories" (click)="navigateToStoryAnchor(story)">
+            <li class="story-items" *ngFor="let story of collection.stories" (click)="navigateToStoryAnchor(story)">
               {{ story.title }}
             </li>
           </ul>
