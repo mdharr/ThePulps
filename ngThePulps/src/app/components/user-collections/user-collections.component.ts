@@ -18,6 +18,7 @@ export class UserCollectionsComponent implements OnInit, OnDestroy {
   loggedInUser: User = new User();
   collections: Collection[] = [];
   stories: Story[] = [];
+  dataLoaded = false;
 
   private loggedInUserSubscription: Subscription | undefined
   private userSubscription: Subscription | undefined
@@ -29,28 +30,17 @@ export class UserCollectionsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    this.loggedInUserSubscription = this.authService.getLoggedInUser().pipe(
-      tap(user => {
-        this.loggedInUser = user;
-        console.log("User " + this.loggedInUser.username);
+      this.loadCollectionsData();
 
-      })
-    ).subscribe({
-      error: (error) => {
-        console.log('Error getting loggedInUser Profile Component');
-        console.log(error);
-      },
-    });
-
-    this.userSubscription = this.userService.indexUserCollections(this.loggedInUser.id).subscribe({
-      next: (collections) => {
-        this.collections = collections;
-      },
-      error: (error) => {
-        console.log('Error getting user collections');
-        console.log(error);
-      },
-    });
+    // this.userSubscription = this.userService.indexUserCollections(this.loggedInUser.id).subscribe({
+    //   next: (collections) => {
+    //     this.collections = collections;
+    //   },
+    //   error: (error) => {
+    //     console.log('Error getting user collections');
+    //     console.log(error);
+    //   },
+    // });
   }
 
   ngOnDestroy(): void {
@@ -76,5 +66,34 @@ export class UserCollectionsComponent implements OnInit, OnDestroy {
         console.error('Error retrieving magazine or magazineId', error);
       }
     );
+  }
+
+  loadCollectionsData(): void {
+
+
+
+    this.loggedInUserSubscription = this.authService.getLoggedInUser().pipe(
+      tap(user => {
+        this.loggedInUser = user;
+        console.log("User " + this.loggedInUser.username);
+
+      })
+      ).subscribe({
+        error: (error) => {
+          console.log('Error getting loggedInUser Profile Component');
+          console.log(error);
+        },
+      });
+
+    this.userSubscription = this.userService.indexUserCollections(this.loggedInUser.id).subscribe({
+      next: (collections) => {
+        this.collections = collections;
+      },
+      error: (error) => {
+        console.log('Error getting user collections');
+        console.log(error);
+      },
+    });
+    this.dataLoaded = true;
   }
 }

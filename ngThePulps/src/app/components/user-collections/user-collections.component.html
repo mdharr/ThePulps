@@ -1,31 +1,22 @@
-<!-- <div>
-  <ng-container *ngFor="let collection of collections">
-    <ul>
-      <li>{{ collection.name }}</li>
-    </ul>
-    <ng-container *ngFor="let story of collection.stories">
-      <ul>
-        <li>{{ story.title }}</li>
-      </ul>
-    </ng-container>
-  </ng-container>
-</div> -->
-
 <div>
-  <mat-accordion>
-    <ng-container *ngFor="let collection of collections">
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          {{ collection.name }}
-        </mat-expansion-panel-header>
-        <ul>
-          <ng-container *ngFor="let story of collection.stories" >
-            <li (click)="navigateToStoryAnchor(story)">
+  <ng-container *ngIf="dataLoaded; else loadingTemplate">
+    <mat-accordion *ngIf="collections.length > 0">
+      <ng-container *ngFor="let collection of collections">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            {{ collection.name }}
+          </mat-expansion-panel-header>
+          <ul>
+            <li *ngFor="let story of collection.stories" (click)="navigateToStoryAnchor(story)">
               {{ story.title }}
             </li>
-          </ng-container>
-        </ul>
-      </mat-expansion-panel>
-    </ng-container>
-  </mat-accordion>
+          </ul>
+        </mat-expansion-panel>
+      </ng-container>
+    </mat-accordion>
+    <p *ngIf="collections.length < 0 && dataLoaded">No collections available.</p>
+  </ng-container>
 </div>
+
+<ng-template #loadingTemplate>Loading...</ng-template>
+
