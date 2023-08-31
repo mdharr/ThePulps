@@ -6,7 +6,7 @@ html, body {
 
 .main {
   padding: 25px;
-  min-height: calc(120vh - 60px);
+  /* min-height: calc(120vh - 60px); */
   box-sizing: border-box;
 }
 
