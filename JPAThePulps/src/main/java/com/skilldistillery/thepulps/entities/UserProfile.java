@@ -25,6 +25,9 @@ public class UserProfile {
 	
 	private String bio;
 	
+	@Column(name = "banner_url")
+	private String bannerUrl;
+	
 	@JsonIgnore
 	@OneToOne(mappedBy = "userProfile")
 	private User user;
@@ -33,11 +36,12 @@ public class UserProfile {
 		super();
 	}
 
-	public UserProfile(int id, String imageUrl, String bio, User user) {
+	public UserProfile(int id, String imageUrl, String bio, String bannerUrl, User user) {
 		super();
 		this.id = id;
 		this.imageUrl = imageUrl;
 		this.bio = bio;
+		this.bannerUrl = bannerUrl;
 		this.user = user;
 	}
 
@@ -63,6 +67,14 @@ public class UserProfile {
 
 	public void setBio(String bio) {
 		this.bio = bio;
+	}
+
+	public String getBannerUrl() {
+		return bannerUrl;
+	}
+
+	public void setBannerUrl(String bannerUrl) {
+		this.bannerUrl = bannerUrl;
 	}
 
 	public User getUser() {
@@ -92,10 +104,8 @@ public class UserProfile {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("UserProfile [id=").append(id).append(", imageUrl=").append(imageUrl).append(", bio=")
-				.append(bio).append(", user=").append(user).append("]");
-		return builder.toString();
+		return "UserProfile [id=" + id + ", imageUrl=" + imageUrl + ", bio=" + bio + ", bannerUrl=" + bannerUrl
+				+ ", user=" + user + "]";
 	}
 
 }
