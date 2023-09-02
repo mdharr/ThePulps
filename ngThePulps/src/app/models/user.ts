@@ -1,5 +1,6 @@
 import { first } from "rxjs";
 import { Collection } from "./collection";
+import { UserProfile } from "./user-profile";
 
 export class User {
 
@@ -10,7 +11,7 @@ export class User {
   enabled: boolean;
   role: string;
   collections: Collection[];
-  // userProfile: number;
+  userProfile: UserProfile;
   email: string;
   firstName: string;
   lastName: string;
@@ -24,6 +25,7 @@ export class User {
     enabled: boolean = false,
     role: string = '',
     collections: Collection[] = [],
+    userProfile: UserProfile = new UserProfile(),
     email: string = '',
     firstName: string = '',
     lastName: string = '',
@@ -36,6 +38,7 @@ export class User {
     this.enabled = enabled;
     this.role = role;
     this.collections = collections;
+    this.userProfile = userProfile;
     this.email = email;
     this.firstName = firstName;
     this.lastName = lastName;

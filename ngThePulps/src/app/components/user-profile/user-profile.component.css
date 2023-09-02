@@ -1,0 +1,15 @@
+.banner-box {
+  max-width: 100%; /* Limit the width of the container */
+  max-height: 200px; /* Limit the height of the container */
+  overflow: hidden; /* Hide any overflowing content */
+}
+
+.banner-img {
+  width: 100%; /* Make the image fill its container */
+  height: auto; /* Maintain aspect ratio */
+}
+
+
+.main-box {
+  width: 100%;
+}
