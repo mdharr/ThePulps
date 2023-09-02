@@ -6,4 +6,6 @@ import com.skilldistillery.thepulps.entities.UserProfile;
 
 public interface UserProfileRepository extends JpaRepository<UserProfile, Integer> {
 
+	UserProfile findByUserId(int userId);
+
 }

@@ -19,4 +19,9 @@ public class UserProfileServiceImpl implements UserProfileService {
 		return userProfileRepo.findAll();
 	}
 
+	@Override
+	public UserProfile getUserProfileByUserId(int userId) {
+		return userProfileRepo.findByUserId(userId);
+	}
+
 }

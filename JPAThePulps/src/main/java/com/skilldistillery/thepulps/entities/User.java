@@ -38,7 +38,7 @@ public class User {
 	@OneToMany(mappedBy = "user")
 	private List<StoryComment> storyComments;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_profile_id")
 	private UserProfile userProfile;
