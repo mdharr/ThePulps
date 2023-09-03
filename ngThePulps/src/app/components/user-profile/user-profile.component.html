@@ -1,9 +1,8 @@
-<p>user-profile works!</p>
 <div class="main-box">
   <div class="banner-box">
     <img class="banner-img" src="{{loggedInUser.userProfile.bannerUrl}}" alt="">
   </div>
-  <div>
-    <p [routerLink]="['/users/' + loggedInUser.id + '/collections']">{{loggedInUser.username}}'s Collections</p>
+  <div class="collections-box">
+    <button class="collection-title" [routerLink]="['/users/' + loggedInUser.id + '/collections']">{{loggedInUser.username}}'s Collections</button>
   </div>
 </div>

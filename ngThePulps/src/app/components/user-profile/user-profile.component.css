@@ -1,15 +1,29 @@
 .banner-box {
-  max-width: 100%; /* Limit the width of the container */
-  max-height: 200px; /* Limit the height of the container */
-  overflow: hidden; /* Hide any overflowing content */
+  max-width: 100%;
+  max-height: auto;
+  overflow: hidden;
+  margin: 25px;
+  margin-top: 0px;
 }
 
 .banner-img {
-  width: 100%; /* Make the image fill its container */
-  height: auto; /* Maintain aspect ratio */
+  width: 100%;
+  height: auto;
 }
 
-
 .main-box {
+  display:flex;
+  flex-direction: column;
   width: 100%;
+}
+
+.collection-title {
+  text-transform: capitalize;
+}
+
+.collections-box {
+  max-width: 100%;
+  max-height: auto;
+  overflow: hidden;
+  margin: 25px;
 }
