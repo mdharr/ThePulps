@@ -34,12 +34,14 @@
   width: 200px;
   text-align: center;
   transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+  cursor: pointer;
 }
 
-.category-item a {
+.category-item p {
   text-decoration: none;
   color: #333;
   font-weight: bold;
+  margin: 0;
 }
 
 .category-item:hover {
